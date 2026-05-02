@@ -19,7 +19,7 @@ Three principles, one emergent property:
 2. **Observable Autonomy** — *Autonomy is a function of transparency.* Every autonomous operation produces a visible, continuous, multi-resolution trail.
 3. **Convergence Is Silence** — *The system has converged when diverse independent evaluators find nothing left to change.* Not when a score stops moving.
 
-Together they produce **Autonomous Reasoning Fidelity (ARF)** — the external signal that the agent is genuinely reasoning about the situation and that the reasoning is visible enough for observers to judge. ARF is not a fourth principle; it is what the three principles measure when they hold simultaneously. (See [PROOF.md](./PROOF.md) for what has been empirically tested, what survived, and what failed.)
+Together they produce **Autonomous Reasoning Fidelity (ARF)** — the external signal that the agent is genuinely reasoning about the situation and that the reasoning is visible enough for observers to judge. ARF is not a fourth principle; it is what the three principles measure when they hold simultaneously. (See [PROOF.md](./PROOF.md) for how to test conformance for each principle and reference evidence from one implementation.)
 
 ---
 
@@ -190,7 +190,7 @@ ARF answers: *did the agent's responses actually vary with the specifics of what
 
 ## For implementers
 
-Any instruction set built under these principles must embody all three:
+Any instruction set built under these principles must embody all four:
 
 1. **Structure over prescription.** Define phases that shape the work. Within each phase, ask questions that guide reasoning. Don't provide answers — provide vocabulary and a thinking framework.
 2. **Continuous narration.** Every phase must produce visible output. Format can be structured (tables, classifications) but the reasoning must be the agent's own. "I found X because Y" not "Checklist item 3: checked."
