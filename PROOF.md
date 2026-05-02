@@ -4,6 +4,18 @@
 
 ---
 
+## Digest (60 seconds)
+
+Three conformance tests, one per principle:
+
+1. **Commander's Intent** — Present the artifact cold to evaluators who did not author it. If they produce coherent, situated output without scaffolding, it conforms.
+2. **Observable Autonomy** — Give an absent human observer only the trail. If they can locate a decision, reconstruct the reasoning, and find something to challenge, it conforms.
+3. **Convergence Is Silence** — Run the loop to silence across three evaluators from distinct families, each in a fresh session. If the loop stops because nothing is left to change, it conforms.
+
+These tests are domain-agnostic. Apply them to your own system. Reference evidence from one implementation follows.
+
+---
+
 ## How conformance is tested
 
 Each principle has a test. The tests below apply regardless of domain, stack, or scale. Run them on your own implementation, not on this manifesto.
