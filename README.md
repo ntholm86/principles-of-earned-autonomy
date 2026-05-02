@@ -4,6 +4,8 @@
 
 This repository contains the theory-level framework governing how autonomous AI agents earn and exercise authority. The framework identifies two problems (autonomous reasoning + earned autonomy), three architectural principles (Commander's Intent, Observable Autonomy, Convergence Is Silence), and one emergent measurable property (Autonomous Reasoning Fidelity). It is implementation-agnostic — any tool, language, or platform can conform; none are prescribed.
 
+One conformance example — the [autonomous-agent-skills suite](https://github.com/ntholm86/autonomous-agent-skills) — has been published separately as a reference implementation in the developer-tooling domain. The skills suite is evidence that the principles work in practice; it is not the proof of the principles themselves.
+
 ## Read in this order
 
 | File | What it does | Time |

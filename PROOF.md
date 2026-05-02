@@ -1,44 +1,56 @@
 # Empirical Evidence
 
-*The framework's load-bearing claims are not asserted. They were tested. This file documents the experiment, one clear example per principle, and what was falsified.*
+*The framework's load-bearing claims are falsifiable. This file documents how to test each one and what one reference implementation found when it did.*
 
 ---
 
-## The experiment
+## How conformance is tested
 
-Build a **skill suite** that an AI agent runs on itself to improve itself, governed entirely by the three principles. The principles define the rules of the loop; convergence defines the exit. The experiment tests whether a self-improving skill suite — operating under nothing but these principles — can actually reach silence rather than churn forever.
-
-The artifact under proof is the **skill suite**, not this manifesto. The manifesto is the rulebook; the skill suite is what was built under the rulebook and what survived running under it. Where this manifesto is used as an evaluation target below, it is a *test fixture* for the skill suite, not the artifact being proven.
-
-This manifesto is implementation-agnostic. The evidence below comes from one specific implementation (the kata skills suite, a separate repository). One conformance, real but bounded.
-
----
-
-## One clear example per principle
+Each principle has a test. The tests below apply regardless of domain, stack, or scale. Run them on your own implementation, not on this manifesto.
 
 ### Principle 1 — Commander's Intent
 
-**The test.** The skill suite is written as missions, not procedures. The litmus test in [PRINCIPLES.md](./PRINCIPLES.md): *if you removed all specific examples and thresholds from a skill, would an intelligent agent still know what to do?* Three fresh model families (Anthropic, xAI/Grok, Google/Gemini) — none involved in authoring the suite — were each asked to apply it cold to a real target.
+**The falsification question.** The litmus test in [PRINCIPLES.md](./PRINCIPLES.md): *if you removed all specific examples and thresholds from your skill (or process, or specification), would an intelligent agent that did not participate in writing it still know what to do?*
 
-**What happened.** Each evaluator, given only the skills' missions, produced a coherent evaluation approach without external scaffolding. None reported the skills as underspecified. The suite directed independent reasoning across distinct model lineages without a checklist.
+**How to test it.** Present the artifact cold to evaluators from distinct model families who did not author it. Ask them to apply it. Record whether they produce coherent output without external scaffolding, or whether they need the author to interpret the instructions.
 
-**What this shows.** A skill suite written as *what + why* (rather than as steps) is sufficient to direct fresh agents that did not participate in its design. That is the operational claim of Principle 1.
+**Failure mode.** Evaluators request clarifying context, add their own assumptions, or produce outputs the author would not recognize as conformant. This indicates the artifact is written as a checklist, not a mission.
 
 ### Principle 2 — Observable Autonomy
 
-**The test.** Every run of the skill suite produces a continuous, multi-resolution trail (full reasoning, indexed decisions, digested summary). The standing test: *can a human who was not present reconstruct what the agent did, why, and whether to trust the results, from the trail alone?*
+**The falsification question.** *Can a person who was not present during a run reconstruct what the agent did, why, and whether to trust the results, from the trail alone?*
 
-**What happened.** After a closed convergence chain, a human review opened the trail cold and was able to reconstruct each evaluator's reasoning, locate decisions, and — critically — find a defect the chain had missed (see *What was falsified*). The defect was findable *because* the trail made the chain's reasoning inspectable after the fact.
+**How to test it.** Close the loop. Give an absent human observer only the trail — no direct conversation, no supplemental context. Ask them to audit it: locate a specific decision, reconstruct the reasoning, and find one thing they would challenge.
 
-**What this shows.** The trail did its job: it made invisible reasoning visible enough that an outside observer could audit it and surface a finding the loop had produced. Observability is what allowed falsification to occur at all.
+**Failure mode.** The observer cannot locate the decision that produced a given output, or cannot tell whether a decision was reasoned or pattern-matched. This indicates the trail records outputs, not reasoning.
 
 ### Principle 3 — Convergence Is Silence
 
-**The test.** Run the skill suite to silence on a frozen artifact: three diverse evaluator families, fresh sessions, each independently finding nothing material to change. The skill suite either reaches silence or it doesn't — and "doesn't" is the failure mode the principle was written to expose.
+**The falsification question.** *Does the loop stop because there is genuinely nothing left to change — or because a stopping rule fired?*
 
-**What happened.** Three evaluator families, evaluating a locked artifact in isolation, each independently recorded zero changes. The chain closed on silence rather than on a stabilizing score. The skill suite reached its own defined exit condition.
+**How to test it.** Run the loop to silence across three independent evaluators from distinct model families, each in a fresh session with no shared context. Record not just what each evaluator changed, but what each explicitly declined to change and why. Count convergence only when silence is the result, not when a turn limit or score threshold was reached.
 
-**What this shows.** A self-improving skill suite governed by these principles can actually stop. Silence convergence across diverse independent evaluators is achievable in practice — not proof of correctness, but evidence that the loop has an honest exit and reaches it.
+**Failure mode.** The loop terminates because a stopping rule fired. Or two evaluators find the same things in the same direction — suggesting shared training bias, not independent convergence.
+
+---
+
+## Reference evidence
+
+The artifact under test was the **autonomous-agent-skills suite** — six skills that an AI agent runs on a codebase to improve itself and record its reasoning. This manifesto is the rulebook; the skills suite is what was built and tested under that rulebook. One implementation, one domain (developer tooling). Bounded, real evidence.
+
+The full record is in the skills suite's `.trail/log.md`. What follows is one example per principle.
+
+### Principle 1 — Commander's Intent
+
+Three fresh model families (Anthropic, xAI/Grok, Google/Gemini) — none involved in authoring the suite — were each asked to apply it cold to a real target. Each evaluator produced a coherent evaluation approach without external scaffolding. None reported the skills as underspecified. The suite directed independent reasoning across distinct model lineages without a checklist.
+
+### Principle 2 — Observable Autonomy
+
+After a closed convergence chain, a human review opened the trail cold and was able to reconstruct each evaluator's reasoning, locate decisions, and — critically — find a defect the chain had missed (see *What was falsified*). The defect was findable *because* the trail made the chain's reasoning inspectable after the fact. Observability is what allowed falsification to occur at all.
+
+### Principle 3 — Convergence Is Silence
+
+Three evaluator families, evaluating a locked artifact in isolation, each independently recorded zero changes. The chain closed on silence rather than on a stabilizing score. The skill suite reached its own defined exit condition.
 
 ---
 
