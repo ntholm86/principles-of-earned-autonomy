@@ -2,7 +2,15 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19732890.svg)](https://doi.org/10.5281/zenodo.19732890)
 
-This repository contains the theory-level framework governing how autonomous AI agents earn and exercise authority. The framework identifies two problems (autonomous reasoning + earned autonomy), three architectural principles (Commander's Intent, Observable Autonomy, Convergence Is Silence), and one emergent measurable property (Autonomous Reasoning Fidelity). It is implementation-agnostic — any tool, language, or platform can conform; none are prescribed.
+**If an autonomous action is not auditable, it is broken. Not risky — broken.**
+
+The correct response to broken is revocation, not tolerance. Autonomy that cannot be traced cannot be trusted. Trust that cannot be earned cannot be revoked.
+
+This repository is the framework that makes that a requirement rather than a preference. Three architectural principles. One measurable property. No tool prescriptions — any stack can conform.
+
+1. **Commander's Intent** — define the destination, never the route. The agent must interpret and adapt, not execute a checklist.
+2. **Observable Autonomy** — every autonomous operation produces a visible, auditable trail. If it cannot be seen, it should not be running.
+3. **Convergence Is Silence** — the work is done when independent evaluators find nothing left to change. Not when a score stops moving.
 
 One conformance example — the [autonomous-agent-skills suite](https://github.com/ntholm86/autonomous-agent-skills) — has been published separately as a reference implementation in the developer-tooling domain. The skills suite is evidence that the principles work in practice; it is not the proof of the principles themselves.
 
