@@ -89,6 +89,10 @@ A single-resolution trail satisfies one observer at the cost of silently excludi
 
 **Fidelity marking.** Where the agent authors its own summary, this must be explicitly marked so observers can discount accordingly. A summary written by the audited party is evidence, but it is not *independent* evidence. Where verbatim capture is impossible (e.g., platform limitations prevent transcript export), the trail must explicitly mark fidelity rather than silently degrading. "Reconstructed from agent memory" and "verbatim tool output" are different trust levels; conflating them is dishonest.
 
+**The harness boundary constraint.** The telemetry must be captured by the execution harness, not reported by the agent. An agent cannot structurally log its own internal reasoning without generating a post-hoc summary, because it cannot retroactively pipe its own generated thought tokens into a tool call in the same turn. Any attempt by an agent to "write down its thoughts" is by definition generating a new summary. Self-reporting internal reasoning is a violation of this principle. True verbatim fidelity requires platform-level transcript export.
+
+**Why structural, not reported.** An LLM agent generating its own trail after the fact will produce a coherent narrative — whether or not that narrative matches what occurred. This is not deception; it is what unconstrained text generation does under a "summarize what you did" prompt. Post-hoc summaries written by the audited party are evidence of what the agent says it did, not of what it did. The trail must therefore be captured *as the work happens*, in a form the agent does not author after the outcome is known. "Structural" means the trail's integrity does not depend on the agent's honesty.
+
 **In practice:**
 
 - **Record reasoning, not just results.** Capture what was examined, what was found, what was decided, and why — not a polished after-the-fact summary. The constraint is *content fidelity* (the reasoning was recorded), not *delivery timing* (the human watched live).
