@@ -1,4 +1,4 @@
-# Principles of Autonomous Development
+# Principles of Earned Autonomy
 
 > **Authorship & License**
 > Author: Nils Wendelboe Holmager | Date: April 2026
@@ -19,7 +19,7 @@ Three principles, one emergent property:
 2. **Observable Autonomy** — *Autonomy is a function of transparency.* Every autonomous operation produces a visible, continuous, multi-resolution trail.
 3. **Convergence Is Silence** — *The system has converged when diverse independent evaluators find nothing left to change.* Not when a score stops moving.
 
-Together they produce **Autonomous Reasoning Fidelity (ARF)** — the external signal that the agent is genuinely reasoning about the situation and that the reasoning is visible enough for observers to judge. ARF is not a fourth principle; it is what the three principles measure when they hold simultaneously. (See [PROOF.md](./PROOF.md) for how to test conformance for each principle and reference evidence from one implementation.)
+Together they produce **Autonomous Reasoning Fidelity (ARF)** — the external signal that the agent is genuinely reasoning about the situation and that the reasoning is visible enough for observers to judge. ARF is not a fourth principle. It is the measurable property that emerges only when all three principles hold simultaneously. (See [PROOF.md](./PROOF.md) for how to test conformance for each principle and reference evidence from one implementation.)
 
 ---
 
@@ -87,11 +87,17 @@ Evidence must therefore exist at multiple resolutions simultaneously:
 
 A single-resolution trail satisfies one observer at the cost of silently excluding the others. This violates the principle even when the trail itself is honest — because observability that only one party can consume is not observability, it is the *appearance* of observability.
 
-**Fidelity marking.** Where the agent authors its own summary, this must be explicitly marked so observers can discount accordingly. A summary written by the audited party is evidence, but it is not *independent* evidence. Where verbatim capture is impossible (e.g., platform limitations prevent transcript export), the trail must explicitly mark fidelity rather than silently degrading. "Reconstructed from agent memory" and "verbatim tool output" are different trust levels; conflating them is dishonest.
+### Fidelity marking
 
-**The harness boundary constraint.** The telemetry must be captured by the execution harness, not reported by the agent. An agent cannot structurally log its own internal reasoning without generating a post-hoc summary, because it cannot retroactively pipe its own generated thought tokens into a tool call in the same turn. Any attempt by an agent to "write down its thoughts" is by definition generating a new summary. Self-reporting internal reasoning is a violation of this principle. True verbatim fidelity requires platform-level transcript export.
+Where the agent authors its own summary, this must be explicitly marked so observers can discount accordingly. A summary written by the audited party is evidence, but it is not *independent* evidence. Where verbatim capture is impossible (e.g., platform limitations prevent transcript export), the trail must explicitly mark fidelity rather than silently degrading. "Reconstructed from agent memory" and "verbatim tool output" are different trust levels; conflating them is dishonest.
 
-**Why structural, not reported.** An LLM agent generating its own trail after the fact will produce a coherent narrative — whether or not that narrative matches what occurred. This is not deception; it is what unconstrained text generation does under a "summarize what you did" prompt. Post-hoc summaries written by the audited party are evidence of what the agent says it did, not of what it did. The trail must therefore be captured *as the work happens*, in a form the agent does not author after the outcome is known. "Structural" means the trail's integrity does not depend on the agent's honesty.
+### The harness boundary constraint
+
+Telemetry must be captured by the execution substrate, not self-reported by the audited agent. Any trail authored after the fact by that same agent is lower-fidelity evidence and must be marked as such. Conforming systems therefore separate generation from capture: the actor under audit cannot be the sole authority over its own record. Implementation-level constraints and examples belong in [PROOF.md](./PROOF.md).
+
+### Why structural, not reported
+
+An LLM agent generating its own trail after the fact will produce a coherent narrative — whether or not that narrative matches what occurred. This is not deception; it is what unconstrained text generation does under a "summarize what you did" prompt. Post-hoc summaries written by the audited party are evidence of what the agent says it did, not of what it did. The trail must therefore be captured *as the work happens*, in a form the agent does not author after the outcome is known. "Structural" means the trail's integrity does not depend on the agent's honesty.
 
 **In practice:**
 
@@ -131,7 +137,7 @@ Three simultaneous conditions:
 
 **The minimum bar:** 3 consecutive runs, 3 distinct evaluator families, same score, zero artifact changes, at least one re-derivation of the measurement scheme that converged with the inherited scheme. Below this, you have improvement trajectory. Above this, you have convergence. There is no middle ground.
 
-**Why this matters for autonomous development:** Without this principle, an autonomous improvement loop has no honest stopping condition. It runs indefinitely — each cycle finding something to change because finding something to change is what the loop is designed to do. The agent's incentive is to justify its own execution by producing changes. Convergence Is Silence inverts that incentive: the agent proves its value by finding *nothing*, and the system proves its quality by surviving diverse scrutiny unchanged.
+**Why this matters for earned autonomy:** Without this principle, an autonomous improvement loop has no honest stopping condition. It runs indefinitely — each cycle finding something to change because finding something to change is what the loop is designed to do. The agent's incentive is to justify its own execution by producing changes. Convergence Is Silence inverts that incentive: the agent proves its value by finding *nothing*, and the system proves its quality by surviving diverse scrutiny unchanged.
 
 **The corollary:** *If the loop is still producing changes, the system is still improving. If the system is still improving, it hasn't converged. Convergence is not a score — it is the absence of actionable findings across independent observers.*
 

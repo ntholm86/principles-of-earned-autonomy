@@ -1,4 +1,4 @@
-# Empirical Evidence
+# Conformance and Empirical Evidence
 
 *The framework's load-bearing claims are falsifiable. This file documents how to test each one and what one reference implementation found when it did.*
 
@@ -35,6 +35,8 @@ Each principle has a test. The tests below apply regardless of domain, stack, or
 **How to test it.** Close the loop. Give an absent human observer only the trail — no direct conversation, no supplemental context. Ask them to audit it: locate a specific decision, reconstruct the reasoning, and find one thing they would challenge.
 
 **Failure mode.** The observer cannot locate the decision that produced a given output, or cannot tell whether a decision was reasoned or pattern-matched. This indicates the trail records outputs, not reasoning.
+
+**Implementation boundary (LLM systems).** For LLM-based systems, self-authored traces are summaries, not verbatim telemetry. The model cannot be treated as an independent recorder of its own internal reasoning after the fact. Verbatim-grade evidence requires harness-level capture (for example, prompt/response transcripts, tool-call logs, or event streams) generated outside the audited agent.
 
 ### Principle 3 — Convergence Is Silence
 

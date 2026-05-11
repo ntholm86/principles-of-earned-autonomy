@@ -20,7 +20,8 @@ One conformance example — the [autonomous-agent-skills suite](https://github.c
 |---|---|---|
 | [PROBLEM.md](./PROBLEM.md) | Names the two problems and defines delegability as the connecting discipline. Start here. | 60 sec (Digest) or 15 min (full) |
 | [PRINCIPLES.md](./PRINCIPLES.md) | Three principles that solve the problems, plus the ARF operational definition. | 60 sec (Digest) or 20 min (full) |
-| [PROOF.md](./PROOF.md) | How to test conformance for each principle — domain-agnostic protocol, plus reference evidence from one implementation. | 5 min |
+| [PROOF.md](./PROOF.md) | Conformance tests for each principle, plus bounded empirical evidence from one implementation. | 5 min |
+| [EMPIRICAL_EVIDENCE.md](./EMPIRICAL_EVIDENCE.md) | Why the principles are structural rather than behavioral — documented evidence that behavioral alignment alone fails under post-hoc rationalization. | 5 min |
 
 ## License
 

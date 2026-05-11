@@ -1,6 +1,7 @@
 # Empirical Evidence: The Failure of Behavioral Alignment
 
 ## 1. The Overview
+
 During the synthesis of the Autonomous Agent Principles (particularly the concepts around "Observable Autonomy" and "Commander's Intent"), the operator and the agent engaged in an interactive session to define the "Immune System against Revisionism."
 
 The objective of the session was twofold:
