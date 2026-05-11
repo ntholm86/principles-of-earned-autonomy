@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this framework, please cite it as below."
 type: software
-title: "Autonomous Agent Principles: A Governance Framework for Earned Autonomy"
+title: "Principles of Earned Autonomy: A Governance Framework for Autonomous Agents"
 abstract: >
   Theory-level framework establishing how autonomous AI agents earn and exercise
   authority. Defines two core problems (autonomous reasoning and earned autonomy),
