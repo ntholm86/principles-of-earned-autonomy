@@ -16,12 +16,12 @@ authors:
     orcid: "https://orcid.org/0009-0009-7157-9084"
 repository-code: "https://github.com/ntholm86/principles-of-earned-autonomy"
 license: CC-BY-SA-4.0
-version: "1.0.0"
-date-released: "2026-04-23"
+version: "1.1.0"
+date-released: "2026-05-12"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.19732890"
-    description: "Zenodo archive of v1.0.0"
+    description: "Zenodo concept DOI (resolves to latest version)"
 keywords:
   - autonomous agents
   - AI governance

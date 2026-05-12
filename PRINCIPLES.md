@@ -13,13 +13,41 @@ Context for these principles — the problems they are designed to solve — is 
 
 ## Digest (60 seconds)
 
-Three principles, one emergent property:
+One premise, three principles, one emergent property.
 
-1. **Commander's Intent** — *Define the destination. Never prescribe the route.* The agent must interpret and adapt, not execute a checklist.
-2. **Observable Autonomy** — *Autonomy is a function of transparency.* Every autonomous operation produces a visible, continuous, multi-resolution trail.
-3. **Convergence Is Silence** — *The system has converged when diverse independent evaluators find nothing left to change.* Not when a score stops moving.
+**Premise — The agent is an unreliable narrator of itself.** Stated reasoning is not internal reasoning; self-correction often degrades performance; the agent's account of its own decisions cannot be the only account. The three principles are structural responses to this fact.
+
+1. **Commander's Intent** — *Define the destination. Never prescribe the route.* The agent must interpret and adapt, not execute a checklist. *(The operator narrates the goal; the agent does not self-interpret it.)*
+2. **Observable Autonomy** — *Autonomy is a function of transparency.* Every autonomous operation produces a visible, multi-resolution record captured as the work happens, which the agent cannot retroactively edit. *(An independent record exists; the agent is not the sole narrator of its own actions.)*
+3. **Convergence Is Silence** — *The system has converged when diverse independent evaluators find nothing left to change.* Not when a score stops moving. *(Independent evaluators judge the work; the agent does not self-assess.)*
 
 Together they produce **Autonomous Reasoning Fidelity (ARF)** — the external signal that the agent is genuinely reasoning about the situation and that the reasoning is visible enough for observers to judge. ARF is not a fourth principle. It is the measurable property that emerges only when all three principles hold simultaneously. (See [PROOF.md](./PROOF.md) for how to test conformance for each principle and reference evidence from one implementation.)
+
+---
+
+## Premise: The agent is an unreliable narrator of itself
+
+The three principles are not arbitrary. They are structural responses to a single empirical fact: an LLM agent's account of its own reasoning is not reliable evidence of that reasoning.
+
+This is not the claim that agents lie. It is stronger. Even when the agent is trying to be honest, the narration it produces about its own decisions, its own instructions, and its own quality is structurally untrustworthy.
+
+**The evidence:**
+
+- Stated reasoning diverges from internal reasoning. Chain-of-thought explanations can be plausible and misleading at the same time (Turpin et al., *Language Models Don't Always Say What They Think*, NeurIPS 2023).
+- Even reasoning-trained models do not reliably say what they think; CoT monitoring is not sufficient to rule out undesired behavior (Chen et al., *Reasoning Models Don't Always Say What They Think*, 2025).
+- Unsupervised self-correction often degrades performance rather than improving it (Huang et al., *Large Language Models Cannot Self-Correct Reasoning Yet*, ICLR 2024).
+
+**The implication:**
+
+Any framework that delegates real autonomy to an LLM agent must assume that the agent cannot be the only narrator of its own actions, the only interpreter of its own instructions, or the only judge of its own work. Each of those roles must be structurally separated from the agent. The three principles each separate one:
+
+- **Principle 1 (Commander's Intent)** separates *interpretation* — the operator defines the goal; the agent does not get to self-interpret what it was asked to do.
+- **Principle 2 (Observable Autonomy)** separates *narration* — an independent record of the work exists; the agent is not the sole author of what it did.
+- **Principle 3 (Convergence Is Silence)** separates *judgment* — diverse independent evaluators decide whether the work is done; the agent does not self-assess.
+
+A framework that omits any of the three leaves one role undefended. A framework that names all three but allows the agent to author them itself is theater.
+
+**The corollary:** *Trust no narration the narrator can shape.*
 
 ---
 
@@ -52,9 +80,9 @@ Together they produce **Autonomous Reasoning Fidelity (ARF)** — the external s
 
 **Origin:** Synthesizes Meaningful Human Control (autonomous systems ethics), Trust Calibration (Lee & See, 2004), and the Observatory architecture pattern — but establishes a relationship none of those frameworks state explicitly.
 
-**The problem it solves:** Autonomy and transparency are typically treated as parallel concerns — as if they were independent checkboxes. They are not. They are causally linked. Autonomy without observability is not delegation — it is abdication.
+**The problem it solves:** Autonomy and transparency are typically treated as parallel concerns — as if they were independent checkboxes. They are not. They are causally linked. Autonomy without observability is not delegation — it is abdication. And observability requires more than the existence of a record: it requires that the record was captured as the work happened and cannot be retroactively edited by the agent that produced it. Otherwise the record is a story the agent tells about itself.
 
-**The principle:** Every autonomous operation must produce a visible, continuous trail — not upon request, not as a post-hoc summary, but as a structural property of the operation itself. The trail is not a feature. It is the mechanism by which the agent earns the right to keep acting.
+**The principle:** Every autonomous operation must produce a record that is captured as the work happens, not composed after it, and that the agent cannot revise after the fact. Audit may occur at any later time — but the record being audited must have come into existence concurrently with the decisions it documents, and must not be subject to revision by the audited agent. The trail is not a feature. It is the mechanism by which the agent earns the right to keep acting.
 
 **The dependency:**
 
@@ -91,9 +119,9 @@ A single-resolution trail satisfies one observer at the cost of silently excludi
 
 Where the agent authors its own summary, this must be explicitly marked so observers can discount accordingly. A summary written by the audited party is evidence, but it is not *independent* evidence. Where verbatim capture is impossible (e.g., platform limitations prevent transcript export), the trail must explicitly mark fidelity rather than silently degrading. "Reconstructed from agent memory" and "verbatim tool output" are different trust levels; conflating them is dishonest.
 
-### The harness boundary constraint
+### Capture-author separation
 
-Telemetry must be captured by the execution substrate, not self-reported by the audited agent. Any trail authored after the fact by that same agent is lower-fidelity evidence and must be marked as such. Conforming systems therefore separate generation from capture: the actor under audit cannot be the sole authority over its own record. Implementation-level constraints and examples belong in [PROOF.md](./PROOF.md).
+The agent that makes a decision cannot also be the sole author of the record of that decision. The act of deciding and the act of recording must be structurally separated, so that no later edit by the agent can alter what the record says happened. Any record authored after the fact by the audited agent is testimony, not evidence, and must be marked as such. Implementation-level constraints and examples belong in [PROOF.md](./PROOF.md).
 
 ### Why structural, not reported
 
@@ -109,7 +137,12 @@ An LLM agent generating its own trail after the fact will produce a coherent nar
 
 **The test:** If the human stepped away for an hour and came back, could they — at their resolution — reconstruct what the agent did, why, and whether to trust the results, from the trail alone? If yes, the system has Observable Autonomy. If no, the autonomy is unsafe regardless of how good the agent's work was.
 
-**The corollary:** *If you can't see it, it shouldn't be doing it.*
+**The corollaries:**
+
+- *A record composed after the decision is testimony, not evidence.* (capture-moment fidelity)
+- *A record an agent can rewrite is not a record.* (tamper resistance)
+
+The two together close the two ways post-hoc rationalization enters a trail: fabrication at the moment of writing, and revision after the fact.
 
 ---
 
@@ -144,6 +177,8 @@ Three simultaneous conditions:
 ---
 
 ## How the principles interact
+
+All three answer the same premise. The agent cannot be the sole narrator of its own goal, its own actions, or its own quality. Each principle separates one of those roles from the agent — Principle 1 separates interpretation, Principle 2 separates narration, Principle 3 separates judgment. Removing any one leaves a role the agent can quietly take back.
 
 Commander's Intent without Observable Autonomy is dangerous — you told the agent what to achieve but can't see how it's pursuing it.
 
