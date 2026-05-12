@@ -1,4 +1,4 @@
-# Autonomous Agent Principles
+# Principles of Earned Autonomy
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19732890.svg)](https://doi.org/10.5281/zenodo.19732890)
 
@@ -12,7 +12,7 @@ This repository is the framework that makes that a requirement rather than a pre
 2. **Observable Autonomy** — every autonomous operation produces a visible, auditable trail. If it cannot be seen, it should not be running.
 3. **Convergence Is Silence** — the work is done when independent evaluators find nothing left to change. Not when a score stops moving.
 
-One conformance example — the [autonomous-agent-skills suite](https://github.com/ntholm86/autonomous-agent-skills) — has been published separately as a reference implementation in the developer-tooling domain. The skills suite is evidence that the principles work in practice; it is not the proof of the principles themselves.
+One conformance example — the [Principles of Earned Autonomy - Skills Suite](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite) — has been published separately as a reference implementation in the developer-tooling domain. The skills suite is evidence that the principles work in practice; it is not the proof of the principles themselves.
 
 ## Read in this order
 
