@@ -78,7 +78,7 @@ Delegability is not capability (the model can do the task). It is not safety (th
 
 **The operational test of delegability** (asked by each observer class, answered from the trail):
 
-1. Is the reasoning visible enough, *at my resolution*, for me to judge it?
+1. Is the reasoning visible enough for me to judge it?
 2. Is the reasoning *situated* to this case — would it have come out differently for a different case?
 3. Is the *scope* of authority I'm granting bounded to what the evidence actually supports?
 4. Can I *revoke* the authority on the same evidence, if the trail shows the reasoning stops being situated?
@@ -170,7 +170,7 @@ These are the research and engineering agenda that sits on top of the foundation
 
 This framework is an **evidence substrate**, not a trust generator. It produces the conditions under which trust *can* form on observable grounds. It does not manufacture trust, guarantee adoption, or solve the social, organizational, and human-factors problems that surround autonomous AI. Naming these limits prevents the framework from being judged against claims it never made.
 
-1. **Reviewer engagement and scaling.** Earned autonomy is meaningful only if someone evaluates the evidence. If no one reads the trail, autonomy becomes de facto unconditional regardless of how much evidence exists. If everyone reads it, the reviewer becomes the bottleneck. The framework provides multi-resolution evidence to lower review cost, and an in-trail reviewer-engagement signal so non-engagement is at least visible — but it has no answer for *how* organizations actually staff, incentivize, and sustain meaningful human review at scale. **This is the framework's deepest unresolved gap.** It is named here so it cannot be hidden by the existence of the trail.
+1. **Reviewer engagement and scaling.** Earned autonomy is meaningful only if someone evaluates the evidence. If no one reads the trail, autonomy becomes de facto unconditional regardless of how much evidence exists. If everyone reads it, the reviewer becomes the bottleneck. The framework provides a captured-as-it-happens trail and an in-trail reviewer-engagement signal so non-engagement is at least visible — but it has no answer for *how* organizations actually staff, incentivize, and sustain meaningful human review at scale. **This is the framework's deepest unresolved gap.** It is named here so it cannot be hidden by the existence of the trail.
 2. **Reasoning correctness.** Transparency proves *visibility*, not *correctness*. A trail can be honest, legible, and wrong. Convergence Is Silence is the framework's primary defense against this, but it depends on diverse evaluators being available, willing, and competent. Where they are not, transparency does not save you.
 3. **Human intent stability.** Commander's Intent assumes the human can articulate a destination clearly enough for the agent to interpret it. Real missions are often vague, contradictory, politically constrained, or shifting. If upstream intent is unstable, every downstream decision inherits that instability.
 4. **Organizational willingness to delegate.** Many organizations do not want AI to have autonomy at all — earned or not. Fear of loss of control, job displacement, liability, political consequences, and being blamed for AI mistakes are legitimate concerns the framework cannot address. The framework's claim is conditional: *if* you want to delegate, here is how to make the delegation observable. It does not argue that you should.

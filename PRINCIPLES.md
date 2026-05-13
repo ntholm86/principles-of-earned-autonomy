@@ -18,7 +18,7 @@ One premise, three principles, one emergent property.
 **Premise — The agent is an unreliable narrator of itself.** Stated reasoning is not internal reasoning; self-correction often degrades performance; the agent's account of its own decisions cannot be the only account. The three principles are structural responses to this fact.
 
 1. **Commander's Intent** — *Define the destination. Never prescribe the route.* The agent must interpret and adapt, not execute a checklist. *(The operator narrates the goal; the agent does not self-interpret it.)*
-2. **Observable Autonomy** — *Autonomy is a function of transparency.* Every autonomous operation produces a visible, multi-resolution record captured as the work happens, which the agent cannot retroactively edit. *(An independent record exists; the agent is not the sole narrator of its own actions.)*
+2. **Observable Autonomy** — *Autonomy is a function of transparency.* Every autonomous operation produces a visible audit trail captured as the work happens, which the agent cannot retroactively edit. *(The degree of autonomy a system deserves is bounded by the degree of transparency it provides.)*
 3. **Convergence Is Silence** — *The system has converged when diverse independent evaluators find nothing left to change.* Not when a score stops moving. *(Independent evaluators judge the work; the agent does not self-assess.)*
 
 Together they produce **Autonomous Reasoning Fidelity (ARF)** — the external signal that the agent is genuinely reasoning about the situation and that the reasoning is visible enough for observers to judge. ARF is not a fourth principle. It is the measurable property that emerges only when all three principles hold simultaneously. (See [PROOF.md](./PROOF.md) for how to test conformance for each principle and reference evidence from one implementation.)
@@ -82,7 +82,7 @@ A framework that omits any of the three leaves one role undefended. A framework 
 
 **The problem it solves:** Autonomy and transparency are typically treated as parallel concerns — as if they were independent checkboxes. They are not. They are causally linked. Autonomy without observability is not delegation — it is abdication. And observability requires more than the existence of a record: it requires that the record was captured as the work happened and cannot be retroactively edited by the agent that produced it. Otherwise the record is a story the agent tells about itself.
 
-**The principle:** Every autonomous operation must produce a record that is captured as the work happens, not composed after it, and that the agent cannot revise after the fact. Audit may occur at any later time — but the record being audited must have come into existence concurrently with the decisions it documents, and must not be subject to revision by the audited agent. The trail is not a feature. It is the mechanism by which the agent earns the right to keep acting.
+**The principle:** Every autonomous operation must produce a record that is captured as the work happens, not composed after it, and that the agent cannot revise after the fact. Audit may occur at any later time — but the record being audited must have come into existence concurrently with the decisions it documents - untampered, and must not be subject to revision by the audited agent. The audit trail is the mechanism by which the agent earns the right to keep acting.
 
 **The dependency:**
 
@@ -102,18 +102,6 @@ Autonomy is a *function* of transparency:
 - More visibility → more trust → more autonomy earned
 - Less visibility → trust decays → autonomy must be constrained
 - Zero visibility → zero trust → autonomy must be revoked regardless of competence
-
-### The resolution requirement
-
-Observability is not binary — it is a function of observer, time budget, and evidence resolution. A trail at only one resolution is observable to one class of observer and opaque to the rest. A 50-page transcript is unobservable to the deployer with 2 minutes; a 1-paragraph summary is unobservable to the regulator with an afternoon.
-
-Evidence must therefore exist at multiple resolutions simultaneously:
-
-- **Full evidence** — the complete reasoning exchange (prompts, responses, tool calls, dead ends, reversals). Ground truth. An observer with unlimited time can replay the entire sequence.
-- **Indexed evidence** — key decisions, realizations, and turning points highlighted within the full evidence, so an observer with bounded time can navigate to what matters without reading everything.
-- **Digested evidence** — a summary that gives any observer a 60-second understanding of direction, recent decisions, and integrity. Must point to disagreements and reversals, not just outcomes.
-
-A single-resolution trail satisfies one observer at the cost of silently excluding the others. This violates the principle even when the trail itself is honest — because observability that only one party can consume is not observability, it is the *appearance* of observability.
 
 ### Fidelity marking
 
@@ -135,7 +123,7 @@ An LLM agent generating its own trail after the fact will produce a coherent nar
 - **Record everything.** The trail is not optional documentation. Every autonomous operation produces a trail entry. Every entry is comparable to the prior entry. The trajectory is visible.
 - **Design for the absent human.** Assume the human may not be watching right now but will review later. The trail must be legible after the fact, not just during execution.
 
-**The test:** If the human stepped away for an hour and came back, could they — at their resolution — reconstruct what the agent did, why, and whether to trust the results, from the trail alone? If yes, the system has Observable Autonomy. If no, the autonomy is unsafe regardless of how good the agent's work was.
+**The test:** If the human stepped away for an hour and came back, could they reconstruct what the agent did, why, and whether to trust the results, from the trail alone? If yes, the system has Observable Autonomy. If no, the autonomy is unsafe regardless of how good the agent's work was.
 
 **The corollaries:**
 
@@ -227,7 +215,7 @@ ARF answers: *did the agent's responses actually vary with the specifics of what
 
 **Validation (Principle 3).** Principles 1 and 2 *produce* the conditions for ARF. Situational discrimination *measures* it. Principle 3 *validates* the measurement. Without diverse, independent evaluators confirming the signal, ARF is self-assessed — and self-assessment can become self-justification. A single evaluator (or single model family) may consistently accept trails that look situated but are generic, because the evaluator shares the agent's blind spots. ARF that survives diverse scrutiny is externally evidenced. ARF that only one observer ever validated is an assertion.
 
-**Implementation note.** These principles define *what* Observable Autonomy requires. They do not prescribe *how* to provide it. A conforming implementation could use markdown files, a database, structured logs, a dashboard, or any other medium — as long as multi-resolution evidence exists, fidelity is marked, and the trail is inspectable by all observer classes. Specific tools and formats are choices of the implementer, not the specification.
+**Implementation note.** These principles define *what* Observable Autonomy requires. They do not prescribe *how* to provide it. A conforming implementation could use markdown files, a database, structured logs, a dashboard, or any other medium — as long as the trail is captured as the work happens, the agent cannot revise it after the fact, and fidelity is marked where the agent authored its own content. Specific tools and formats are choices of the implementer, not the specification.
 
 **Why this matters for scoring:** a scoring rubric for systems built on these principles must measure ARF directly — not the preconditions (which verify the environment) but the signal itself: does the agent discriminate between situations that demand different responses? Process frameworks (CMMI, DMAIC, NIST AI RMF) measure whether processes are followed correctly. None of them measure whether the agent's responses are situated to what it actually encountered — because in human organizations, that is assumed. For LLM agents, it must be externally evidenced.
 
