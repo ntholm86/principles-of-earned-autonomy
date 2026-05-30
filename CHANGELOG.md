@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.3.0 — 2026-05-30
+
+### Changed
+
+- **P2 Observable Autonomy: structural root anchored in Saltzer & Schroeder 1975.** The Origin line now leads with the *separation of privilege* principle (Saltzer & Schroeder, *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, September 1975, doi:10.1109/PROC.1975.9939): "no single accident, deception, or breach of trust is sufficient to compromise the protected information." Observable Autonomy transfers that structure from access control to the epistemic record — the party that acts must not also be the sole party that authors the account of its action. The principle is theirs (1975); the domain transfer to the record of an autonomous agent's own reasoning is what this principle adds. The existing synthesis (Meaningful Human Control, Lee & See 2004, Observatory pattern) is retained and follows the S&S anchor.
+
+  Files changed: `PRINCIPLES.md` (extended `**Origin:**` under Principle 2).
+
+---
+
 ## v1.2.0 — 2026-05-13
 
 ### Changed
