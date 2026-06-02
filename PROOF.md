@@ -12,7 +12,7 @@ Three conformance tests, one per principle:
 2. **Observable Autonomy** - Give an absent human observer only the trail. If they can locate a decision, reconstruct the reasoning, and find something to challenge, it conforms.
 3. **Convergence Is Silence** - Run the loop to silence across three evaluators from distinct families, each in a fresh session. If the loop stops because nothing is left to change, it conforms.
 
-An **ARF probe** tests whether an agent's reasoning is genuinely situated to the specific case rather than pattern-matched, construct a contrastive Case A / Case B pair, pre-register the expected divergence before administering, and score whether responses diverge at exactly the predicted point. No ARF probe evidence has been submitted to this manifesto.
+An **ARF probe** tests whether an agent's reasoning is genuinely situated to the specific case rather than pattern-matched: construct a contrastive Case A / Case B pair, pre-register the expected divergence before administering, and score whether responses diverge at exactly the predicted point. No ARF probe evidence has been submitted to this manifesto.
 
 These tests are domain-agnostic. Apply them to your own system. Reference evidence from one implementation follows.
 
@@ -22,7 +22,9 @@ These tests are domain-agnostic. Apply them to your own system. Reference eviden
 
 Each principle has a test; ARF, the framework's central measurable property, has a probe test of its own. The tests below apply regardless of domain, stack, or scale. Run them on your own implementation, not on this manifesto.
 
-### Principle 1: Commander's Intent The litmus test in [PRINCIPLES.md](./PRINCIPLES.md): *if you removed all specific examples and thresholds from your skill (or process, or specification), would an intelligent agent that did not participate in writing it still know what to do?*
+### Principle 1: Commander's Intent
+
+**The falsification question.** The litmus test in [PRINCIPLES.md](./PRINCIPLES.md): *if you removed all specific examples and thresholds from your skill (or process, or specification), would an intelligent agent that did not participate in writing it still know what to do?*
 
 **How to test it.** Present the artifact cold to evaluators from distinct model families who did not author it. Ask them to apply it. Record whether they produce coherent output without external scaffolding, or whether they need the author to interpret the instructions.
 
