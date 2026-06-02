@@ -245,3 +245,23 @@ Any instruction set built under these principles must embody all four:
 4. **Self-targeting must work.** If the instruction can't be run on itself and produce meaningful results, it's too prescriptive (the agent is just matching patterns) or too vague (the agent has no framework to reason with). Self-targeting is the litmus test.
 
 Operational standards (verification scripts, integrity snapshots, scoring rubrics, metrics history) that support these principles belong in the implementation's own documentation and tooling. They are tool prescriptions — not architectural constraints — and therefore do not belong in this manifesto repository.
+
+---
+
+## References
+
+The following works are cited in this document. Inline citations appear in the body text; this section provides the full bibliographic entries for verification and further reading.
+
+- **Levesque, H., Davis, E., & Morgenstern, L.** (2011). The Winograd schema challenge. *AAAI Spring Symposium: Logical Formalizations of Commonsense Reasoning*. [Technique ancestry for ARF's contrastive-pair probe mechanism.]
+
+- **Saltzer, J. H., & Schroeder, M. D.** (1975). The protection of information in computer systems. *Proceedings of the IEEE*, 63(9), 1278–1308. [Original paper: https://www.cl.cam.ac.uk/teaching/1011/R01/75-protection.pdf — structural root of Principle 2's capture-author separation requirement.]
+
+- **Lee, J. D., & See, K. A.** (2004). Trust in automation: Designing for appropriate reliance. *Human Factors*, 46(1), 50–80. [Trust calibration as the mechanism underlying Principle 2.]
+
+- **Ribeiro, M. T., Wu, T., Guestrin, C., & Singh, S.** (2020). Beyond accuracy: Behavioral testing of NLP models with CheckList. *Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL 2020)*. [Technique ancestry for ARF's contrastive-pair probe mechanism.]
+
+- **Turpin, M., Michael, J., Perez, E., & Bowman, S.** (2023). Language models don't always say what they think: Unfaithful explanations in chain-of-thought prompting. *Advances in Neural Information Processing Systems (NeurIPS 2023)*. [Evidence that stated reasoning diverges from internal reasoning; grounds the Premise.]
+
+- **Huang, J., Chen, X., Mishra, S., Zheng, H. S., Yu, A. W., Song, X., & Chang, K.-W.** (2024). Large language models cannot self-correct reasoning yet. *Proceedings of the International Conference on Learning Representations (ICLR 2024)*. [Evidence that unsupervised self-correction degrades performance; grounds the Premise.]
+
+- **Chen, Y., et al.** (2025). Reasoning models don't always say what they think. [Evidence that CoT monitoring is insufficient to rule out undesired behavior in reasoning-trained models; grounds the Premise.]
