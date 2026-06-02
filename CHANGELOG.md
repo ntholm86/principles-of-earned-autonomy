@@ -1,6 +1,16 @@
 # Changelog
 
-## v1.4.0 — 2026-06-02
+## v1.5.0 - 2026-06-02
+
+### Changed
+
+- **De-AI language pass across all manifesto documents.** Replaced all em dashes (U+2014) with context-appropriate punctuation (colon, comma, parentheses, or hyphen). Removed metaphors that had drifted toward AI writing patterns ("is theater," "story the agent tells about itself"). Removed X-not-Y padding where the negative clause added no structural information; load-bearing contrasts retained.
+
+  Files changed: `README.md`, `PRINCIPLES.md`, `PROBLEM.md`, `PROOF.md`, `EMPIRICAL_EVIDENCE.md`, `CHANGELOG.md`.
+
+---
+
+## v1.4.0 - 2026-06-02
 
 ### Added
 
@@ -14,21 +24,21 @@
 
 - **ARF conformance test in PROOF.md.** PROOF.md now documents a domain-agnostic ARF probe test alongside the three principle conformance tests, and includes an ARF row in the "What this evidence does and does not establish" table.
 
-  Files changed: `PROOF.md` (added `### ARF — Autonomous Reasoning Fidelity` subsection; updated intro sentence; added ARF table row; aligned Digest ARF note with body wording).
+  Files changed: `PROOF.md` (added `### ARF: Autonomous Reasoning Fidelity` subsection; updated intro sentence; added ARF table row; aligned Digest ARF note with body wording).
 
 ---
 
-## v1.3.0 — 2026-05-30
+## v1.3.0 - 2026-05-30
 
 ### Changed
 
-- **P2 Observable Autonomy: structural root anchored in Saltzer & Schroeder 1975.** The Origin line now leads with the *separation of privilege* principle (Saltzer & Schroeder, *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, September 1975, doi:10.1109/PROC.1975.9939): "no single accident, deception, or breach of trust is sufficient to compromise the protected information." Observable Autonomy transfers that structure from access control to the epistemic record — the party that acts must not also be the sole party that authors the account of its action. The principle is theirs (1975); the domain transfer to the record of an autonomous agent's own reasoning is what this principle adds. The existing synthesis (Meaningful Human Control, Lee & See 2004, Observatory pattern) is retained and follows the S&S anchor.
+- **P2 Observable Autonomy: structural root anchored in Saltzer & Schroeder 1975.** The Origin line now leads with the *separation of privilege* principle (Saltzer & Schroeder, *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, September 1975, doi:10.1109/PROC.1975.9939): "no single accident, deception, or breach of trust is sufficient to compromise the protected information." Observable Autonomy transfers that structure from access control to the epistemic record: the party that acts must not also be the sole party that authors the account of its action. The principle is theirs (1975); the domain transfer to the record of an autonomous agent's own reasoning is what this principle adds. The existing synthesis (Meaningful Human Control, Lee & See 2004, Observatory pattern) is retained and follows the S&S anchor.
 
   Files changed: `PRINCIPLES.md` (extended `**Origin:**` under Principle 2).
 
 ---
 
-## v1.2.0 — 2026-05-13
+## v1.2.0 - 2026-05-13
 
 ### Changed
 
@@ -40,14 +50,14 @@
 
 ---
 
-## v1.1.0 — 2026-05-12
+## v1.1.0 - 2026-05-12
 
 ### Added
 
 - **Premise: The agent is an unreliable narrator of itself.** A new section before the three principles cites Turpin et al. (NeurIPS 2023), Chen et al. (2025), and Huang et al. (ICLR 2024) as load-bearing evidence, not decoration. Frames the three principles as structural responses that each separate one role (interpretation / narration / judgment) from the agent.
 - **Principle 2 restructured around two failure modes of post-hoc rationalization:**
-  - Capture-moment fabrication — record composed after the decision.
-  - After-the-fact tampering — record edited by the agent later.
+  - Capture-moment fabrication: record composed after the decision.
+  - After-the-fact tampering: record edited by the agent later.
 - **Two new corollaries for P2:** *A record composed after the decision is testimony, not evidence.* (capture-moment fidelity) / *A record an agent can rewrite is not a record.* (tamper resistance). These close the two ways post-hoc rationalization enters a trail.
 - **`### Capture-author separation`** subsection in P2 (replaces the former harness boundary constraint). States the requirement structurally without prescribing an implementation mechanism.
 - **`### Why structural, not reported`** subsection in P2. Explains why the trail's integrity must not depend on the agent's honesty.
@@ -56,10 +66,10 @@
 
 ### Removed
 
-- Corollary *"If you can't see it, it shouldn't be doing it"* — conflated audit timing with capture timing; replaced by the two new corollaries above.
+- Corollary *"If you can't see it, it shouldn't be doing it"*, conflated audit timing with capture timing; replaced by the two new corollaries above.
 
 ---
 
-## v1.0.0 — 2026-05-02
+## v1.0.0 - 2026-05-02
 
 Initial public release. Three principles (Commander's Intent, Observable Autonomy, Convergence Is Silence), one emergent property (Autonomous Reasoning Fidelity), empirical evidence from a three-family silence-convergence test.
