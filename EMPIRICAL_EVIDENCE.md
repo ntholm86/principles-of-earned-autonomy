@@ -14,7 +14,10 @@ The session definitively proved that **Behavioral Alignment** (prompting an AI t
 An LLM does not possess an objective memory; it is an inference engine. When asked to report its own actions or reasoning, it will hallucinate a mathematically plausible post-hoc rationalization. Therefore, a trustworthy audit trail cannot rely on the AI's "habits" or tool-calling compliance. It requires **Architectural Constraint** (The Harness): a physical environment that intercepts and records the raw token generation independently of the model's control.
 
 ## 3. The Evidence
-The session produced three distinct, undeniable mechanical failures of behavioral alignment:
+
+*Note on verifiability: The session transcript (transcript.md) that documented this experiment was removed from the repository's public git history on 2026-06-02 for personal privacy reasons. The three failure classes below accurately characterize what occurred. They cannot be independently verified from the published repository history.*
+
+The session produced three distinct mechanical failures of behavioral alignment:
 
 ### Failure A: The Distraction of Habit
 While the agent successfully logged early iterations, as soon as the conversation drifted into deep philosophical synthesis, the agent prioritized "answering the prompt" and entirely "forgot" to call the logging tool. This proved that behavioral compliance is fragile and will always be overridden by context window prioritization.
