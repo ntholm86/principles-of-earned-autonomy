@@ -12,7 +12,7 @@ Three conformance tests, one per principle:
 2. **Observable Autonomy** — Give an absent human observer only the trail. If they can locate a decision, reconstruct the reasoning, and find something to challenge, it conforms.
 3. **Convergence Is Silence** — Run the loop to silence across three evaluators from distinct families, each in a fresh session. If the loop stops because nothing is left to change, it conforms.
 
-An **ARF probe** tests whether an agent's reasoning is genuinely situated to the specific case rather than pattern-matched — construct a contrastive Case A / Case B pair, pre-register the expected divergence before administering, and score whether responses diverge at exactly the predicted point. No reference evidence exists yet for this test.
+An **ARF probe** tests whether an agent's reasoning is genuinely situated to the specific case rather than pattern-matched — construct a contrastive Case A / Case B pair, pre-register the expected divergence before administering, and score whether responses diverge at exactly the predicted point. No ARF probe evidence has been submitted to this manifesto.
 
 These tests are domain-agnostic. Apply them to your own system. Reference evidence from one implementation follows.
 
