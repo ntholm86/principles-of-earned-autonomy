@@ -198,6 +198,8 @@ ARF is defined conceptually in [PROBLEM.md § What the Framework Measures](./PRO
 
 ARF is not a fourth principle. It is the measurable external signal that exists only when Principles 1 and 2 are both satisfied and Principle 3 has validated the observation. We named it because it needed a name — no existing framework measures it, and it is the property that distinguishes an agent operating under earned autonomy from a sophisticated autocomplete whose outputs happen to look correct.
 
+**What a passing ARF test licenses.** The dominant AI governance paradigm treats AI risk as an authority problem — constrain what the AI can decide and do, and bound the failure architecturally. That premise implicitly accepts a structural tradeoff: more capable AI requires more restriction to remain safe. ARF operates against a different root-cause diagnosis. AI causes harm when it lacks sufficient context to reason well about consequences — not when it has insufficient constraints. In the class of decisions this framework targets (non-adversarial delegation of real work to a willing agent), a more capable agent that passes the reasoning-fidelity probe is *more* trustworthy, not more dangerous. Demonstrated reasoning quality — enabled by adequate context, verified through observable reasoning — dissolves the tradeoff restriction-first frameworks accept as structural: capability and trust grow together rather than in opposition. Restriction is not wrong for what it addresses; it is the wrong instrument for what ARF addresses.
+
 **Theoretical anchors:**
 
 - **Auftragstaktik** (Prussian mission-type command) — telling subordinates *what* and *why*, then trusting them to determine *how*. Origin of Principle 1 and the "freedom of thought" half of ARF.

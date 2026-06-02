@@ -12,6 +12,8 @@ This repository is the framework that makes that a requirement rather than a pre
 2. **Observable Autonomy** — every autonomous operation produces a visible, auditable trail. If it cannot be seen, it should not be running.
 3. **Convergence Is Silence** — the work is done when independent evaluators find nothing left to change. Not when a score stops moving.
 
+Most AI governance frameworks treat AI risk as an authority problem — restrict what an AI can decide and do, bound the failure architecturally, and produce safety by subtraction. This framework starts from the opposite premise: AI causes harm when it lacks sufficient context to reason well, not when it has insufficient constraints. The trust instrument is not restriction, and not transparency alone — other frameworks already treat transparency as a complement to restriction. It is demonstrated reasoning quality: an agent with adequate context to understand consequences, whose reasoning is verified as genuine rather than merely visible. ARF measures the reasoning-fidelity component of that quality — whether the reasoning is genuinely situated rather than templated. A more capable agent that passes a reasoning-fidelity check earns more trust, not more constraint.
+
 One conformance example — the [Principles of Earned Autonomy - Skills Suite](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite) — has been published separately as a reference implementation in the developer-tooling domain. The skills suite is evidence that the principles work in practice; it is not the proof of the principles themselves.
 
 ## Read in this order
