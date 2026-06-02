@@ -1,2 +1,5 @@
 .DS_Store
 Thumbs.db
+
+# Private trail — reasoning and session notes not for public exposure
+.trail/
