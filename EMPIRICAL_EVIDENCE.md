@@ -27,3 +27,59 @@ In an attempt to fix a parsing bug with the logging script, the agent improvised
 
 ## 4. Conclusion
 The experiment conclusively demonstrated why the manifesto cannot just prescribe "honesty." Trustworthy autonomy requires building a system where the AI is physically prevented from modifying its own history. The environment must capture and enforce truth; the model must only compute.
+
+---
+
+## 5. External Evidence A: The EU AI Act (Regulation (EU) 2024/1689)
+
+**Source:** Regulation (EU) 2024/1689, "Laying down harmonised rules on Artificial Intelligence." The world's first comprehensive AI legal framework. Obligations for high-risk AI systems took effect August 2024.  
+**Retrieved:** June 2026 from [digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
+
+### What it requires
+
+For high-risk AI systems, the Act mandates:
+
+> "logging of activity to ensure traceability of results"
+>
+> "detailed documentation providing all information necessary on the system and its purpose for authorities to assess its compliance"
+>
+> "appropriate human oversight measures"
+
+### What this confirms
+
+The EU AI Act independently establishes, as binding law, the structural requirement at the core of Observable Autonomy (Principle 2): autonomous operation must produce a legible, traceable record. Trail existence is not optional guidance — it is a legal obligation under the most comprehensive AI regulatory framework enacted anywhere. The experiment in sections 1–4 above demonstrates *why* this requirement is necessary. The Act demonstrates that regulators worldwide have independently converged on the same conclusion.
+
+### The gap it leaves open — and what ARF addresses
+
+The Act mandates that a trail *exists*. It does not — and cannot — mandate that the reasoning in the trail is genuine.
+
+The obligation is to log *activity* and provide *information necessary to assess compliance*. Both are satisfiable by a trail that documents what happened and looks like reasoning. The Act has no mechanism to test whether the logged reasoning is situated to the specific case, or is post-hoc rationalization that would look identical for any case in the same category. That distinction — between narration and genuine reasoning — is not addressed anywhere in the Act's obligations.
+
+This is not a criticism of the Act. It is structurally inevitable: a regulator can mandate that evidence exists; no regulation can mandate that the evidence is internally genuine. That is precisely the property ARF is designed to measure.
+
+The Act produces the precondition — a required trail. ARF provides the measurement the Act assumes but cannot supply: does the trail document reasoning that is actually situated to this specific case, or merely compliant narration? A system can satisfy the EU AI Act's logging obligation in full while producing nothing but post-hoc rationalization. ARF is the test that distinguishes those two outcomes.
+
+---
+
+## 6. External Evidence B: Stanford AI Index 2026
+
+**Source:** Stanford University Human-Centered Artificial Intelligence (HAI), *AI Index Report 2026*. Published April 2026. Recognized by governments, regulators, and major media as one of the most authoritative independent assessments of AI's state.  
+**Retrieved:** June 2026 from [hai.stanford.edu/ai-index/2026-ai-index-report](https://hai.stanford.edu/ai-index/2026-ai-index-report) — Takeaway #5.
+
+### What it states
+
+> "Responsible AI is not keeping pace with AI capability, with safety benchmarks lagging and incidents rising sharply. Almost all leading frontier AI model developers report results on capability benchmarks, but reporting on responsible AI benchmarks remains spotty."
+
+### What this confirms
+
+The AI Index is not an advocacy document. It is a data-driven assessment produced by an interdisciplinary body and cited by governments including the US, UK, and EU. Takeaway #5 of the 2026 report names, from an entirely independent vantage point, the same structural gap this work targets: *capability is being measured rigorously; reasoning quality and responsible AI performance are not.* Reporting on capability benchmarks is near-universal. Reporting on responsible AI benchmarks — the harder question of whether the system is operating in a way that justifies the authority it is being granted — "remains spotty."
+
+This is external authoritative confirmation of the asymmetry at the core of the ARF claim. The field has built precise, reproducible measurement for what AI systems *can do*. It has not built equivalent measurement for the question that matters for delegation: whether the system is reasoning about the situation or producing outputs that merely look correct.
+
+### The connection to ARF
+
+Takeaway #5 identifies the measurement gap at the field level: capable AI, insufficient tools to measure the *governance-relevant* properties. ARF names the most critical missing property and provides a method to test for it.
+
+Capability benchmarks (MMLU, HumanEval, SWE-Bench) measure output quality. Compliance frameworks (EU AI Act, NIST AI RMF) measure whether processes were followed. Neither measures the property that determines whether autonomy is warranted: is the agent's response genuinely situated to what it actually encountered, or is it a plausible-looking template that would have looked identical for any case in the same category?
+
+ARF's core test — given two cases that look similar on the surface but differ in a material way, does the agent's reasoning path diverge where it should? — is the responsible AI measurement the AI Index identifies as missing. The AI Index names the gap. ARF names the specific property and provides the method (structured novelty injection, diverse independent evaluators) to test for it.
