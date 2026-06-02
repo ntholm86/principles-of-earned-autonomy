@@ -6,18 +6,22 @@ abstract: >
   Theory-level framework establishing how autonomous AI agents earn and exercise
   authority. Defines two core problems (autonomous reasoning and earned autonomy),
   three architectural principles (Commander's Intent, Observable Autonomy,
-  Convergence Is Silence), and one emergent measurable property (Autonomous
-  Reasoning Fidelity, ARF). Includes empirical evidence from a three-family
-  silence-convergence test (Anthropic, xAI/Grok, Google/Gemini) and documented
-  falsification findings that bound the convergence claim. Implementation-agnostic.
+  Convergence Is Silence), and one measurable property (Autonomous Reasoning
+  Fidelity, ARF). ARF is operationally defined with technique ancestry (Winograd
+  Schema Challenge, CheckList), a defined contrastive-pair probe structure, a
+  falsifiable claim, and a formalization agenda. Includes conformance tests for
+  all three principles and for ARF, empirical evidence from a three-family
+  silence-convergence test (Anthropic, xAI/Grok, Google/Gemini), documented
+  falsification findings that bound the convergence claim, and a formal References
+  section with seven bibliographic entries. Implementation-agnostic.
 authors:
   - family-names: Holmager
     given-names: Nils Wendelboe
     orcid: "https://orcid.org/0009-0009-7157-9084"
 repository-code: "https://github.com/ntholm86/principles-of-earned-autonomy"
 license: CC-BY-SA-4.0
-version: "1.3.0"
-date-released: "2026-05-30"
+version: "1.4.0"
+date-released: "2026-06-02"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.19732890"

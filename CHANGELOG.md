@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.4.0 — 2026-06-02
+
+### Added
+
+- **ARF operational definition: technique ancestry, probe structure, falsifiable claim, and formalization agenda.** PRINCIPLES.md now documents the Winograd Schema Challenge (Levesque et al., 2011) and CheckList (Ribeiro et al., ACL 2020) as technique ancestors for the contrastive-pair probe mechanism; the probe construction rules (Case A / Case B pair, pre-registered expected divergence, independent sessions); the falsifiable claim; and the formalization agenda naming the four artifacts required to make ARF a validated method (published spec, test harness, probe dataset, reproducibility report).
+
+  Files changed: `PRINCIPLES.md` (extended ARF operational definition section).
+
+- **Formal References section in PRINCIPLES.md.** Seven complete bibliographic entries: Levesque et al. (2011), Saltzer & Schroeder (1975), Lee & See (2004), Ribeiro et al. (2020), Turpin et al. (NeurIPS 2023), Huang et al. (ICLR 2024), Chen et al. (arXiv:2505.05410, 2025).
+
+  Files changed: `PRINCIPLES.md` (appended `## References` section).
+
+- **ARF conformance test in PROOF.md.** PROOF.md now documents a domain-agnostic ARF probe test alongside the three principle conformance tests, and includes an ARF row in the "What this evidence does and does not establish" table.
+
+  Files changed: `PROOF.md` (added `### ARF — Autonomous Reasoning Fidelity` subsection; updated intro sentence; added ARF table row; aligned Digest ARF note with body wording).
+
+---
+
 ## v1.3.0 — 2026-05-30
 
 ### Changed
