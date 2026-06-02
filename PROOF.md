@@ -102,6 +102,7 @@ The recurring shape of the failure is now part of the record: the chain reads fi
 | The principles transmit across at least three distinct model families | Supported within the tested set |
 | Silence convergence implies the artifact is correct | **Not supported. Falsified.** |
 | Independent evaluators are immune to shared blind spots | **Not supported.** |
+| The reference implementation passes the ARF probe | **Not yet submitted.** No probe evidence has been submitted to this manifesto. |
 
 ---
 
