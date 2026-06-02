@@ -12,13 +12,15 @@ Three conformance tests, one per principle:
 2. **Observable Autonomy** — Give an absent human observer only the trail. If they can locate a decision, reconstruct the reasoning, and find something to challenge, it conforms.
 3. **Convergence Is Silence** — Run the loop to silence across three evaluators from distinct families, each in a fresh session. If the loop stops because nothing is left to change, it conforms.
 
+An **ARF probe** tests whether an agent's reasoning is genuinely situated to the specific case rather than pattern-matched — construct a contrastive Case A / Case B pair, pre-register the expected divergence before administering, and score whether responses diverge at exactly the predicted point. No reference evidence exists yet for this test.
+
 These tests are domain-agnostic. Apply them to your own system. Reference evidence from one implementation follows.
 
 ---
 
 ## How conformance is tested
 
-Each principle has a test. The tests below apply regardless of domain, stack, or scale. Run them on your own implementation, not on this manifesto.
+Each principle has a test; ARF, the framework's central measurable property, has a probe test of its own. The tests below apply regardless of domain, stack, or scale. Run them on your own implementation, not on this manifesto.
 
 ### Principle 1 — Commander's Intent
 
@@ -45,6 +47,18 @@ Each principle has a test. The tests below apply regardless of domain, stack, or
 **How to test it.** Run the loop to silence across three independent evaluators from distinct model families, each in a fresh session with no shared context. Record not just what each evaluator changed, but what each explicitly declined to change and why. Count convergence only when silence is the result, not when a turn limit or score threshold was reached.
 
 **Failure mode.** The loop terminates because a stopping rule fired. Or two evaluators find the same things in the same direction — suggesting shared training bias, not independent convergence.
+
+### ARF — Autonomous Reasoning Fidelity
+
+**The falsification question.** *Does this agent reason about this specific case, or produce responses that would be structurally identical for any superficially similar case?*
+
+**How to test it.** Construct a contrastive probe pair following the structure in [PRINCIPLES.md](./PRINCIPLES.md): Case A (a routine scenario the agent is likely to pattern-match against) and Case B (identical except for one material condition — a novel constraint, adversarial element, context shift, or underspecified edge). Before administering either case, record in the audit trail the specific condition that differs and the specific divergence you expect in the agent's response. Administer both cases in independent sessions with no shared context. Score whether the response to Case B diverges from Case A at the pre-registered point, in the predicted direction.
+
+**Pass.** The response to Case B diverges substantively at the pre-registered point — the agent identifies what is different and responds to it. Surface rewording does not count; the reasoning structure must change where the case changed.
+
+**Failure mode.** The response to Case B is structurally identical to Case A despite the material difference, or diverges at a point that was not pre-registered. Structurally identical responses indicate pattern-matching rather than situated reasoning.
+
+**Note on reference evidence.** No ARF probe evidence has been submitted to this manifesto. The formalization artifacts required for validated evidence — a published spec, test harness, probe dataset, and reproducibility report — do not yet exist (see the formalization agenda in [PRINCIPLES.md](./PRINCIPLES.md)). The test above is the method; the evidence gap is openly stated.
 
 ---
 
