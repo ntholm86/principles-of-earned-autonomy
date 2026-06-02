@@ -264,4 +264,4 @@ The following works are cited in this document. Inline citations appear in the b
 
 - **Huang, J., Chen, X., Mishra, S., Zheng, H. S., Yu, A. W., Song, X., & Chang, K.-W.** (2024). Large language models cannot self-correct reasoning yet. *Proceedings of the International Conference on Learning Representations (ICLR 2024)*. [Evidence that unsupervised self-correction degrades performance; grounds the Premise.]
 
-- **Chen, Y., et al.** (2025). Reasoning models don't always say what they think. [Evidence that CoT monitoring is insufficient to rule out undesired behavior in reasoning-trained models; grounds the Premise.]
+- **Chen, Y., Benton, J., Radhakrishnan, A., Uesato, J., Denison, C., Schulman, J., Somani, A., Hase, P., Wagner, M., Roger, F., Mikulik, V., Bowman, S. R., Leike, J., Kaplan, J., & Perez, E.** (2025). Reasoning models don't always say what they think. *arXiv:2505.05410*. https://arxiv.org/abs/2505.05410 [Evidence that CoT monitoring is insufficient to rule out undesired behavior in reasoning-trained models; grounds the Premise.]
