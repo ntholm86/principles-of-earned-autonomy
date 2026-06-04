@@ -3,25 +3,38 @@ message: "If you use this framework, please cite it as below."
 type: software
 title: "Principles of Earned Autonomy: A Governance Framework for Autonomous Agents"
 abstract: >
-  Theory-level framework establishing how autonomous AI agents earn and exercise
-  authority. Defines two core problems (autonomous reasoning and earned autonomy),
-  three architectural principles (Commander's Intent, Observable Autonomy,
-  Convergence Is Silence), and one measurable property (Autonomous Reasoning
-  Fidelity, ARF). ARF is operationally defined with technique ancestry (Winograd
-  Schema Challenge, CheckList), a defined contrastive-pair probe structure, a
-  falsifiable claim, and a formalization agenda. Includes conformance tests for
-  all three principles and for ARF, empirical evidence from a three-family
-  silence-convergence test (Anthropic, xAI/Grok, Google/Gemini), documented
-  falsification findings that bound the convergence claim, and a formal References
-  section with seven bibliographic entries. Implementation-agnostic.
+  Proposed theory-level governance framework for how autonomous AI agents may
+  earn and exercise authority. The claimed contribution is a synthesis rather
+  than a standalone novelty: two core problems (autonomous reasoning and earned
+  autonomy), three architectural principles (Commander's Intent, Observable
+  Autonomy, Convergence Is Silence), and one proposed measurable property
+  (Autonomous Reasoning Fidelity, ARF) are combined into a discipline of earned,
+  observable, revocable authority. ARF is operationally defined with technique
+  ancestry (Winograd Schema Challenge, CheckList, Lanham et al. 2023 on CoT
+  faithfulness), a defined contrastive-pair probe structure, a falsifiable
+  claim, and a formalization agenda. Includes conformance tests for all three
+  principles and for ARF, plus bounded reference evidence from two separately
+  published reference implementations: (A) the Principles of Earned Autonomy
+  Skills Suite (a three-family, single-operator-administered silence-convergence
+  run across Anthropic, xAI/Grok, and Google/Gemini, anchored to a public
+  append-only audit trail), and (B) the LLM Harness Protocol (a transparent
+  MITM proxy that writes a tamper-evident, hash-chained, append-only ledger of
+  every LLM interaction before the response is released to the caller, across
+  OpenAI, Anthropic, and Gemini APIs). Implementation A documents falsification
+  findings that bound the convergence claim; Implementation B demonstrates that
+  capture-author separation - the structural property Principle 2 requires - is
+  buildable in current tooling. A formal References section with full
+  bibliographic entries grounds every inline citation. Presented as a step
+  toward deployable governance for delegability, not as a complete solution to
+  AI safety or autonomy. Implementation-agnostic.
 authors:
   - family-names: Holmager
     given-names: Nils Wendelboe
     orcid: "https://orcid.org/0009-0009-7157-9084"
 repository-code: "https://github.com/ntholm86/principles-of-earned-autonomy"
 license: CC-BY-SA-4.0
-version: "1.4.0"
-date-released: "2026-06-02"
+version: "2.0.0"
+date-released: "2026-06-04"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.19732890"

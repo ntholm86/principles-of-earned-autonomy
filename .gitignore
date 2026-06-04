@@ -3,3 +3,6 @@ Thumbs.db
 
 # Private trail — reasoning and session notes not for public exposure
 .trail/
+
+# Local Copilot skills for publication review workflows
+.github/skills/
