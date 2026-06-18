@@ -1,5 +1,19 @@
 # Changelog
 
+## v2.0.3 - 2026-06-18
+
+### Changed
+
+- **PRINCIPLES.md Principle 2 Origin paragraph extended with transitional-justice citation.** The architectural response (capture-author separation) is now shown as cross-domain to match the now-cross-domain premise. The Origin paragraph previously cited Saltzer & Schroeder (1975, security/access-control) and Sagan (1993, nuclear authorization). It now adds Hayner (2011, transitional justice): truth commissions prohibit perpetrators from authoring the sole account of their actions, constructing the official record through independent testimony and documentary evidence instead. Three domains — security, nuclear authorization, transitional justice — now demonstrate the same structural pattern: the party that acts must not be the sole author of the record of its actions. Full bibliographic entry for Hayner added to PRINCIPLES.md References.
+
+  Files changed: `PRINCIPLES.md`.
+
+- **Metadata version bumped to 2.0.3.**
+
+  Files changed: `CITATION.cff`, `.zenodo.json`, `CHANGELOG.md`.
+
+---
+
 ## v2.0.2 - 2026-06-18
 
 ### Changed
