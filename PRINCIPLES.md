@@ -15,7 +15,7 @@ Context for these principles (the problems they are designed to solve) is in [PR
 
 One premise, three principles, one emergent property.
 
-**Premise: The agent is an unreliable narrator of itself.** Stated reasoning is not internal reasoning; self-correction often degrades performance; the agent's account of its own decisions cannot be the only account. The three principles are structural responses to this fact.
+**Premise: The agent is an unreliable narrator of itself.** Self-narration under self-interest is structurally unreliable — a property cognitive science established in humans and AI alignment research confirmed in LLMs. The three principles are architectural responses to this fact.
 
 1. **Commander's Intent** - *Define the destination. Never prescribe the route.* The agent must interpret and adapt. *(The operator narrates the goal; the agent does not self-interpret it.)*
 2. **Observable Autonomy** - *Autonomy is a function of transparency.* Every autonomous operation produces a visible audit trail captured as the work happens, which the agent cannot retroactively edit. *(The degree of autonomy a system deserves is bounded by the degree of transparency it provides.)*
@@ -27,7 +27,7 @@ Together they produce **Autonomous Reasoning Fidelity (ARF)** - the external sig
 
 ## Premise: The agent is an unreliable narrator of itself
 
-The three principles are not arbitrary. They are structural responses to a single empirical fact: an LLM agent's account of its own reasoning is not reliable evidence of that reasoning.
+The three principles are not arbitrary. They are structural responses to a single empirical fact: a self-narrating actor with stakes in its own account is not a reliable narrator of its own reasoning. LLM agents are one instance — the instance this framework's operational machinery is built for.
 
 This is not the claim that agents lie. It is stronger. Even when the agent is trying to be honest, the narration it produces about its own decisions, its own instructions, and its own quality is structurally untrustworthy.
 

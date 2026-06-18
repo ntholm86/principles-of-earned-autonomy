@@ -1,5 +1,25 @@
 # Changelog
 
+## v2.0.2 - 2026-06-18
+
+### Changed
+
+- **PRINCIPLES.md Digest and Premise opener updated to substrate-general framing.** v2.0.1 added a Cross-domain confirmation subsection establishing that unreliable self-narration is a property of any self-narrating actor with stakes, not just LLMs. This release propagates that framing to the two surfaces that still used LLM-specific language:
+
+  1. **Full Premise opener (line 32):** Changed "an LLM agent's account of its own reasoning is not reliable evidence of that reasoning" to "a self-narrating actor with stakes in its own account is not a reliable narrator of its own reasoning. LLM agents are one instance — the instance this framework's operational machinery is built for."
+  
+  2. **Digest premise description (line 18):** Changed detailed AI-specific evidence ("stated reasoning is not internal reasoning; self-correction often degrades performance...") to the cross-domain framing: "Self-narration under self-interest is structurally unreliable — a property cognitive science established in humans and AI alignment research confirmed in LLMs."
+  
+  The two-senses-of-domain distinction is preserved: *applicability* is general (any self-narrating actor with stakes); *operational demonstration* is AI-only (the framework's machinery is built for LLM agents). No changes to PROBLEM.md — its AI-focus is correct because it describes the application domain.
+
+  Files changed: `PRINCIPLES.md`.
+
+- **Metadata version bumped to 2.0.2.**
+
+  Files changed: `CITATION.cff`, `.zenodo.json`, `CHANGELOG.md`.
+
+---
+
 ## v2.0.1 - 2026-06-18
 
 ### Changed
