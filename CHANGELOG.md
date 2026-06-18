@@ -1,5 +1,19 @@
 # Changelog
 
+## v2.0.1 - 2026-06-18
+
+### Changed
+
+- **PRINCIPLES.md Premise section extended with a Cross-domain confirmation subsection.** The premise that self-narrating actors with stakes in their own narration produce structurally unreliable accounts was independently established in cognitive science decades before AI made it measurable. New subsection added between "The evidence" (AI-literature citations) and "The implication" (architectural-response reasoning). It names four cognitive-science citations - Festinger (1957) cognitive dissonance, Nisbett & Wilson (1977) confabulation, Kunda (1990) motivated reasoning, Trivers & von Hippel (2011) self-deception - and applies Principle 3 to the cross-tradition convergence itself: two independent academic traditions (cognitive science from the late 1950s onward and AI alignment research from the early 2020s) developed the same finding through disjoint methods on disjoint substrates, which is, by this framework's own stopping condition, the strongest available evidence that unreliable self-narration is a structural property rather than incidental to either domain. LLM agents are framed as one instance in a class that includes humans; the AI literature is the contemporary measurement of a structural property cognitive science had already established. The architectural response (capture-author separation) is connected back to its existing security and authorization lineage (Saltzer & Schroeder, 1975; Sagan, 1993) as the same answer to the same problem shape across domains. Full bibliographic entries for the four new citations added to PRINCIPLES.md References. The existing AI-specific premise wording, the three-role separation, the LLM-specific implication paragraph, and the principle definitions are unchanged - the change strengthens the premise's grounding by extension rather than reopening any core text.
+
+  Files changed: `PRINCIPLES.md`.
+
+- **Metadata version bumped to 2.0.1.** Release surfaces kept in sync.
+
+  Files changed: `CITATION.cff`, `.zenodo.json`, `CHANGELOG.md`.
+
+---
+
 ## v2.0.0 - 2026-06-04
 
 Major version bump: the framework's evidentiary status materially changes from *principle proposed* to *principle demonstrated buildable*. A reference implementation of the structural layer Principle 2 requires has been published separately as the [LLM Harness Protocol](https://github.com/ntholm86/LLM-harness-protocol), a transparent MITM proxy that writes a tamper-evident, hash-chained, append-only ledger of every LLM interaction before the response is released to the caller, across OpenAI, Anthropic, and Gemini APIs. Capture-author separation is therefore no longer an aspirational property of this framework but a buildable one with a working reference. The harness does not, on its own, validate ARF; it removes the structural blocker (instrument-and-subject sharing a single point of failure) that previously prevented trustworthy ARF measurement under MCP-only tooling.
