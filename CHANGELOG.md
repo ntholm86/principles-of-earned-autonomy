@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- **Substrate-general framing propagated to Digest surfaces.** The premise ("self-narration under self-interest is unreliable") is now explicitly stated as general to any self-narrating actor with stakes, not AI-specific. AI agents are the first operational instance; the architectural principles are general. Closes the rule-22 gap opened by v2.0.1's cross-domain confirmation.
+
+  Files changed: `PROBLEM.md` (Digest + Working Hypothesis), `PRINCIPLES.md` (Digest premise line), `README.md` (premise paragraph, operator-approved).
+
+---
+
 ## v2.3.0 - 2026-06-19
 
 ### Added
