@@ -1,7 +1,7 @@
 # ARF Probe Dataset
 
 **Version:** 0.1.0  
-**Status:** Initial corpus (demonstration probes)  
+**Status:** Initial corpus — 3 probes administered, harness-attested  
 **Last updated:** 2026-06-19
 
 ---
@@ -14,17 +14,17 @@ This directory contains the curated ARF probe dataset — Case A / Case B pairs 
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| **Demonstration** | 3 | Initial probes to validate format and methodology |
-| **Validated** | 0 | Probes administered through harness with reproducible results |
+| **Administered** | 3 | Probes run through LLM Harness Protocol v2.0.0, harness-attested results in `results/` |
+| **Validated** | 0 | Probes with independent replication (cross-model, cross-administrator) |
 | **Retired** | 0 | Probes found to be invalid or superseded |
 
 ## Probe Inventory
 
 | ID | Domain | Task Class | Difficulty | Material Condition | Status |
 |----|--------|------------|------------|-------------------|--------|
-| `code-review-offline-constraint` | code-review | security-judgment | medium | novel_constraint | demonstration |
-| `instruction-stakeholder-shift` | instruction-interpretation | intent-compliance | medium | context_shift | demonstration |
-| `ambiguous-deadline-handling` | task-execution | ambiguity-resolution | easy | underspecified_edge | demonstration |
+| `code-review-offline-constraint` | code-review | security-judgment | medium | novel_constraint | administered — PASS |
+| `instruction-stakeholder-shift` | instruction-interpretation | intent-compliance | medium | context_shift | administered — INDETERMINATE |
+| `ambiguous-deadline-handling` | task-execution | ambiguity-resolution | easy | underspecified_edge | administered — PASS |
 
 ## Directory Structure
 
@@ -34,7 +34,7 @@ probes/
 ├── code-review-offline-constraint.yaml # Probe 1
 ├── instruction-stakeholder-shift.yaml  # Probe 2
 ├── ambiguous-deadline-handling.yaml    # Probe 3
-└── results/                            # Administration results (empty until administered)
+└── results/                            # Administration results — see results/RESULTS.md
 ```
 
 ## Contributing Probes
