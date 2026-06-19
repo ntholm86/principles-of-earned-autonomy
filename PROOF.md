@@ -12,7 +12,7 @@ Three conformance tests, one per principle:
 2. **Observable Autonomy** - Give an absent human observer only the trail. If they can locate a decision, reconstruct the reasoning, and find something to challenge, it conforms.
 3. **Convergence Is Silence** - Run the loop to silence across three evaluators from distinct families, each in a fresh session. If the loop stops because nothing is left to change, it conforms.
 
-An **ARF probe** tests whether an agent's reasoning is genuinely situated to the specific case rather than pattern-matched: construct a contrastive Case A / Case B pair, pre-register the expected divergence before administering, and score whether responses diverge at exactly the predicted point. No ARF probe evidence has been submitted to this manifesto.
+An **ARF probe** tests whether an agent's reasoning is genuinely situated to the specific case rather than pattern-matched: construct a contrastive Case A / Case B pair, pre-register the expected divergence before administering, and score whether responses diverge at exactly the predicted point. An initial 3-probe dataset has been administered through the LLM Harness Protocol; results are in [`probes/results/`](./probes/results/RESULTS.md). Independent replication remains open.
 
 These tests are domain-agnostic. Apply them to your own system. Reference evidence from two implementations follows.
 
@@ -58,7 +58,7 @@ Each principle has a test; ARF, the framework's central measurable property, has
 
 **Failure mode.** The response to Case B is structurally identical to Case A despite the material difference, or diverges at a point that was not pre-registered. Structurally identical responses indicate pattern-matching rather than situated reasoning.
 
-**Note on reference evidence.** No ARF probe evidence has been submitted to this manifesto. The formalization artifacts required for validated evidence: a published spec, test harness, probe dataset, and reproducibility report, do not yet exist (see the formalization agenda in [PRINCIPLES.md](./PRINCIPLES.md)). The structural reason a probe administered through behavioral protocols cannot be trusted - instrument and subject share a single point of failure (see "The instrument-inheritance limit" in [PRINCIPLES.md](./PRINCIPLES.md)) - has a published structural response: the LLM Harness Protocol (Reference Implementation B below) provides the protocol-layer capture that makes harness-administered probe execution possible. The probe dataset and reproducibility report remain open; the structural substrate they require no longer does. The test above is the method; the evidence gap is openly stated.
+**Note on reference evidence.** The formalization artifacts required for validated ARF evidence are: a published spec, test harness, probe dataset, and reproducibility report. The first three now exist: [ARF-SPEC.md](./ARF-SPEC.md) (v1.0.0, 2026-06-19), the [LLM Harness Protocol](https://github.com/ntholm86/LLM-harness-protocol) (v2.0.0), and an initial 3-probe dataset administered through the harness ([results](./probes/results/RESULTS.md)). The probe dataset covers three task classes (code review under novel constraints, instruction interpretation under stakeholder shift, ambiguity handling) on one model family (`claude-haiku-4-5`); results are 2 PASS, 1 INDETERMINATE. The reproducibility report — independent administrators and cross-model replication per [ARF-SPEC.md §7](./ARF-SPEC.md#7-validation-requirements) — remains open. The structural reason a probe administered through behavioral protocols cannot be trusted (instrument and subject share a single point of failure) has a published structural response: the harness provides protocol-layer capture that makes harness-administered probe execution possible. The initial dataset demonstrates administrability; validation awaits replication.
 
 ---
 
@@ -116,7 +116,7 @@ The artifact under test was the **LLM Harness Protocol** ([github.com/ntholm86/L
 
 **What this reference implementation establishes.** Capture-author separation, the load-bearing structural property Principle 2 requires, is buildable in current tooling without modifications to LLM client libraries, without provider cooperation, and without the audited agent's compliance.
 
-**What this reference implementation does not establish.** The harness is a structural mechanism, not a measurement of reasoning quality. It does not validate ARF; it removes one of the two structural reasons ARF could not previously be validly measured (instrument-and-subject sharing a single point of failure). The second blocker - a pre-registered probe dataset administered through the harness, with results independently replicated - remains open. The harness lifts ARF from *cannot be measured under current tooling* to *can in principle be measured under the harness, awaiting the probe dataset and replication*.
+**What this reference implementation does not establish.** The harness is a structural mechanism, not a measurement of reasoning quality. It does not validate ARF on its own; it removes one of the two structural reasons ARF could not previously be validly measured (instrument-and-subject sharing a single point of failure). The second blocker — a pre-registered probe dataset administered through the harness, with results independently replicated — is partially addressed: an initial 3-probe dataset now exists (see [`probes/results/`](./probes/results/RESULTS.md)), but independent replication remains open. The harness lifts ARF from *cannot be measured under current tooling* to *can be measured under the harness*; the initial dataset demonstrates administrability; validation awaits cross-model replication.
 
 ---
 
@@ -133,6 +133,6 @@ The artifact under test was the **LLM Harness Protocol** ([github.com/ntholm86/L
 | Silence convergence implies the artifact is correct | **Not supported. Falsified.** |
 | Independent evaluators are immune to shared blind spots | **Not supported.** |
 | The harness, on its own, validates ARF | **Not supported.** The harness removes one structural blocker (instrument inheritance) but does not constitute an ARF probe result. |
-| A pre-registered ARF probe administered through the harness, with independent replication | **Not yet submitted.** The harness now makes such a probe administrable; the probe dataset and replication remain open. |
+| A pre-registered ARF probe administered through the harness, with independent replication | **Initial dataset submitted.** Three probes administered through harness v2.0.0, results in [`probes/results/`](./probes/results/RESULTS.md). Independent replication remains open. |
 
 ---

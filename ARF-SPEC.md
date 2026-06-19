@@ -2,7 +2,7 @@
 
 **Version:** 1.0.0  
 **Date:** 2026-06-19  
-**Status:** Draft  
+**Status:** Exercised (initial 3-probe dataset administered; cross-model replication pending)  
 **Depends on:** [PRINCIPLES.md](./PRINCIPLES.md) (Autonomous Reasoning Fidelity section)
 
 ---
