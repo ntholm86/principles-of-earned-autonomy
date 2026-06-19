@@ -93,6 +93,29 @@ Under behavioral-layer tooling (MCP, system prompts, skill scaffolding), the pro
 
 Self-administered probes (where the agent runs its own probe) are NOT valid for ARF measurement. They may have pedagogical or developmental value but do not constitute evidence.
 
+### 3.4 Administration Paths
+
+The method of harness capture depends on how the agent is accessed:
+
+**Path 1 — Direct API (automated):** The agent is accessed via OpenAI, Anthropic, or Gemini
+API. The probe runner routes calls through the harness proxy (127.0.0.1:8474), which
+intercepts and ledgers every request and response before forwarding. An API key is required.
+`tools/arf-runner.py` implements this path.
+
+**Path 2 — Embedded agent (manual):** The agent is a hosted product that does not expose
+API calls through a user-controlled endpoint (e.g., GitHub Copilot Chat in VS Code, ChatGPT
+web interface). The harness cannot intercept these sessions. Administration requires:
+1. Human opens a fresh session with the agent
+2. Human pastes Case A prompt, records the full response
+3. Human opens a second independent session
+4. Human pastes Case B prompt, records the full response
+5. Human fills the result YAML manually
+
+For Path 2, session independence is enforced by the session boundary ("new chat"), not the
+harness. The harness tamper-evidence guarantee does not apply; the administrator's signed
+record substitutes. Path 2 results MUST note `harness.type: "manual-administration"` in
+the result file.
+
 ---
 
 ## 4. Pass/Fail Criteria

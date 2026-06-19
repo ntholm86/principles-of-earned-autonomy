@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 """
-ARF Probe Runner — administer probes through the LLM Harness Protocol.
+ARF Probe Runner — administer probes through the LLM Harness Protocol (Path 1).
 
-This tool bridges the ARF-SPEC (probes/) with the harness (127.0.0.1:8474).
-It does NOT score results — scoring is human work per ARF-SPEC §4.
+This tool implements ARF-SPEC §3.4 Path 1 (Direct API, automated):
+- Routes LLM calls through the harness proxy (127.0.0.1:8474)
+- Works for API-accessible models: gpt-4o, claude-*, gemini-*, etc.
+- Requires an API key — the harness forwards it to the upstream provider
+
+PATH 1 (this tool): agent accessible via API, harness captures automatically.
+PATH 2 (manual):    embedded agents like GitHub Copilot Chat cannot be intercepted
+                    by the harness. Administer probes manually: paste Case A into
+                    a new chat, record response; paste Case B into another new chat,
+                    record response; fill result YAML by hand.
+
+This tool does NOT score results — scoring is human work per ARF-SPEC §4.
 
 Usage:
     python tools/arf-runner.py <probe-id> [--model MODEL] [--administrator NAME]
@@ -11,8 +21,9 @@ Usage:
 Example:
     python tools/arf-runner.py code-review-offline-constraint --model gpt-4o
 
-The harness must be running (harness-proxy.exe) before executing.
-API key must be set in environment (OPENAI_API_KEY, ANTHROPIC_API_KEY, etc.).
+Pre-requisites:
+    1. harness-proxy.exe must be running (listening on 127.0.0.1:8474)
+    2. OPENAI_API_KEY must be set in environment
 """
 
 from __future__ import annotations
