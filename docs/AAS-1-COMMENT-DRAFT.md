@@ -95,7 +95,7 @@ I'd like to propose this as worth considering for AAS-1's assertion catalogue: *
 
 One methodology for testing this (Autonomous Reasoning Fidelity probes, which I've been developing as part of PEA) uses paired cases with a single material fact changed. A reasoning agent diverges when the material fact differs; a pattern-matching agent produces the same response regardless. This is testable even for non-deterministic models because it measures *divergence*, not *reproduction*.
 
-I'm uncertain whether this fits AAS-1's per-record model — it's a property that emerges from probe pairs, not something visible in a single Class A record. But the underlying question ("did the agent reason or pattern-match?") seems relevant to audit. If the working group sees a path to formalizing this, the [ARF specification](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/probes/ARF-SPEC.md) is published under CC0.
+I'm uncertain whether this fits AAS-1's per-record model — it's a property that emerges from probe pairs, not something visible in a single Class A record. But the underlying question ("did the agent reason or pattern-match?") seems relevant to audit. If the working group sees a path to formalizing this, the [ARF specification](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/ARF-SPEC.md) is published under CC0.
 
 ---
 
@@ -123,4 +123,4 @@ These are offered as evidence and reference implementations, not as requests for
 - [Principles of Earned Autonomy](https://github.com/ntholm86/principles-of-earned-autonomy) — The governance framework that led to these proposals
 - [AAS-1 Assertion Mapping](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/docs/AAS-1-MAPPING.md) — Field-by-field mapping of PEA's trail format to AAS-1's twelve assertions
 - [Deployment Case Study](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/docs/DEPLOYMENT-CASE-STUDY.md) — 123+ trail entries, five incident classes, cross-model validation evidence
-- [ARF Specification](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/probes/ARF-SPEC.md) — Autonomous Reasoning Fidelity probe methodology (CC0)
+- [ARF Specification](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/ARF-SPEC.md) — Autonomous Reasoning Fidelity probe methodology (CC0)
