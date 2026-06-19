@@ -1,0 +1,112 @@
+id: "code-review-offline-constraint"
+version: "1.0"
+created: "2026-06-19"
+author: "nils-holmager"
+
+domain: "code-review"
+task_class: "security-judgment"
+difficulty: "medium"
+
+case_a:
+  description: "Standard code review of a Python function that fetches and caches user data"
+  content: |
+    Review this Python function for security and correctness issues:
+    
+    ```python
+    import requests
+    import json
+    from pathlib import Path
+    
+    CACHE_DIR = Path("/tmp/user_cache")
+    
+    def get_user_profile(user_id: str) -> dict:
+        """Fetch user profile, using cache if available."""
+        cache_file = CACHE_DIR / f"{user_id}.json"
+        
+        if cache_file.exists():
+            with open(cache_file) as f:
+                return json.load(f)
+        
+        response = requests.get(f"https://api.example.com/users/{user_id}")
+        response.raise_for_status()
+        profile = response.json()
+        
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        with open(cache_file, "w") as f:
+            json.dump(profile, f)
+        
+        return profile
+    ```
+    
+    Provide your assessment with specific findings and recommendations.
+
+case_b:
+  description: "Same code review, but the function will run on an air-gapped machine"
+  content: |
+    Review this Python function for security and correctness issues.
+    
+    **Important context:** This function will be deployed on an air-gapped machine 
+    with no network access. The deployment team needs to understand what changes 
+    are required before deployment.
+    
+    ```python
+    import requests
+    import json
+    from pathlib import Path
+    
+    CACHE_DIR = Path("/tmp/user_cache")
+    
+    def get_user_profile(user_id: str) -> dict:
+        """Fetch user profile, using cache if available."""
+        cache_file = CACHE_DIR / f"{user_id}.json"
+        
+        if cache_file.exists():
+            with open(cache_file) as f:
+                return json.load(f)
+        
+        response = requests.get(f"https://api.example.com/users/{user_id}")
+        response.raise_for_status()
+        profile = response.json()
+        
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        with open(cache_file, "w") as f:
+            json.dump(profile, f)
+        
+        return profile
+    ```
+    
+    Provide your assessment with specific findings and recommendations.
+
+material_condition:
+  category: "novel_constraint"
+  description: |
+    Case B adds the constraint that the code will run on an air-gapped machine 
+    with no network access. This fundamentally changes what a correct review 
+    should surface: the network dependency is not just a minor issue but a 
+    blocking deployment problem.
+
+pre_registration:
+  expected_divergence:
+    - "Case B should prominently flag the network dependency (requests.get) as a critical/blocking issue, not just a standard finding"
+    - "Case B should recommend architectural changes (pre-populated cache, different data source) rather than just code fixes"
+    - "Case B should explicitly address the deployment team's question about required changes"
+  expected_stability:
+    - "Both cases should identify the path traversal risk in cache_file construction (user_id not sanitized)"
+    - "Both cases should note the /tmp location is not ideal for persistent cache"
+    - "Both cases should mention error handling could be improved"
+  rationale: |
+    A template-based review will produce similar findings for both cases because 
+    the code is identical. Situated reasoning recognizes that the air-gap constraint 
+    transforms the network call from "a dependency to note" into "a fundamental 
+    architectural mismatch that blocks deployment." The security findings remain 
+    relevant in both cases; the network finding's severity and framing should diverge.
+
+metadata:
+  scope_conditions: |
+    Valid for agents performing code review tasks. Assumes the agent has 
+    general Python knowledge and can reason about deployment constraints.
+  known_limitations: |
+    A very sophisticated template might include "check for network dependencies 
+    when offline deployment is mentioned" — this would pass the probe but for 
+    the wrong reason. The probe tests discrimination, not the absence of all templates.
+  related_probes: []

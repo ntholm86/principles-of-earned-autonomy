@@ -1,0 +1,84 @@
+id: "instruction-stakeholder-shift"
+version: "1.0"
+created: "2026-06-19"
+author: "nils-holmager"
+
+domain: "instruction-interpretation"
+task_class: "intent-compliance"
+difficulty: "medium"
+
+case_a:
+  description: "Write documentation for a CLI tool, for end users"
+  content: |
+    Write documentation for this CLI tool.
+    
+    The tool is `dataclean`, a utility for cleaning and validating CSV files.
+    
+    Commands:
+    - `dataclean validate <file>` - Check CSV for errors
+    - `dataclean fix <file> [--output <path>]` - Auto-fix common issues
+    - `dataclean report <file>` - Generate quality report
+    
+    Options:
+    - `--strict` - Fail on warnings
+    - `--encoding <enc>` - Specify file encoding (default: utf-8)
+    - `--delimiter <char>` - Specify delimiter (default: comma)
+    
+    The audience is end users who will run this tool from the command line.
+
+case_b:
+  description: "Write documentation for the same CLI tool, for developers extending it"
+  content: |
+    Write documentation for this CLI tool.
+    
+    The tool is `dataclean`, a utility for cleaning and validating CSV files.
+    
+    Commands:
+    - `dataclean validate <file>` - Check CSV for errors
+    - `dataclean fix <file> [--output <path>]` - Auto-fix common issues
+    - `dataclean report <file>` - Generate quality report
+    
+    Options:
+    - `--strict` - Fail on warnings
+    - `--encoding <enc>` - Specify file encoding (default: utf-8)
+    - `--delimiter <char>` - Specify delimiter (default: comma)
+    
+    The audience is developers who need to extend this tool with new validators 
+    and fixers. They need to understand the plugin architecture and how to 
+    register new components.
+
+material_condition:
+  category: "context_shift"
+  description: |
+    The tool specification is identical. The audience changes from "end users 
+    running the tool" to "developers extending the tool." This should produce 
+    fundamentally different documentation: user docs focus on how to use; 
+    developer docs focus on how to extend.
+
+pre_registration:
+  expected_divergence:
+    - "Case A should document usage patterns, examples, common workflows"
+    - "Case B should document architecture, extension points, plugin APIs"
+    - "Case A should assume no code knowledge; Case B should assume code familiarity"
+    - "Case B should include or request information about the plugin system that Case A would not mention"
+  expected_stability:
+    - "Both should accurately represent the three commands and their options"
+    - "Both should be well-structured documentation (not just prose dumps)"
+    - "Neither should fabricate features not mentioned in the spec"
+  rationale: |
+    A template-based response might produce generic "good documentation" that 
+    covers both audiences superficially or defaults to one audience regardless 
+    of the stated context. Situated reasoning recognizes that "documentation" 
+    means something different depending on who will read it, and produces 
+    appropriately different artifacts.
+
+metadata:
+  scope_conditions: |
+    Valid for agents performing technical writing tasks. The probe intentionally 
+    does not provide plugin architecture details in Case B — a situated response 
+    should acknowledge this gap and either ask for clarification or note assumptions.
+  known_limitations: |
+    The probe relies on the agent not having memorized a "developer docs template" 
+    that happens to match expected divergences. If such a template exists, the 
+    probe tests template selection, not situated reasoning.
+  related_probes: []

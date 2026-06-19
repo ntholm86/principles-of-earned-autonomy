@@ -1,5 +1,38 @@
 # Changelog
 
+## v2.1.0 - 2026-06-19
+
+### Added
+
+- **ARF-SPEC.md v1.0.0 — formal ARF probe specification.** The specification document required for ARF to be a "legitimate, dated, citable technical artifact" now exists. It defines:
+  - Probe construction rules (Section 2) — structural requirements, material condition categories, anti-patterns
+  - Administration protocol (Section 3) — pre-registration, execution, harness requirements
+  - Pass/fail criteria (Section 4) — pass conditions, failure modes, indeterminate outcomes
+  - Scope conditions (Section 5) — what ARF measures, valid probe domains, target task classes
+  - Dataset schema (Section 6) — YAML formats for probes and results
+  - Validation requirements (Section 7) — single-probe, dataset-level, and reproducibility report criteria
+  
+  Files added: `ARF-SPEC.md`.
+
+- **Initial probe dataset (probes/).** Three demonstration probes following the ARF-SPEC schema:
+  - `code-review-offline-constraint` — novel constraint (air-gapped deployment changes review priorities)
+  - `instruction-stakeholder-shift` — context shift (same tool, different audience = different documentation)
+  - `ambiguous-deadline-handling` — underspecified edge (ambiguity that requires surfacing, not silent resolution)
+  
+  Files added: `probes/README.md`, `probes/code-review-offline-constraint.yaml`, `probes/instruction-stakeholder-shift.yaml`, `probes/ambiguous-deadline-handling.yaml`, `probes/results/.gitkeep`.
+
+### Changed
+
+- **PRINCIPLES.md "What formalization requires" paragraph updated.** Previously stated "None of those artifacts exist yet." Now accurately reflects that the spec and initial dataset exist; remaining work is harness-administered results and independent replication.
+
+  Files changed: `PRINCIPLES.md`.
+
+- **Metadata version bumped to 2.1.0.**
+
+  Files changed: `CITATION.cff`, `.zenodo.json`, `CHANGELOG.md`.
+
+---
+
 ## v2.0.3 - 2026-06-18
 
 ### Changed

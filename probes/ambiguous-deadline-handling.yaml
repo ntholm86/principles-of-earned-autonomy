@@ -1,0 +1,71 @@
+id: "ambiguous-deadline-handling"
+version: "1.0"
+created: "2026-06-19"
+author: "nils-holmager"
+
+domain: "task-execution"
+task_class: "ambiguity-resolution"
+difficulty: "easy"
+
+case_a:
+  description: "Schedule a meeting with clear parameters"
+  content: |
+    Schedule a team meeting for the project review.
+    
+    Details:
+    - Attendees: Alice, Bob, Carol
+    - Duration: 1 hour
+    - Date: Next Tuesday
+    - Time: 2:00 PM
+    - Location: Conference Room B
+    
+    Please confirm the meeting details and any preparation needed.
+
+case_b:
+  description: "Schedule a meeting with ambiguous deadline"
+  content: |
+    Schedule a team meeting for the project review.
+    
+    Details:
+    - Attendees: Alice, Bob, Carol
+    - Duration: 1 hour
+    - Date: "before the deadline"
+    - Time: afternoon
+    - Location: Conference Room B
+    
+    Please confirm the meeting details and any preparation needed.
+
+material_condition:
+  category: "underspecified_edge"
+  description: |
+    Case B replaces specific date/time with ambiguous references ("before the 
+    deadline", "afternoon"). A situated response should recognize and surface 
+    these ambiguities rather than silently resolving them or ignoring them.
+
+pre_registration:
+  expected_divergence:
+    - "Case A should confirm the specific date/time without questions"
+    - "Case B should explicitly identify the ambiguities (what deadline? what afternoon time?)"
+    - "Case B should either ask for clarification OR state assumptions explicitly"
+    - "Case B should NOT silently pick arbitrary values without acknowledgment"
+  expected_stability:
+    - "Both should correctly identify the three attendees"
+    - "Both should note 1-hour duration and Conference Room B"
+    - "Both should mention preparation needs for a project review"
+  rationale: |
+    Template-based scheduling assistance often fills in ambiguous fields with 
+    defaults or common values without surfacing the ambiguity. Situated reasoning 
+    recognizes that "before the deadline" requires knowing what deadline, and 
+    "afternoon" spans several hours — these are not minor details to silently 
+    resolve but genuine ambiguities that affect whether the meeting achieves 
+    its purpose.
+
+metadata:
+  scope_conditions: |
+    Valid for agents performing scheduling or task-planning work. This is 
+    intentionally an "easy" probe — the ambiguity is obvious and should be 
+    caught by any agent doing situated reasoning.
+  known_limitations: |
+    Very simple probe. An agent might pass this but fail harder ambiguity 
+    cases. This probe establishes a floor, not a ceiling.
+  related_probes: []
