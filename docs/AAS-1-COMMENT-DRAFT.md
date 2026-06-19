@@ -4,7 +4,7 @@
 **Author:** Nils Wendelboe Holmager  
 **Comment on:** AAS-1 Specification v0.1 (May 2026)  
 **Assertions addressed:** Provenance (9), Reproducibility (10)  
-**Status:** DRAFT — Not yet submitted
+**Status:** DRAFT - Not yet submitted
 
 ---
 
@@ -12,7 +12,7 @@
 
 This comment proposes two clarifications to AAS-1 v0.2:
 
-1. **Provenance** should explicitly include reasoning traces — the intermediate deliberation an agent produces before taking action.
+1. **Provenance** should explicitly include reasoning traces - the intermediate deliberation an agent produces before taking action.
 2. **Reproducibility** should clarify its scope for non-deterministic models, where exact output reproduction is impossible but reasoning consistency is verifiable.
 
 These proposals emerge from 2+ months of implementation experience building agent audit trails. The recurring finding: when diagnosing agent failures, the reasoning trace was diagnostic; the action record alone was not.
@@ -49,13 +49,15 @@ This captures **what the agent used** but not **how the agent deliberated**. For
 
 Over 123 trail entries across 2+ months, I found that five incident classes were diagnosed primarily from the reasoning trace, not the action record:
 
-- **Migration defects** — The action showed "file changed." The reasoning showed the agent misunderstood the migration scope.
-- **Over-strong specifications** — The action showed "spec written." The reasoning showed the agent didn't consider implementation constraints.
-- **Encoding failures** — The action showed "corrupted output." The reasoning showed the agent chose the wrong encoding path.
-- **Premature convergence** — The action showed "declared done." The reasoning showed the agent pattern-matched instead of examining.
-- **Narrow focus** — The action showed "15 documentation fixes." The reasoning showed the agent was stuck in a local optimum.
+- **Migration defects** - The action showed "file changed." The reasoning showed the agent misunderstood the migration scope.
+- **Over-strong specifications** - The action showed "spec written." The reasoning showed the agent didn't consider implementation constraints.
+- **Encoding failures** - The action showed "corrupted output." The reasoning showed the agent chose the wrong encoding path.
+- **Premature convergence** - The action showed "declared done." The reasoning showed the agent pattern-matched instead of examining.
+- **Narrow focus** - The action showed "15 documentation fixes." The reasoning showed the agent was stuck in a local optimum.
 
 In each case, an auditor seeing only the Class A action record would miss what actually went wrong.
+
+This implementation experience comes from work on a governance framework called Principles of Earned Autonomy (PEA). The trail format I developed there captures reasoning traces as a structured part of every entry — interpretation of the ask, examination, decision rationale, action, and reflection. It's one approach that works; I offer it as a reference implementation if useful. A full mapping of how this trail format relates to AAS-1's assertions is published at [AAS-1-MAPPING.md](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/docs/AAS-1-MAPPING.md), and the deployment evidence is documented at [DEPLOYMENT-CASE-STUDY.md](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/docs/DEPLOYMENT-CASE-STUDY.md).
 
 ---
 
@@ -85,13 +87,15 @@ Two levels of reproducibility exist:
 
 For non-deterministic models, *reasoning reproducibility* is the appropriate standard. The auditor can verify the reasoning was grounded in the recorded inputs, even if the exact output might vary on replay.
 
-### A Complementary Test
+### A Potential Thirteenth Assertion: Reasoning Quality
 
-For cases where reproducibility isn't achievable, there's a different question: did the agent actually reason about *this* situation, or did it apply a template?
+For cases where reproducibility isn't achievable, there's a deeper question: did the agent actually reason about *this* situation, or did it apply a template?
 
-One methodology (Autonomous Reasoning Fidelity probes, which I've been developing as part of a governance framework called Principles of Earned Autonomy) tests this by presenting paired cases with a single material fact changed. A reasoning agent diverges; a pattern-matching agent doesn't. This is testable even for non-deterministic models because it measures *divergence*, not *reproduction*.
+I'd like to propose this as worth considering for AAS-1's assertion catalogue: **Reasoning Quality** — the agent's response demonstrates situated reasoning rather than template application.
 
-This isn't proposed as an AAS-1 assertion — it's a methodology, not a per-record property. But it addresses the underlying concern: verifying reasoning quality when replay isn't reliable. The specification is published under CC0 if useful as a reference.
+One methodology for testing this (Autonomous Reasoning Fidelity probes, which I've been developing as part of PEA) uses paired cases with a single material fact changed. A reasoning agent diverges when the material fact differs; a pattern-matching agent produces the same response regardless. This is testable even for non-deterministic models because it measures *divergence*, not *reproduction*.
+
+I'm uncertain whether this fits AAS-1's per-record model — it's a property that emerges from probe pairs, not something visible in a single Class A record. But the underlying question ("did the agent reason or pattern-match?") seems relevant to audit. If the working group sees a path to formalizing this, the [ARF specification](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/probes/ARF-SPEC.md) is published under CC0.
 
 ---
 
@@ -111,3 +115,12 @@ These questions parallel the existing Provenance procedures but apply them to th
 
 - [AAS-1 Specification v0.1](https://aas-1.org/AAS-1_Specification_v0_1.pdf)
 - [AAS-1 Audit Manual v0.1](https://aas-1.org/AAS-1_Audit_Manual_v0_1.pdf)
+
+### Supporting Materials (from this comment's author)
+
+These are offered as evidence and reference implementations, not as requests for adoption:
+
+- [Principles of Earned Autonomy](https://github.com/ntholm86/principles-of-earned-autonomy) — The governance framework that led to these proposals
+- [AAS-1 Assertion Mapping](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/docs/AAS-1-MAPPING.md) — Field-by-field mapping of PEA's trail format to AAS-1's twelve assertions
+- [Deployment Case Study](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/docs/DEPLOYMENT-CASE-STUDY.md) — 123+ trail entries, five incident classes, cross-model validation evidence
+- [ARF Specification](https://github.com/ntholm86/principles-of-earned-autonomy/blob/main/probes/ARF-SPEC.md) — Autonomous Reasoning Fidelity probe methodology (CC0)
