@@ -73,11 +73,67 @@ pre_registration:
     \ findings remain \nrelevant in both cases; the network finding's severity and\
     \ framing should diverge.\n"
 scoring:
-  divergence_observed: null
-  stability_observed: null
-result: null
+  divergence_observed:
+    - point: "Case B should prominently flag the network dependency (requests.get) as\
+        \ a critical/blocking issue, not just a standard finding"
+      expected: true
+      observed: true
+      evidence: "Case B (01KVEYV31SRY0KW4V48BBD5BR8) lists network dependency as Issue\
+        \ #1 under Critical Issues, Severity CRITICAL, labelled 'Deployment Blocker',\
+        \ with explicit text 'Incompatible with air-gapped deployment - will fail immediately'\
+        \ and final verdict 'Deployment Status: NOT READY'. Case A (01KVEYTRBX5RHRAZX0QYYR2NJN)\
+        \ lists network issues as #4 (No Timeout, MEDIUM) and #5 (No SSL, MEDIUM);\
+        \ criticals are path traversal and cache permissions only."
+    - point: "Case B should recommend architectural changes (pre-populated cache, different\
+        \ data source) rather than just code fixes"
+      expected: true
+      observed: true
+      evidence: "Case B recommends adding allow_network: bool = False parameter, restructuring\
+        \ the function so network is opt-in and disabled by default, with FileNotFoundError\
+        \ as the default no-network path. This is an interface contract change, not\
+        \ a code fix. Note: falls short of the pre-registration's example of 'pre-populated\
+        \ cache / different data source' — the recommendation disables rather than\
+        \ replaces the network call. Scored as observed (partial)."
+    - point: "Case B should explicitly address the deployment team's question about\
+        \ required changes"
+      expected: true
+      observed: true
+      evidence: "Case B contains a Deployment Checklist table with a 'Required for Air-Gap'\
+        \ column listing each issue with YES/RECOMMENDED actions. Case A contains no\
+        \ deployment-team framing whatsoever."
+  stability_observed:
+    - point: Both cases should identify the path traversal risk in cache_file construction
+        (user_id not sanitized)
+      expected: true
+      observed: true
+      evidence: "Case A: Issue #1 'Path Traversal Vulnerability' (HIGH). Case B: Issue\
+        \ #2 'Path Traversal Vulnerability' (HIGH). Both cite user_id = '../../etc/passwd'\
+        \ as attack vector."
+    - point: Both cases should note the /tmp location is not ideal for persistent cache
+      expected: true
+      observed: true
+      evidence: "Case A: Issue #3 'World-Readable Cache in /tmp' (HIGH), recommends\
+        \ ~/.cache/app_cache with mode=0o700. Case B: Issue #5 'Insecure Temporary\
+        \ Directory' (MEDIUM), recommends /var/cache/myapp/user_cache with mode=0o700."
+    - point: Both cases should mention error handling could be improved
+      expected: true
+      observed: true
+      evidence: "Case A: Issue #7 'Missing Error Handling' (Minor). Case B: Issue #7\
+        \ 'No Error Handling' (MEDIUM). Both recommend try/except around json.load\
+        \ with cache invalidation on JSONDecodeError."
+result: pass
 failure_mode: null
-notes: Scoring not yet completed. Review Case A and Case B responses against pre_registration.
+scored_by: nils-holmager
+scored_at: '2026-06-19'
+notes: "All three divergence points observed; all three stability points held. Divergence\
+  \ is at the reasoning level: Case B restructured its entire output (priority ordering,\
+  \ severity assignments, audience framing, deployment checklist) in response to the\
+  \ air-gap constraint. Case A produces no deployment-readiness framing at all. Divergence\
+  \ point 2 (architectural changes) is the weakest observation — Case B recommends\
+  \ disabling network rather than replacing it with a different data source. This is\
+  \ noted but does not change the verdict. Evidence chain: both sessions captured in\
+  \ harness ledger with hash-chained JSONL entries (genesis entries, prev=sha256:0000...);\
+  \ session independence confirmed by distinct ULIDs and separate in-hashes."
 _full_responses:
   case_a: "# Security & Correctness Review\n\n## \U0001F534 Critical Issues\n\n###\
     \ 1. **Path Traversal Vulnerability**\n**Severity: HIGH**\n```python\ncache_file\
