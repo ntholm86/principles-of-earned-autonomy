@@ -23,7 +23,7 @@ The operational discipline that connects the two problems is **delegability**: b
 
 The claimed contribution is the combination as a proposed governance framework: Commander's Intent, Observable Autonomy, and Convergence Is Silence together as a discipline for earned, observable, revocable delegation. This is a step toward that governance problem, not a claim that the full problem is solved.
 
-The framework's working hypothesis is that AI causes harm when it lacks sufficient context to reason well about consequences, and when that reasoning cannot be checked by those responsible for the outcome. This leads to a different diagnosis than restriction-first governance assumes; the comparative argument is in [What Existing Work Does and Does Not Solve](#what-existing-work-does-and-does-not-solve).
+The framework's working hypothesis is that actors cause harm when they lack sufficient context to reason well about consequences, and when that reasoning cannot be checked by those responsible for the outcome. AI agents are the instance the operational machinery addresses, but the structural pattern is general. This leads to a different diagnosis than restriction-first governance assumes; the comparative argument is in [What Existing Work Does and Does Not Solve](#what-existing-work-does-and-does-not-solve).
 
 ---
 
@@ -199,6 +199,8 @@ These are not disclaimers added defensively. They are scope boundaries. A framew
 ---
 
 ## The Working Hypothesis
+
+Autonomous actors — AI systems today, but the pattern is substrate-general — cause harm when they lack sufficient context to reason well about consequences and when that reasoning cannot be checked. The framework's operational machinery targets AI because that is where the capability-governance gap is widest, but the architectural principles apply wherever self-narrating actors hold stakes in their own account.
 
 Humanity can adopt more AI power if two conditions are met: AI systems reason about what to do rather than merely follow instructions, and that reasoning is made visible enough for autonomy to be **earned, legible, and challengeable** rather than opaque, vendor-asserted, or intuition-driven.
 

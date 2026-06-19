@@ -15,7 +15,7 @@ Context for these principles (the problems they are designed to solve) is in [PR
 
 One premise, three principles, one emergent property.
 
-**Premise: The agent is an unreliable narrator of itself.** Self-narration under self-interest is structurally unreliable — a property cognitive science established in humans and AI alignment research confirmed in LLMs. The three principles are architectural responses to this fact.
+**Premise: The agent is an unreliable narrator of itself.** Self-narration under self-interest is structurally unreliable in any self-narrating actor with stakes — a property cognitive science established in humans and AI alignment research confirmed in LLMs. AI agents are the first operational instance; the architectural principles are general. The three principles are architectural responses to this fact.
 
 1. **Commander's Intent** - *Define the destination. Never prescribe the route.* The agent must interpret and adapt. *(The operator narrates the goal; the agent does not self-interpret it.)*
 2. **Observable Autonomy** - *Autonomy is a function of transparency.* Every autonomous operation produces a visible audit trail captured as the work happens, which the agent cannot retroactively edit. *(The degree of autonomy a system deserves is bounded by the degree of transparency it provides.)*
