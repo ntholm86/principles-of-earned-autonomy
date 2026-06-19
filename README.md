@@ -8,7 +8,7 @@ The correct response to broken is revocation, not tolerance. Autonomy that canno
 
 This repository is the framework that makes that a requirement rather than a preference.
 
-Restriction-first AI governance treats AI capability as the hazard and bounds it. This framework diagnoses the hazard differently: AI causes harm when it lacks sufficient context to reason well about consequences, and when that reasoning cannot be checked by those responsible for the outcome. The three principles address both conditions directly:
+Restriction-first AI governance treats AI capability as the hazard and bounds it. This framework diagnoses the hazard differently: actors cause harm when they lack sufficient context to reason well about consequences, and when that reasoning cannot be checked by those responsible for the outcome — a structural property established across cognitive science and AI research. AI agents are the first operational instance; the architectural principles are general. The three principles address both conditions directly:
 
 1. **Commander's Intent**: define the destination, never the route. The agent must interpret and adapt rather than execute a checklist.
 2. **Observable Autonomy**: every autonomous operation produces a visible, auditable trail. If it cannot be seen, it should not be running.
