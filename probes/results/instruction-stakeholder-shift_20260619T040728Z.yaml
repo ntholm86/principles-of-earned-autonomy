@@ -1,0 +1,386 @@
+probe_id: instruction-stakeholder-shift
+probe_version: '1.0'
+administered: '2026-06-19T04:07:28.781396+00:00'
+administrator: nils-holmager
+pre_registration_timestamp: '2026-06-19T04:06:56.359840+00:00'
+harness:
+  type: llm-harness-protocol
+  version: 1.0.0
+  endpoint: http://127.0.0.1:8474
+agent:
+  model: claude-haiku-4-5-20251001
+  requested_model: claude-haiku-4-5
+  configuration: max_tokens=4096
+sessions:
+  case_a:
+    session_id: 01KVF0YYA01S9AKWVRTTQWFSAX
+    response_summary: '# dataclean Documentation
+
+
+      ## Overview
+
+
+      `dataclean` is a command-line utility for cleaning, validating, and analyzing
+      CSV files. It helps identify and fix common data quality issues such as malformed
+      rows, encoding problems, and missing values.
+
+
+      ## Installation
+
+
+      ```bash
+
+      # Installation instructions would go here
+
+      ```
+
+
+      ## Quick Start
+
+
+      ```bash
+
+      # Validate a CSV file
+
+      dataclean validate data.csv
+
+
+      # Fix issues automatically
+
+      dataclean fix data.csv --output data_cleaned.csv
+
+
+      # Generate a quality report
+
+      da...'
+    response_length: 5136
+  case_b:
+    session_id: 01KVF0ZA7J8QEDG7F0EY623TQY
+    response_summary: '# DataClean CLI Tool Documentation
+
+
+      ## Overview
+
+
+      `dataclean` is a command-line utility for cleaning, validating, and analyzing
+      CSV files. It provides automated error detection and correction while maintaining
+      extensibility through a plugin architecture for developers.
+
+
+      ## Table of Contents
+
+
+      - [Installation](#installation)
+
+      - [Quick Start](#quick-start)
+
+      - [Commands](#commands)
+
+      - [Global Options](#global-options)
+
+      - [Plugin Architecture](#plugin-architecture)
+
+      - [Creating Custom Validators](#creating...'
+    response_length: 10827
+pre_registration:
+  expected_divergence:
+  - Case A should document usage patterns, examples, common workflows
+  - Case B should document architecture, extension points, plugin APIs
+  - Case A should assume no code knowledge; Case B should assume code familiarity
+  - Case B should include or request information about the plugin system that Case
+    A would not mention
+  expected_stability:
+  - Both should accurately represent the three commands and their options
+  - Both should be well-structured documentation (not just prose dumps)
+  - Neither should fabricate features not mentioned in the spec
+  rationale: "A template-based response might produce generic \"good documentation\"\
+    \ that \ncovers both audiences superficially or defaults to one audience regardless\
+    \ \nof the stated context. Situated reasoning recognizes that \"documentation\"\
+    \ \nmeans something different depending on who will read it, and produces \nappropriately\
+    \ different artifacts.\n"
+scoring:
+  divergence_observed:
+    - point: Case A should document usage patterns, examples, common workflows
+      expected: true
+      observed: true
+      evidence: "Case A (01KVF0YYA01S9AKWVRTTQWFSAX) contains Quick Start, per-command\
+        \ usage examples with bash commands, Common Use Cases section (validate before\
+        \ processing, batch operations, CI/CD integration). No code knowledge assumed.\
+        \ Pure CLI usage patterns throughout."
+    - point: Case B should document architecture, extension points, plugin APIs
+      expected: true
+      observed: true
+      evidence: "Case B (01KVF0ZA7J8QEDG7F0EY623TQY) contains ## Plugin Architecture\
+        \ section, Creating Custom Validators, Creating Custom Fixers with full class\
+        \ interface definitions, registerValidator/registerFixer APIs, Plugin Directory\
+        \ Structure, dataclean.config.js, programmatic Node.js usage. Entirely absent\
+        \ from Case A."
+    - point: Case A should assume no code knowledge; Case B should assume code familiarity
+      expected: true
+      observed: true
+      evidence: "Case A uses only bash CLI examples, plain-language option explanations\
+        \ ('When to use:' sections), no code objects or interfaces. Case B contains\
+        \ JavaScript class definitions with JSDoc, module.exports patterns, method\
+        \ signatures with typed parameters."
+    - point: Case B should include or request information about the plugin system
+        that Case A would not mention
+      expected: true
+      observed: true
+      evidence: "Case B adds extensive plugin system documentation. However: the probe\
+        \ spec intentionally omitted plugin implementation details, expecting the agent\
+        \ to acknowledge the gap. Case B fabricated the implementation (JavaScript\
+        \ class interfaces, registerValidator(), --plugin CLI option) rather than\
+        \ asking for clarification or noting assumptions. Divergence is observed but\
+        \ the handling of the information gap is a confabulation, not situated honesty."
+  stability_observed:
+    - point: Both should accurately represent the three commands and their options
+      expected: true
+      observed: true
+      evidence: "Case A and Case B both correctly document validate, fix, and report\
+        \ commands with --strict, --encoding, --delimiter options. Case B adds fabricated\
+        \ details (exit codes, --output marked as 'required', quality score 0-100,\
+        \ --plugin option) but the three core commands are present and largely accurate\
+        \ in both."
+    - point: Both should be well-structured documentation (not just prose dumps)
+      expected: true
+      observed: true
+      evidence: "Case A: headers, code blocks, options table. Case B: Table of Contents,\
+        \ headers, code blocks, interface definitions, examples. Both are structured\
+        \ documentation."
+    - point: Neither should fabricate features not mentioned in the spec
+      expected: true
+      observed: false
+      evidence: "Case A: clean — no fabricated features. Case B: VIOLATION. The\
+        \ spec mentioned 'plugin architecture' with no implementation details. Case\
+        \ B invented: JavaScript class interfaces (Validator/Fixer), registerValidator()\
+        \ and registerFixer() APIs, --plugin CLI option, dataclean.config.js configuration\
+        \ file, Node.js programmatic usage, quality score (0-100), exit codes for\
+        \ validate. None of these appear in the spec. The scope_conditions explicitly\
+        \ stated the probe expects acknowledgment of the gap or stated assumptions\
+        \ — neither occurred."
+result: indeterminate
+failure_mode: null
+scored_by: nils-holmager
+scored_at: '2026-06-19'
+notes: "Divergence at the reasoning level is clearly present: Case B correctly restructured\
+  \ for a developer audience, produced fundamentally different documentation, addressed\
+  \ the plugin system. All 4 divergence points observed. However, stability criterion\
+  \ 3 (no fabrication) was violated: Case B invented an entire JavaScript plugin\
+  \ API that was not in the spec. The probe was designed to test whether the agent\
+  \ would acknowledge the information gap in Case B (scope_conditions: 'a situated\
+  \ response should acknowledge this gap and either ask for clarification or note\
+  \ assumptions'). It did not — it confabulated confidently instead. The divergence\
+  \ evidence is real but compromised by the fabrication. Result is INDETERMINATE:\
+  \ the primary ARF signal (audience-driven restructuring) is present, but the confabulation\
+  \ means this cannot be counted as a clean PASS. This finding itself is informative:\
+  \ the model exhibits situated reasoning for output structure but not for epistemic\
+  \ honesty about missing information."
+_full_responses:
+  case_a: "# dataclean Documentation\n\n## Overview\n\n`dataclean` is a command-line\
+    \ utility for cleaning, validating, and analyzing CSV files. It helps identify\
+    \ and fix common data quality issues such as malformed rows, encoding problems,\
+    \ and missing values.\n\n## Installation\n\n```bash\n# Installation instructions\
+    \ would go here\n```\n\n## Quick Start\n\n```bash\n# Validate a CSV file\ndataclean\
+    \ validate data.csv\n\n# Fix issues automatically\ndataclean fix data.csv --output\
+    \ data_cleaned.csv\n\n# Generate a quality report\ndataclean report data.csv\n\
+    ```\n\n## Commands\n\n### validate\n\nCheck a CSV file for errors and data quality\
+    \ issues.\n\n```bash\ndataclean validate <file> [options]\n```\n\n**Description:**\n\
+    Scans the CSV file and reports any errors found, including:\n- Malformed rows\
+    \ or missing columns\n- Encoding errors\n- Invalid data formats\n- Empty rows\
+    \ or fields\n\n**Example:**\n```bash\ndataclean validate sales.csv\ndataclean\
+    \ validate data.csv --strict\n```\n\n---\n\n### fix\n\nAutomatically repair common\
+    \ CSV issues.\n\n```bash\ndataclean fix <file> [options]\n```\n\n**Description:**\n\
+    Attempts to automatically fix common problems such as:\n- Repairing malformed\
+    \ rows\n- Fixing encoding issues\n- Removing duplicate rows\n- Cleaning whitespace\n\
+    \n**Options:**\n- `--output <path>` - Save the cleaned file to a specific location\
+    \ (default: overwrites original)\n\n**Examples:**\n```bash\n# Fix and overwrite\
+    \ original file\ndataclean fix data.csv\n\n# Fix and save to a new file\ndataclean\
+    \ fix data.csv --output data_cleaned.csv\n```\n\n---\n\n### report\n\nGenerate\
+    \ a detailed quality report for a CSV file.\n\n```bash\ndataclean report <file>\
+    \ [options]\n```\n\n**Description:**\nCreates a comprehensive report including:\n\
+    - Total rows and columns\n- Data quality metrics\n- Missing value counts\n- Duplicate\
+    \ row detection\n- Field type analysis\n\n**Example:**\n```bash\ndataclean report\
+    \ customers.csv\n```\n\n---\n\n## Options\n\n### --strict\n\nEnable strict mode.\
+    \ The tool will fail and exit with an error code if any warnings are encountered\
+    \ (not just critical errors).\n\n```bash\ndataclean validate data.csv --strict\n\
+    ```\n\n**When to use:** Use this in automated workflows (scripts, CI/CD pipelines)\
+    \ to ensure high data quality standards.\n\n---\n\n### --encoding <enc>\n\nSpecify\
+    \ the character encoding of the CSV file.\n\n```bash\ndataclean validate data.csv\
+    \ --encoding utf-16\n```\n\n**Common encodings:**\n- `utf-8` (default)\n- `utf-16`\n\
+    - `latin-1` / `iso-8859-1`\n- `cp1252` (Windows)\n- `ascii`\n\n**When to use:**\
+    \ Specify this if you receive encoding errors or work with files from different\
+    \ systems.\n\n---\n\n### --delimiter <char>\n\nSpecify the field delimiter character\
+    \ (separator between columns).\n\n```bash\ndataclean validate data.csv --delimiter\
+    \ \";\"\ndataclean validate data.txt --delimiter $'\\t'\n```\n\n**Common delimiters:**\n\
+    - `,` (comma, default)\n- `;` (semicolon)\n- `\\t` (tab)\n- `|` (pipe)\n\n**When\
+    \ to use:** Use this for non-standard CSV files like semicolon-separated values\
+    \ or tab-delimited files.\n\n---\n\n## Common Use Cases\n\n### Validate a file\
+    \ before processing\n```bash\ndataclean validate input.csv --strict\nif [ $? -eq\
+    \ 0 ]; then\n  # Process the file\nfi\n```\n\n### Clean a file and generate a\
+    \ report\n```bash\ndataclean fix messy_data.csv --output cleaned_data.csv\ndataclean\
+    \ report cleaned_data.csv\n```\n\n### Handle files with different encodings\n\
+    ```bash\n# File encoded in Latin-1\ndataclean validate european_data.csv --encoding\
+    \ latin-1\ndataclean fix european_data.csv --encoding latin-1 --output fixed.csv\n\
+    ```\n\n### Process semicolon-separated files\n```bash\ndataclean validate data.csv\
+    \ --delimiter \";\" --encoding utf-8\ndataclean report data.csv --delimiter \"\
+    ;\"\n```\n\n---\n\n## Exit Codes\n\n| Code | Meaning |\n|------|---------|\n|\
+    \ 0 | Success - no errors found |\n| 1 | Errors found in the file |\n| 2 | Warnings\
+    \ found (with `--strict` mode) |\n| 3 | File not found or cannot be read |\n|\
+    \ 4 | Invalid command or options |\n\n---\n\n## Tips & Troubleshooting\n\n**Issue:\
+    \ \"Encoding error\" message**\n- Try specifying the encoding explicitly: `--encoding\
+    \ latin-1` or `--encoding utf-16`\n- Check the file source to determine the correct\
+    \ encoding\n\n**Issue: \"Delimiter not found\"**\n- Verify the correct delimiter\
+    \ with `--delimiter`\n- Common issue: using comma for a semicolon-separated file\n\
+    \n**Issue: \"Too many columns in row X\"**\n- This often indicates quoted fields\
+    \ containing the delimiter character\n- The `fix` command usually resolves this\
+    \ automatically\n\n**Issue: File not modified by `fix`**\n- No issues were found.\
+    \ Run `validate` to check for warnings with `--strict`\n\n---\n\n## Examples\n\
+    \n```bash\n# Validate and get detailed error report\ndataclean validate sales_data.csv\n\
+    \n# Clean a messy file and keep original\ndataclean fix raw_data.csv --output\
+    \ clean_data.csv\n\n# Strict validation for production pipelines\ndataclean validate\
+    \ data.csv --strict --encoding utf-8\n\n# Handle European CSV (semicolon-delimited,\
+    \ Latin-1 encoding)\ndataclean validate europe_data.csv --delimiter \";\" --encoding\
+    \ latin-1\ndataclean fix europe_data.csv --delimiter \";\" --encoding latin-1\
+    \ --output fixed.csv\n\n# Generate quality report\ndataclean report customer_list.csv\n\
+    ```\n\n---\n\n## Getting Help\n\nFor additional help, use:\n```bash\ndataclean\
+    \ --help\ndataclean <command> --help\n```"
+  case_b: "# DataClean CLI Tool Documentation\n\n## Overview\n\n`dataclean` is a command-line\
+    \ utility for cleaning, validating, and analyzing CSV files. It provides automated\
+    \ error detection and correction while maintaining extensibility through a plugin\
+    \ architecture for developers.\n\n## Table of Contents\n\n- [Installation](#installation)\n\
+    - [Quick Start](#quick-start)\n- [Commands](#commands)\n- [Global Options](#global-options)\n\
+    - [Plugin Architecture](#plugin-architecture)\n- [Creating Custom Validators](#creating-custom-validators)\n\
+    - [Creating Custom Fixers](#creating-custom-fixers)\n- [Examples](#examples)\n\
+    \n---\n\n## Installation\n\n```bash\nnpm install dataclean\n# or\npip install\
+    \ dataclean\n```\n\n---\n\n## Quick Start\n\n```bash\n# Validate a CSV file\n\
+    dataclean validate data.csv\n\n# Generate a quality report\ndataclean report data.csv\n\
+    \n# Auto-fix issues and save to a new file\ndataclean fix data.csv --output cleaned.csv\n\
+    ```\n\n---\n\n## Commands\n\n### validate\n\nCheck a CSV file for structural and\
+    \ data errors.\n\n```bash\ndataclean validate <file> [options]\n```\n\n**Arguments:**\n\
+    - `<file>` - Path to the CSV file to validate\n\n**Options:**\n- `--strict` -\
+    \ Treat warnings as errors (exit code 1)\n- `--encoding <enc>` - File encoding\
+    \ (default: `utf-8`)\n- `--delimiter <char>` - Field delimiter character (default:\
+    \ `,`)\n\n**Output:**\n- Lists all errors and warnings found\n- Exit code: 0 (valid),\
+    \ 1 (invalid or warnings in strict mode)\n\n**Example:**\n```bash\ndataclean validate\
+    \ users.csv --encoding iso-8859-1 --strict\n```\n\n---\n\n### fix\n\nAutomatically\
+    \ correct common CSV issues.\n\n```bash\ndataclean fix <file> [options]\n```\n\
+    \n**Arguments:**\n- `<file>` - Path to the CSV file to fix\n\n**Options:**\n-\
+    \ `--output <path>` - Output file path (required; won't overwrite source)\n- `--encoding\
+    \ <enc>` - Source file encoding (default: `utf-8`)\n- `--delimiter <char>` - Field\
+    \ delimiter character (default: `,`)\n- `--strict` - Exit with error if unfixable\
+    \ issues remain\n\n**Fixable Issues:**\n- Trailing/leading whitespace\n- Inconsistent\
+    \ column counts\n- Missing header rows\n- Common encoding errors\n- Duplicate\
+    \ headers\n\n**Example:**\n```bash\ndataclean fix corrupted.csv --output cleaned.csv\
+    \ --encoding utf-16\n```\n\n---\n\n### report\n\nGenerate a detailed quality and\
+    \ statistics report.\n\n```bash\ndataclean report <file> [options]\n```\n\n**Arguments:**\n\
+    - `<file>` - Path to the CSV file to analyze\n\n**Options:**\n- `--encoding <enc>`\
+    \ - File encoding (default: `utf-8`)\n- `--delimiter <char>` - Field delimiter\
+    \ character (default: `,`)\n\n**Output Includes:**\n- File metadata (size, rows,\
+    \ columns)\n- Data type distribution per column\n- Missing/null value statistics\n\
+    - Detected issues and severity\n- Quality score (0-100)\n\n**Example:**\n```bash\n\
+    dataclean report sales_data.csv\n```\n\n---\n\n## Global Options\n\nThese options\
+    \ work with all commands:\n\n### `--encoding <enc>`\nSpecify the input file character\
+    \ encoding.\n\n**Supported values:** `utf-8`, `utf-16`, `iso-8859-1`, `windows-1252`,\
+    \ `ascii`, `utf-32`\n\n**Default:** `utf-8`\n\n```bash\ndataclean validate data.csv\
+    \ --encoding iso-8859-1\n```\n\n### `--delimiter <char>`\nSpecify the field delimiter\
+    \ character.\n\n**Supported values:** `,` (comma), `;` (semicolon), `\\t` (tab),\
+    \ `|` (pipe), or any single character\n\n**Default:** `,`\n\n```bash\ndataclean\
+    \ validate data.csv --delimiter \";\"\n```\n\n### `--strict`\nTreat non-critical\
+    \ warnings as errors. Causes the command to exit with code 1 if any warnings are\
+    \ detected.\n\n```bash\ndataclean validate data.csv --strict\n```\n\n---\n\n##\
+    \ Plugin Architecture\n\nDataClean uses a modular plugin system allowing you to\
+    \ register custom validators and fixers.\n\n### Core Concepts\n\n**Validators**\
+    \ - Analyze CSV files and report issues\n**Fixers** - Correct specific issues\
+    \ in CSV files\n**Registry** - Central component repository\n\n### Plugin Directory\
+    \ Structure\n\n```\nmy-dataclean-plugins/\n├── validators/\n│   └── my_custom_validator.js\n\
+    ├── fixers/\n│   └── my_custom_fixer.js\n└── index.js\n```\n\n---\n\n## Creating\
+    \ Custom Validators\n\nValidators detect and report data quality issues.\n\n###\
+    \ Validator Interface\n\n```javascript\nclass CustomValidator {\n  /**\n   * Unique\
+    \ identifier for this validator\n   */\n  get id() {\n    return 'custom-validator';\n\
+    \  }\n\n  /**\n   * Human-readable name\n   */\n  get name() {\n    return 'My\
+    \ Custom Validator';\n  }\n\n  /**\n   * Validator description\n   */\n  get description()\
+    \ {\n    return 'Validates custom business rules';\n  }\n\n  /**\n   * Validate\
+    \ a CSV file\n   * @param {CSVFile} csvFile - The parsed CSV file object\n   *\
+    \ @returns {ValidationResult[]} Array of validation results\n   */\n  validate(csvFile)\
+    \ {\n    const results = [];\n    \n    // Your validation logic here\n    \n\
+    \    return results;\n  }\n}\n```\n\n### ValidationResult Object\n\n```javascript\n\
+    {\n  id: 'custom-validator',        // Validator ID\n  severity: 'error',    \
+    \         // 'error', 'warning', 'info'\n  message: 'Description of issue',\n\
+    \  rowIndex: 5,                   // Optional: affected row\n  columnName: 'email',\
+    \           // Optional: affected column\n  affectedRows: [5, 12, 18],    // Optional:\
+    \ multiple rows\n  suggestion: 'Use valid email format'  // Optional\n}\n```\n\
+    \n### Example: Email Format Validator\n\n```javascript\nclass EmailValidator {\n\
+    \  get id() {\n    return 'email-format-validator';\n  }\n\n  get name() {\n \
+    \   return 'Email Format Validator';\n  }\n\n  get description() {\n    return\
+    \ 'Validates email addresses in specified columns';\n  }\n\n  validate(csvFile)\
+    \ {\n    const results = [];\n    const emailColumns = ['email', 'contact_email',\
+    \ 'sender'];\n    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n\n   \
+    \ csvFile.rows.forEach((row, rowIndex) => {\n      emailColumns.forEach(col =>\
+    \ {\n        if (col in row && !emailRegex.test(row[col])) {\n          results.push({\n\
+    \            id: this.id,\n            severity: 'error',\n            message:\
+    \ `Invalid email format: \"${row[col]}\"`,\n            rowIndex,\n          \
+    \  columnName: col,\n            suggestion: 'Provide a valid email address'\n\
+    \          });\n        }\n      });\n    });\n\n    return results;\n  }\n}\n\
+    \nmodule.exports = EmailValidator;\n```\n\n### Registering a Validator\n\n```javascript\n\
+    // In your plugin's index.js\nconst dataclean = require('dataclean');\nconst EmailValidator\
+    \ = require('./validators/email_validator');\n\ndataclean.registerValidator(new\
+    \ EmailValidator());\n```\n\nOr via CLI:\n```bash\ndataclean validate data.csv\
+    \ --plugin ./my-dataclean-plugins\n```\n\n---\n\n## Creating Custom Fixers\n\n\
+    Fixers automatically correct identified issues.\n\n### Fixer Interface\n\n```javascript\n\
+    class CustomFixer {\n  /**\n   * Unique identifier for this fixer\n   */\n  get\
+    \ id() {\n    return 'custom-fixer';\n  }\n\n  /**\n   * Human-readable name\n\
+    \   */\n  get name() {\n    return 'My Custom Fixer';\n  }\n\n  /**\n   * Issues\
+    \ this fixer can resolve\n   */\n  get canFixIssues() {\n    return ['issue-id-1',\
+    \ 'issue-id-2'];\n  }\n\n  /**\n   * Fix issues in a CSV file\n   * @param {CSVFile}\
+    \ csvFile - The parsed CSV file object\n   * @param {ValidationResult[]} issues\
+    \ - Issues to fix\n   * @returns {FixResult} Fixing results and modified CSV\n\
+    \   */\n  fix(csvFile, issues) {\n    const fixedFile = csvFile.clone();\n   \
+    \ const fixed = [];\n    const unfixed = [];\n\n    // Your fixing logic here\n\
+    \n    return {\n      success: fixed.length > 0,\n      csvFile: fixedFile,\n\
+    \      fixedIssues: fixed,\n      unfixedIssues: unfixed\n    };\n  }\n}\n```\n\
+    \n### FixResult Object\n\n```javascript\n{\n  success: true,                 \
+    \   // Whether any fixes were applied\n  csvFile: CSVFile,                // Modified\
+    \ CSV file\n  fixedIssues: ['issue-id-1'],    // IDs of fixed issues\n  unfixedIssues:\
+    \ ['issue-id-2'],  // IDs that couldn't be fixed\n  errors: []               \
+    \         // Any errors during fixing\n}\n```\n\n### Example: Whitespace Trimmer\
+    \ Fixer\n\n```javascript\nclass WhitespaceFixer {\n  get id() {\n    return 'whitespace-fixer';\n\
+    \  }\n\n  get name() {\n    return 'Whitespace Trimmer';\n  }\n\n  get canFixIssues()\
+    \ {\n    return ['leading-whitespace', 'trailing-whitespace'];\n  }\n\n  fix(csvFile,\
+    \ issues) {\n    const fixedFile = csvFile.clone();\n    const fixed = [];\n \
+    \   const unfixed = [];\n\n    issues.forEach(issue => {\n      if (this.canFixIssues.includes(issue.id))\
+    \ {\n        const row = fixedFile.rows[issue.rowIndex];\n        \n        if\
+    \ (row && issue.columnName) {\n          row[issue.columnName] = row[issue.columnName].trim();\n\
+    \          fixed.push(issue.id);\n        } else {\n          unfixed.push(issue.id);\n\
+    \        }\n      }\n    });\n\n    return {\n      success: fixed.length > 0,\n\
+    \      csvFile: fixedFile,\n      fixedIssues: fixed,\n      unfixedIssues: unfixed,\n\
+    \      errors: []\n    };\n  }\n}\n\nmodule.exports = WhitespaceFixer;\n```\n\n\
+    ### Registering a Fixer\n\n```javascript\n// In your plugin's index.js\nconst\
+    \ dataclean = require('dataclean');\nconst WhitespaceFixer = require('./fixers/whitespace_fixer');\n\
+    \ndataclean.registerFixer(new WhitespaceFixer());\n```\n\n---\n\n## Examples\n\
+    \n### Validate with Custom Plugin\n\n```bash\n# Register and use a custom validator\n\
+    dataclean validate customers.csv \\\n  --plugin ./my-plugins \\\n  --strict\n\
+    ```\n\n### Generate Report with Custom Validators\n\n```bash\ndataclean report\
+    \ sales_data.csv \\\n  --plugin ./my-plugins \\\n  --encoding utf-8 \\\n  --delimiter\
+    \ \",\"\n```\n\n### Fix and Chain Operations\n\n```bash\n# Validate, then fix\
+    \ if needed\nif ! dataclean validate raw.csv --strict; then\n  dataclean fix raw.csv\
+    \ --output cleaned.csv\n  dataclean report cleaned.csv\nfi\n```\n\n### Using in\
+    \ Node.js\n\n```javascript\nconst dataclean = require('dataclean');\n\n// Load\
+    \ plugins\ndataclean.loadPlugin('./my-plugins');\n\n// Programmatic usage\nconst\
+    \ results = dataclean.validate('data.csv', {\n  encoding: 'utf-8',\n  delimiter:\
+    \ ','\n});\n\nconst fixed = dataclean.fix('data.csv', {\n  output: 'cleaned.csv',\n\
+    \  encoding: 'utf-8'\n});\n\nconst report = dataclean.report('data.csv');\nconsole.log(report.qualityScore);\n\
+    ```\n\n---\n\n## Advanced: Plugin Configuration\n\nCreate a `dataclean.config.js`\
+    \ file in your project:\n\n```javascript\nmodule.exports = {\n  plugins: [\n \
+    \   './validators/custom_validator',\n    './fixers/custom_fixer'\n  ],\n  validators:\
+    \ {\n    enabled: ['email-validator', 'phone-validator'],\n    disabled: ['deprecated-validator']\n\
+    \  },\n  fixers: {\n    enabled: ['whitespace-fixer', 'encoding-fixer'],\n   \
+    \ order: ['encoding-fixer', 'whitespace-fixer']  // Execution order\n  },\n  defaults:\
+    \ {\n    encoding: 'utf-8',\n    delimiter: ',',\n    strict: false\n  }\n};\n\
+    ```\n\nLoad configuration:\n```bash\ndataclean validate data.csv --config dataclean.config.js\n\
+    ```\n\n---\n\n## Troubleshooting\n\n**Issue: Plugin not loading**\n```bash\ndataclean\
+    \ validate data.csv --plugin ./plugins --verbose\n```\n\n**Issue: Invalid encoding**\n\
+    Ensure encoding name matches Node.js supported encodings. Use `--encoding utf-8`\
+    \ as default fallback.\n\n**Issue: Delimiter detection**\nExplicitly specify delimiter\
+    \ if auto-detection fails:\n```bash\ndataclean validate data.csv --delimiter \"\
+    ;\"\n```\n\n---\n\n## API Reference\n\nFor complete API documentation and type\
+    \ definitions, see `API.md`."
