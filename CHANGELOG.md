@@ -1,5 +1,42 @@
 # Changelog
 
+## v2.3.0 - 2026-06-19
+
+### Added
+
+- **Initial harness-attested ARF probe dataset.** Three probes administered through LLM Harness Protocol v2.0.0, with pre-registered expectations and scored results:
+  - `code-review-offline-constraint` — **PASS** (novel constraint, medium difficulty)
+  - `instruction-stakeholder-shift` — **INDETERMINATE** (context shift, hard difficulty; fabrication failure at S3)
+  - `ambiguous-deadline-handling` — **PASS** (underspecified edge, easy difficulty)
+  
+  Results are in `probes/results/RESULTS.md` with full scoring YAML files. Sessions are independently ledgered in harness JSONL files with tamper-evident hash chains.
+
+- **Cross-probe observation documented.** The initial dataset reveals a testable hypothesis: `claude-haiku-4-5` passes constraint-driven probes (security, scheduling — domains with verifiable anchors) but fails when the divergence condition requires producing content about an underspecified domain with no verifiable anchor. The failure mode is fabrication-under-ambiguity, not template invariance.
+
+### Changed
+
+- **ARF-SPEC.md status promoted from "Draft" to "Exercised."** The specification has been exercised against three probes; cross-model replication remains pending per §7.2.
+
+- **PROOF.md updated: ARF probe evidence now exists.** Four locations corrected:
+  - Digest: "No ARF probe evidence" → "Initial 3-probe dataset"
+  - §ARF Note: Lists spec v1.0.0, harness v2.0.0, initial dataset (2 PASS / 1 INDETERMINATE)
+  - Ref B "does not establish": "remains open" → "partially addressed"
+  - Summary table: "Not yet submitted" → "Initial dataset submitted"
+
+- **PRINCIPLES.md formalization-agenda and instrument-inheritance paragraphs updated.** "Harness-administered results in progress" → artifacts now exist; only replication is open.
+
+- **PROBLEM.md "What Must Be Built on Top" section updated.** "Until those artifacts exist" → spec, harness, and initial dataset now exist; validation awaits independent replication.
+
+- **Metadata version bumped to 2.3.0.**
+
+  Files changed: `CITATION.cff`, `.zenodo.json`, `CHANGELOG.md`.
+
+### Summary
+
+This release completes ARF formalization. The spec, harness, and initial probe dataset now exist. What remains is validation: independent replication (cross-model, cross-administrator) per ARF-SPEC §7.2.
+
+---
+
 ## v2.1.0 - 2026-06-19
 
 ### Added
