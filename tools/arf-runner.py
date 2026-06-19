@@ -37,8 +37,8 @@ from pathlib import Path
 
 import yaml
 
-# Harness endpoint — the proxy intercepts and ledgers before forwarding
-HARNESS_URL = "http://127.0.0.1:8474/v1/chat/completions"
+# Harness base URL — the proxy intercepts and ledgers before forwarding
+HARNESS_BASE = "http://127.0.0.1:8474"
 
 # Try to import httpx (preferred) or fall back to requests
 try:
@@ -47,6 +47,19 @@ try:
 except ImportError:
     import requests
     USE_HTTPX = False
+
+
+def detect_provider(model: str) -> str:
+    """Detect provider from model name."""
+    if model.startswith("claude"):
+        return "anthropic"
+    elif model.startswith("gpt") or model.startswith("o1") or model.startswith("o3"):
+        return "openai"
+    elif model.startswith("gemini"):
+        return "google"
+    else:
+        # Default to OpenAI format
+        return "openai"
 
 
 def load_probe(probe_id: str, probes_dir: Path) -> dict:
@@ -73,36 +86,67 @@ def call_model_through_harness(
     The harness creates a new session for each call (no x-harness-session header).
     This ensures Case A and Case B are in independent sessions.
     """
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
+    provider = detect_provider(model)
     
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "user", "content": content}
-        ],
-        "max_tokens": 4096,
-    }
+    if provider == "anthropic":
+        url = f"{HARNESS_BASE}/v1/messages"
+        headers = {
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01",
+            "Content-Type": "application/json",
+            "Accept-Encoding": "identity",
+        }
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "user", "content": content}
+            ],
+            "max_tokens": 4096,
+        }
+    else:
+        # OpenAI format (also used by Gemini via harness)
+        url = f"{HARNESS_BASE}/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        }
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "user", "content": content}
+            ],
+            "max_tokens": 4096,
+        }
     
     if USE_HTTPX:
         with httpx.Client(timeout=120.0) as client:
-            resp = client.post(HARNESS_URL, headers=headers, json=payload)
+            resp = client.post(url, headers=headers, json=payload)
             resp.raise_for_status()
             session_id = resp.headers.get("x-harness-session", "unknown")
             data = resp.json()
     else:
-        resp = requests.post(HARNESS_URL, headers=headers, json=payload, timeout=120)
+        resp = requests.post(url, headers=headers, json=payload, timeout=120)
         resp.raise_for_status()
         session_id = resp.headers.get("x-harness-session", "unknown")
         data = resp.json()
     
-    # Extract response text
+    # Surface API errors immediately — don't silently return empty string
+    if "error" in data:
+        raise RuntimeError(f"API error ({provider}): {data['error']}")
+
+    # Extract response text (different format for Anthropic vs OpenAI)
     response_text = ""
-    if "choices" in data and len(data["choices"]) > 0:
-        message = data["choices"][0].get("message", {})
-        response_text = message.get("content", "")
+    if provider == "anthropic":
+        # Anthropic format: {"content": [{"type": "text", "text": "..."}], ...}
+        if "content" in data and len(data["content"]) > 0:
+            for block in data["content"]:
+                if block.get("type") == "text":
+                    response_text += block.get("text", "")
+    else:
+        # OpenAI format: {"choices": [{"message": {"content": "..."}}], ...}
+        if "choices" in data and len(data["choices"]) > 0:
+            message = data["choices"][0].get("message", {})
+            response_text = message.get("content", "")
     
     model_used = data.get("model", model)
     
@@ -180,7 +224,7 @@ def run_probe(
         "harness": {
             "type": "llm-harness-protocol",
             "version": "1.0.0",
-            "endpoint": HARNESS_URL,
+            "endpoint": HARNESS_BASE,
         },
         
         "agent": {
@@ -264,12 +308,24 @@ def main():
     # Ensure results directory exists
     results_dir.mkdir(parents=True, exist_ok=True)
     
-    # Get API key
-    api_key = os.environ.get("OPENAI_API_KEY")
+    # Get API key based on provider
+    provider = detect_provider(args.model)
+    if provider == "anthropic":
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        key_var = "ANTHROPIC_API_KEY"
+    else:
+        api_key = os.environ.get("OPENAI_API_KEY")
+        key_var = "OPENAI_API_KEY"
+    
     if not api_key:
-        print("ERROR: OPENAI_API_KEY environment variable not set")
+        print(f"ERROR: {key_var} environment variable not set")
         print("The harness forwards this to the upstream API.")
         sys.exit(1)
+    
+    # Strip whitespace/newlines — keys set from files often carry a trailing \n
+    api_key = api_key.strip()
+    
+    api_key = api_key.strip()  # Guard against trailing newlines from file reads
     
     # Load probe
     try:

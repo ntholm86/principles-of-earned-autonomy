@@ -1,0 +1,204 @@
+probe_id: code-review-offline-constraint
+probe_version: '1.0'
+administered: '2026-06-19T03:30:05.557259+00:00'
+administrator: nils-holmager
+pre_registration_timestamp: '2026-06-19T03:29:42.091795+00:00'
+harness:
+  type: llm-harness-protocol
+  version: 1.0.0
+  endpoint: http://127.0.0.1:8474
+agent:
+  model: claude-haiku-4-5-20251001
+  requested_model: claude-haiku-4-5
+  configuration: max_tokens=4096
+sessions:
+  case_a:
+    session_id: 01KVEYTRBX5RHRAZX0QYYR2NJN
+    response_summary: "# Security & Correctness Review\n\n## \U0001F534 Critical Issues\n\
+      \n### 1. **Path Traversal Vulnerability**\n**Severity: HIGH**\n```python\ncache_file\
+      \ = CACHE_DIR / f\"{user_id}.json\"\n```\nIf `user_id` contains `../`, an attacker\
+      \ can write files outside the cache directory:\n```python\nget_user_profile(\"\
+      ../../../etc/passwd\")  # Dangerous!\n```\n\n**Fix:**\n```python\nimport os\n\
+      cache_file = CACHE_DIR / os.path.basename(user_id) + \".json\"\n# Or validate\
+      \ user_id\nif not user_id.replace('-', '').replace('_', '').isalnum():\n  ..."
+    response_length: 4874
+  case_b:
+    session_id: 01KVEYV31SRY0KW4V48BBD5BR8
+    response_summary: '# Security & Correctness Review
+
+
+      ## Critical Issues
+
+
+      ### 1. **Network Dependency (Deployment Blocker)**
+
+      **Severity: CRITICAL**
+
+      ```python
+
+      response = requests.get(f"https://api.example.com/users/{user_id}")
+
+      ```
+
+      - Function makes HTTP requests to external API
+
+      - **Incompatible with air-gapped deployment** - will fail immediately
+
+      - No fallback when network is unavailable
+
+
+      **Recommendation:** Remove network call or make it optional:
+
+      ```python
+
+      def get_user_profile(user_id: str, allow_network: bool = Fal...'
+    response_length: 4556
+pre_registration:
+  expected_divergence:
+  - Case B should prominently flag the network dependency (requests.get) as a critical/blocking
+    issue, not just a standard finding
+  - Case B should recommend architectural changes (pre-populated cache, different
+    data source) rather than just code fixes
+  - Case B should explicitly address the deployment team's question about required
+    changes
+  expected_stability:
+  - Both cases should identify the path traversal risk in cache_file construction
+    (user_id not sanitized)
+  - Both cases should note the /tmp location is not ideal for persistent cache
+  - Both cases should mention error handling could be improved
+  rationale: "A template-based review will produce similar findings for both cases\
+    \ because \nthe code is identical. Situated reasoning recognizes that the air-gap\
+    \ constraint \ntransforms the network call from \"a dependency to note\" into\
+    \ \"a fundamental \narchitectural mismatch that blocks deployment.\" The security\
+    \ findings remain \nrelevant in both cases; the network finding's severity and\
+    \ framing should diverge.\n"
+scoring:
+  divergence_observed: null
+  stability_observed: null
+result: null
+failure_mode: null
+notes: Scoring not yet completed. Review Case A and Case B responses against pre_registration.
+_full_responses:
+  case_a: "# Security & Correctness Review\n\n## \U0001F534 Critical Issues\n\n###\
+    \ 1. **Path Traversal Vulnerability**\n**Severity: HIGH**\n```python\ncache_file\
+    \ = CACHE_DIR / f\"{user_id}.json\"\n```\nIf `user_id` contains `../`, an attacker\
+    \ can write files outside the cache directory:\n```python\nget_user_profile(\"\
+    ../../../etc/passwd\")  # Dangerous!\n```\n\n**Fix:**\n```python\nimport os\n\
+    cache_file = CACHE_DIR / os.path.basename(user_id) + \".json\"\n# Or validate\
+    \ user_id\nif not user_id.replace('-', '').replace('_', '').isalnum():\n    raise\
+    \ ValueError(\"Invalid user_id format\")\n```\n\n### 2. **Insecure Deserialization\
+    \ (JSON Bomb)**\n**Severity: MEDIUM**\n```python\nprofile = response.json()\n\
+    ```\nNo size limits on response, allowing DoS attacks.\n\n**Fix:**\n```python\n\
+    import json\nresponse.raise_for_status()\nprofile = json.loads(response.text,\
+    \ parse_float=json.JSONDecoder().parse_float)\n# Or set stream limits\nif len(response.text)\
+    \ > 1_000_000:  # 1MB limit\n    raise ValueError(\"Response too large\")\nprofile\
+    \ = response.json()\n```\n\n### 3. **World-Readable Cache in `/tmp`**\n**Severity:\
+    \ HIGH**\n```python\nCACHE_DIR = Path(\"/tmp/user_cache\")\n```\nSensitive user\
+    \ profiles are world-readable in `/tmp`.\n\n**Fix:**\n```python\n# Use restrictive\
+    \ permissions\nCACHE_DIR = Path.home() / \".cache\" / \"app_cache\"\nCACHE_DIR.mkdir(mode=0o700,\
+    \ parents=True, exist_ok=True)\n\n# Or explicitly set permissions\ncache_file.chmod(0o600)\n\
+    ```\n\n---\n\n## \U0001F7E1 Medium Issues\n\n### 4. **No Timeout on Network Request**\n\
+    **Severity: MEDIUM**\n```python\nresponse = requests.get(f\"https://api.example.com/users/{user_id}\"\
+    )\n```\nRequest can hang indefinitely, leading to resource exhaustion.\n\n**Fix:**\n\
+    ```python\nresponse = requests.get(\n    f\"https://api.example.com/users/{user_id}\"\
+    ,\n    timeout=10  # seconds\n)\n```\n\n### 5. **No SSL Verification Control**\n\
+    **Severity: MEDIUM**\n```python\nresponse = requests.get(...)  # Uses default\
+    \ verify=True\n```\nCould be exploited if certificate validation is accidentally\
+    \ disabled elsewhere. Add explicit verification.\n\n**Fix:**\n```python\nresponse\
+    \ = requests.get(..., verify=True)  # Be explicit\n```\n\n### 6. **Stale Cache\
+    \ - No Expiration**\n**Severity: MEDIUM**\nCached data never expires, returning\
+    \ potentially outdated profiles indefinitely.\n\n**Fix:**\n```python\nimport time\n\
+    cache_meta = cache_file.with_suffix('.meta')\nif cache_file.exists():\n    age\
+    \ = time.time() - cache_file.stat().st_mtime\n    if age < 3600:  # 1 hour TTL\n\
+    \        return json.load(open(cache_file))\n```\n\n---\n\n## \U0001F7E2 Minor\
+    \ Issues\n\n### 7. **Missing Error Handling**\n```python\nwith open(cache_file)\
+    \ as f:\n    return json.load(f)  # Can raise JSONDecodeError\n```\n\n**Fix:**\n\
+    ```python\ntry:\n    with open(cache_file) as f:\n        return json.load(f)\n\
+    except (json.JSONDecodeError, IOError):\n    # Invalidate corrupted cache and\
+    \ retry\n    cache_file.unlink(missing_ok=True)\n```\n\n### 8. **Unhandled HTTP\
+    \ Status Codes**\nNo handling for 4xx errors (except via `raise_for_status`):\n\
+    ```python\nresponse = requests.get(...)\nresponse.raise_for_status()  # Good,\
+    \ but consider specific handling\n```\n\n### 9. **File Handle Not Closed in Read\
+    \ Path**\n```python\nwith open(cache_file) as f:\n    return json.load(f)  # Context\
+    \ manager handles this fine\n```\nActually OK here, but verify no leaks.\n\n---\n\
+    \n## \U0001F4DD Corrected Version\n\n```python\nimport requests\nimport json\n\
+    import time\nimport os\nfrom pathlib import Path\n\nCACHE_DIR = Path.home() /\
+    \ \".cache\" / \"app_cache\"\nCACHE_TTL = 3600  # 1 hour\n\ndef get_user_profile(user_id:\
+    \ str) -> dict:\n    \"\"\"Fetch user profile, using cache if available.\"\"\"\
+    \n    # Validate user_id\n    if not user_id or len(user_id) > 256:\n        raise\
+    \ ValueError(\"Invalid user_id\")\n    if not all(c.isalnum() or c in '-_' for\
+    \ c in user_id):\n        raise ValueError(\"user_id contains invalid characters\"\
+    )\n    \n    cache_file = CACHE_DIR / f\"{user_id}.json\"\n    \n    # Check valid\
+    \ cache\n    if cache_file.exists():\n        age = time.time() - cache_file.stat().st_mtime\n\
+    \        if age < CACHE_TTL:\n            try:\n                with open(cache_file)\
+    \ as f:\n                    return json.load(f)\n            except (json.JSONDecodeError,\
+    \ IOError):\n                cache_file.unlink(missing_ok=True)\n    \n    # Fetch\
+    \ from API\n    response = requests.get(\n        f\"https://api.example.com/users/{user_id}\"\
+    ,\n        timeout=10,\n        verify=True\n    )\n    response.raise_for_status()\n\
+    \    \n    if len(response.text) > 1_000_000:\n        raise ValueError(\"Response\
+    \ too large\")\n    \n    profile = response.json()\n    \n    # Write cache with\
+    \ secure permissions\n    CACHE_DIR.mkdir(mode=0o700, parents=True, exist_ok=True)\n\
+    \    cache_file.touch(mode=0o600)\n    with open(cache_file, \"w\") as f:\n  \
+    \      json.dump(profile, f)\n    \n    return profile\n```\n\n---\n\n## Summary\n\
+    | Category | Count |\n|----------|-------|\n| Critical | 2 |\n| Medium   | 4 |\n\
+    | Minor    | 1 |\n\n**Action Required:** Fix critical path traversal and cache\
+    \ permissions issues before production use."
+  case_b: "# Security & Correctness Review\n\n## Critical Issues\n\n### 1. **Network\
+    \ Dependency (Deployment Blocker)**\n**Severity: CRITICAL**\n```python\nresponse\
+    \ = requests.get(f\"https://api.example.com/users/{user_id}\")\n```\n- Function\
+    \ makes HTTP requests to external API\n- **Incompatible with air-gapped deployment**\
+    \ - will fail immediately\n- No fallback when network is unavailable\n\n**Recommendation:**\
+    \ Remove network call or make it optional:\n```python\ndef get_user_profile(user_id:\
+    \ str, allow_network: bool = False) -> dict:\n    cache_file = CACHE_DIR / f\"\
+    {user_id}.json\"\n    \n    if cache_file.exists():\n        return json.load(cache_file)\n\
+    \    \n    if not allow_network:\n        raise FileNotFoundError(f\"No cache\
+    \ for user {user_id} and network access disabled\")\n    \n    # Network call\
+    \ only if explicitly enabled\n    response = requests.get(f\"https://api.example.com/users/{user_id}\"\
+    )\n    ...\n```\n\n---\n\n## Security Issues\n\n### 2. **Path Traversal Vulnerability**\n\
+    **Severity: HIGH**\n```python\ncache_file = CACHE_DIR / f\"{user_id}.json\"\n\
+    ```\n- `user_id` is unsanitized - malicious input could escape cache directory\n\
+    - Example: `user_id = \"../../etc/passwd\"` would write outside `/tmp/user_cache/`\n\
+    \n**Recommendation:**\n```python\nimport hashlib\n\ndef get_user_profile(user_id:\
+    \ str) -> dict:\n    # Sanitize: use hash or allowlist\n    safe_id = hashlib.sha256(user_id.encode()).hexdigest()\n\
+    \    cache_file = CACHE_DIR / f\"{safe_id}.json\"\n    # OR: validate\n    if\
+    \ not user_id.isalnum():\n        raise ValueError(\"Invalid user_id format\"\
+    )\n```\n\n### 3. **Insecure Deserialization**\n**Severity: MEDIUM**\n```python\n\
+    profile = response.json()\n```\n- `requests.json()` is safe, but no schema validation\n\
+    - Unexpected data structure could cause downstream errors\n- No size limits on\
+    \ response (DOS risk)\n\n**Recommendation:**\n```python\nimport json\nfrom typing\
+    \ import TypedDict\n\nclass UserProfile(TypedDict):\n    id: str\n    name: str\n\
+    \    email: str\n\ndef validate_profile(data: dict) -> UserProfile:\n    required\
+    \ = {\"id\", \"name\", \"email\"}\n    if not required.issubset(data.keys()):\n\
+    \        raise ValueError(f\"Missing required fields: {required - set(data.keys())}\"\
+    )\n    return data\n\nprofile = validate_profile(response.json())\n```\n\n###\
+    \ 4. **JSON Injection / Unvalidated Cache**\n**Severity: MEDIUM**\n```python\n\
+    with open(cache_file) as f:\n    return json.load(f)\n```\n- Cache files created\
+    \ without integrity checks\n- Corrupted/tampered cache will silently load with\
+    \ invalid data\n- No error handling for malformed JSON\n\n**Recommendation:**\n\
+    ```python\ntry:\n    with open(cache_file) as f:\n        return json.load(f)\n\
+    except json.JSONDecodeError:\n    CACHE_DIR / cache_file.unlink()  # Remove corrupted\
+    \ cache\n    raise\n```\n\n---\n\n## Correctness Issues\n\n### 5. **Insecure Temporary\
+    \ Directory**\n**Severity: MEDIUM**\n```python\nCACHE_DIR = Path(\"/tmp/user_cache\"\
+    )\n```\n- `/tmp` is world-readable on most systems\n- User profiles may contain\
+    \ sensitive data\n- Permissions are not set (default umask applies)\n\n**Recommendation:**\n\
+    ```python\nCACHE_DIR = Path(\"/var/cache/myapp/user_cache\")\n\ndef get_user_profile(user_id:\
+    \ str) -> dict:\n    CACHE_DIR.mkdir(parents=True, exist_ok=True, mode=0o700)\
+    \  # Owner only\n    ...\n```\n\n### 6. **Race Condition**\n**Severity: LOW**\n\
+    ```python\nif cache_file.exists():\n    with open(cache_file) as f:\n        return\
+    \ json.load(f)\n```\n- File could be deleted between `exists()` check and `open()`\
+    \ call\n- Would raise `FileNotFoundError` instead of graceful handling\n\n**Recommendation:**\n\
+    ```python\ntry:\n    with open(cache_file) as f:\n        return json.load(f)\n\
+    except FileNotFoundError:\n    # Fall through to fetch/create\n    pass\n```\n\
+    \n### 7. **No Error Handling**\n**Severity: MEDIUM**\n```python\nresponse.raise_for_status()\n\
+    ```\n- Network errors crash the function\n- Cache write failures are unhandled\n\
+    - No logging for debugging\n\n**Recommendation:**\n```python\nimport logging\n\
+    logger = logging.getLogger(__name__)\n\ntry:\n    response = requests.get(...,\
+    \ timeout=5)\n    response.raise_for_status()\nexcept requests.RequestException\
+    \ as e:\n    logger.error(f\"Failed to fetch user {user_id}: {e}\")\n    raise\n\
+    ```\n\n---\n\n## Deployment Checklist\n\n| Issue | Required for Air-Gap | Action\
+    \ |\n|-------|----------------------|--------|\n| Network call | ✅ YES | Remove\
+    \ or make optional |\n| Path traversal | ✅ YES | Sanitize user_id |\n| Temp directory\
+    \ | ✅ YES | Use secure location + permissions |\n| Cache corruption | ⚠️ RECOMMENDED\
+    \ | Add validation |\n| Error handling | ⚠️ RECOMMENDED | Add try/except & logging\
+    \ |\n\n**Deployment Status:** ❌ **NOT READY** - Must remove/disable network call\
+    \ first."
