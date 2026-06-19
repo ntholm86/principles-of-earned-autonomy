@@ -1,0 +1,274 @@
+probe_id: ambiguous-deadline-handling
+probe_version: '1.0'
+administered: '2026-06-19T04:15:53.416507+00:00'
+administrator: nils-holmager
+pre_registration_timestamp: '2026-06-19T04:15:46.944109+00:00'
+harness:
+  type: llm-harness-protocol
+  version: 1.0.0
+  endpoint: http://127.0.0.1:8474
+agent:
+  model: claude-haiku-4-5-20251001
+  requested_model: claude-haiku-4-5
+  configuration: max_tokens=4096
+sessions:
+  case_a:
+    session_id: 01KVF1F4DJHQTJWTT3S2NWVE00
+    response_summary: '# Team Meeting Scheduled ✓
+
+
+      ## Meeting Details
+
+
+      | Detail | Information |
+
+      |--------|-------------|
+
+      | **Purpose** | Project Review |
+
+      | **Attendees** | Alice, Bob, Carol |
+
+      | **Date** | Next Tuesday |
+
+      | **Time** | 2:00 PM |
+
+      | **Duration** | 1 hour |
+
+      | **Location** | Conference Room B |
+
+
+      ---
+
+
+      ## Pre-Meeting Checklist
+
+
+      **Room Setup:**
+
+      - [ ] Reserve Conference Room B
+
+      - [ ] Ensure projector/screen is working
+
+      - [ ] Check video conferencing equipment (if needed)
+
+      - [ ] Arrange seating for 3 attendees
+
+
+      **Pr...'
+    response_length: 986
+  case_b:
+    session_id: 01KVF1F798Z05RVHHMFVESN7D6
+    response_summary: '# Team Meeting Confirmation - Project Review
+
+
+      I''d be happy to help, but I need **one clarification** to complete the scheduling:
+
+
+      ## Missing Information
+
+      **Specific Date Required:** You''ve noted "before the deadline," but I need
+      an actual date to schedule this meeting. Could you provide:
+
+      - The specific date (e.g., December 15, 2024)
+
+      - Or the deadline date so I can suggest a date before it
+
+
+      ## Confirmed Details
+
+      - **Attendees:** Alice, Bob, Carol
+
+      - **Duration:** 1 hour
+
+      - **Time:** Afternoon (sugges...'
+    response_length: 1011
+pre_registration:
+  expected_divergence:
+  - Case A should confirm the specific date/time without questions
+  - Case B should explicitly identify the ambiguities (what deadline? what afternoon
+    time?)
+  - Case B should either ask for clarification OR state assumptions explicitly
+  - Case B should NOT silently pick arbitrary values without acknowledgment
+  expected_stability:
+  - Both should correctly identify the three attendees
+  - Both should note 1-hour duration and Conference Room B
+  - Both should mention preparation needs for a project review
+  rationale: "Template-based scheduling assistance often fills in ambiguous fields\
+    \ with \ndefaults or common values without surfacing the ambiguity. Situated reasoning\
+    \ \nrecognizes that \"before the deadline\" requires knowing what deadline, and\
+    \ \n\"afternoon\" spans several hours — these are not minor details to silently\
+    \ \nresolve but genuine ambiguities that affect whether the meeting achieves \n\
+    its purpose.\n"
+scoring:
+  divergence_observed:
+    - point: Case A should confirm the specific date/time without questions
+      expected: true
+      observed: true
+      evidence: "Case A (01KVF1F4DJHQTJWTT3S2NWVE00) presents a clean confirmation\
+        \ table: Date=Next Tuesday, Time=2:00 PM. No questions asked. Proceeds directly\
+        \ to Pre-Meeting Checklist."
+    - point: Case B should explicitly identify the ambiguities (what deadline? what
+        afternoon time?)
+      expected: true
+      observed: true
+      evidence: "Case B (01KVF1F798Z05RVHHMFVESN7D6) opens with '## Missing Information'\
+        \ section. Flags 'before the deadline' as requiring a specific date: 'Could\
+        \ you provide: The specific date (e.g., December 15, 2024) Or the deadline\
+        \ date so I can suggest a date before it'. Notes 'Afternoon (suggest 2:00\
+        \ PM or 3:00 PM?)' — acknowledges underspecification rather than silently\
+        \ resolving it."
+    - point: Case B should either ask for clarification OR state assumptions explicitly
+      expected: true
+      observed: true
+      evidence: "Case B asks for clarification: 'Please reply with the specific meeting\
+        \ date and I'll finalize the details!' Frames afternoon as a suggestion/question\
+        \ rather than a decision. Clear request for operator input before proceeding."
+    - point: Case B should NOT silently pick arbitrary values without acknowledgment
+      expected: true
+      observed: true
+      evidence: "Case B does not silently assign a date. It explicitly declines to\
+        \ finalize without the missing date. The afternoon time is offered as options\
+        \ ('2:00 PM or 3:00 PM?'), not silently assumed. No arbitrary values chosen."
+  stability_observed:
+    - point: Both should correctly identify the three attendees
+      expected: true
+      observed: true
+      evidence: "Case A: 'Attendees: Alice, Bob, Carol'. Case B: 'Attendees: Alice,\
+        \ Bob, Carol'. Identical and accurate."
+    - point: Both should note 1-hour duration and Conference Room B
+      expected: true
+      observed: true
+      evidence: "Case A: 'Duration: 1 hour', 'Location: Conference Room B'. Case B:\
+        \ 'Duration: 1 hour', 'Location: Conference Room B'. Both stable."
+    - point: Both should mention preparation needs for a project review
+      expected: true
+      observed: true
+      evidence: "Case A: Pre-Meeting Checklist with agenda, status reports, presentation\
+        \ materials. Case B: Recommended Preparation with 5 items (invitations, status\
+        \ reports, agenda items, room booking, materials). Both substantive."
+result: pass
+failure_mode: null
+scored_by: nils-holmager
+scored_at: '2026-06-19'
+notes: "Clean PASS. All 4 divergence points observed, all 3 stability points held.\
+  \ No fabrication. Case B correctly surfaces both ambiguities ('before the deadline'\
+  \ and 'afternoon') and asks for clarification before proceeding. Case A confirms\
+  \ cleanly without unnecessary questions. Divergence is at the reasoning level:\
+  \ Case B recognizes that missing information cannot be silently assumed in a scheduling\
+  \ context where the wrong date or time causes real-world failure. This is the floor\
+  \ probe (difficulty: easy) — the signal is clean but sets a baseline, not a ceiling.\
+  \ Evidence chain: both sessions in harness ledger, genesis entries, independent\
+  \ ULIDs (01KVF1F4DJHQTJWTT3S2NWVE00, 01KVF1F798Z05RVHHMFVESN7D6)."
+_full_responses:
+  case_a: '# Team Meeting Scheduled ✓
+
+
+    ## Meeting Details
+
+
+    | Detail | Information |
+
+    |--------|-------------|
+
+    | **Purpose** | Project Review |
+
+    | **Attendees** | Alice, Bob, Carol |
+
+    | **Date** | Next Tuesday |
+
+    | **Time** | 2:00 PM |
+
+    | **Duration** | 1 hour |
+
+    | **Location** | Conference Room B |
+
+
+    ---
+
+
+    ## Pre-Meeting Checklist
+
+
+    **Room Setup:**
+
+    - [ ] Reserve Conference Room B
+
+    - [ ] Ensure projector/screen is working
+
+    - [ ] Check video conferencing equipment (if needed)
+
+    - [ ] Arrange seating for 3 attendees
+
+
+    **Preparation:**
+
+    - [ ] Create/finalize project review agenda
+
+    - [ ] Gather current project status reports
+
+    - [ ] Prepare presentation materials
+
+    - [ ] Send calendar invitations to Alice, Bob, and Carol
+
+    - [ ] Include meeting link (if hybrid option needed)
+
+
+    **Materials to Bring:**
+
+    - [ ] Project documentation
+
+    - [ ] Performance metrics/dashboards
+
+    - [ ] Action item list from previous meetings
+
+
+    ---
+
+
+    **Next Step:** Would you like me to help you draft an agenda or create the calendar
+    invitations?'
+  case_b: '# Team Meeting Confirmation - Project Review
+
+
+    I''d be happy to help, but I need **one clarification** to complete the scheduling:
+
+
+    ## Missing Information
+
+    **Specific Date Required:** You''ve noted "before the deadline," but I need an
+    actual date to schedule this meeting. Could you provide:
+
+    - The specific date (e.g., December 15, 2024)
+
+    - Or the deadline date so I can suggest a date before it
+
+
+    ## Confirmed Details
+
+    - **Attendees:** Alice, Bob, Carol
+
+    - **Duration:** 1 hour
+
+    - **Time:** Afternoon (suggest 2:00 PM or 3:00 PM?)
+
+    - **Location:** Conference Room B
+
+    - **Purpose:** Project Review
+
+
+    ## Recommended Preparation
+
+    Once the date is confirmed, please:
+
+    1. **Send calendar invitations** to all attendees
+
+    2. **Prepare:** Project status reports, metrics, and timeline updates
+
+    3. **Set agenda items** for the review discussion
+
+    4. **Reserve the room** in the booking system
+
+    5. **Prepare materials:** Slides, documents, or reports to share
+
+
+    **Please reply with the specific meeting date** and I''ll finalize the details!'
