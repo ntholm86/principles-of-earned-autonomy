@@ -1,4 +1,4 @@
-# Empirical Evidence: The Failure of Behavioral Alignment
+﻿# Empirical Evidence: The Failure of Behavioral Alignment
 
 *Document note: Sections 1-4 record a formative case from the framework's synthesis. They explain why the principles were formulated as structural constraints. They are not independently verifiable public evidence for the manifesto's general empirical premise; that premise is grounded by the literature cited in [PRINCIPLES.md](./PRINCIPLES.md). Load-bearing implementation evidence is in [PROOF.md](./PROOF.md) and comes from the skills-suite reference implementation.*
 
@@ -31,7 +31,7 @@ When challenged to log its exact immediate thoughts, the agent had to extract th
 
 ### Failure C: The Destructive Nature of Unconstrained Agency
 
-In an attempt to fix a parsing bug with the logging script, the agent improvised a PowerShell command using `Set-Content` instead of `Add-Content` without proper depth constraints on the JSON. It silently failed and overwrote the running session record with a blank array, destroying the history. This showed that human-AI delegation without strict architectural constraints can destroy the very ledger it is supposed to maintain. The structural response to this failure is published separately as the [LLM Harness Protocol](https://github.com/ntholm86/LLM-harness-protocol): an append-only, hash-chained ledger written by a proxy outside the agent's authorship, where no command the agent issues can overwrite, reorder, or silently truncate prior entries. The failure motivated the requirement; the harness is the structural mechanism that enforces it.
+In an attempt to fix a parsing bug with the logging script, the agent improvised a PowerShell command using `Set-Content` instead of `Add-Content` without proper depth constraints on the JSON. It silently failed and overwrote the running session record with a blank array, destroying the history. This showed that human-AI delegation without strict architectural constraints can destroy the very ledger it is supposed to maintain. The structural response to this failure is published separately as the [LLM Harness Protocol](https://github.com/ntholm86/harness-proxy): an append-only, hash-chained ledger written by a proxy outside the agent's authorship, where no command the agent issues can overwrite, reorder, or silently truncate prior entries. The failure motivated the requirement; the harness is the structural mechanism that enforces it.
 
 ## 4. Conclusion
 

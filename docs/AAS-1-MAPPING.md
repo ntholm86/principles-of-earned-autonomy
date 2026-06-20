@@ -1,4 +1,4 @@
-# Principles of Earned Autonomy → AAS-1 Assertion Mapping
+﻿# Principles of Earned Autonomy → AAS-1 Assertion Mapping
 
 **Version:** 1.0.0  
 **Date:** 2026-06-19  
@@ -197,7 +197,7 @@ For a PEA-compliant system to achieve full AAS-1 compatibility:
 
 | Assertion | What's Needed |
 |-----------|---------------|
-| **Classification** | Add action type taxonomy to trail records. The LLM Harness Protocol's [AAT-MAPPING](https://github.com/ntholm86/LLM-harness-protocol/blob/master/docs/AAT-MAPPING.md) documents this gap and proposes an inference path. |
+| **Classification** | Add action type taxonomy to trail records. The LLM Harness Protocol's [AAT-MAPPING](https://github.com/ntholm86/harness-proxy/blob/master/docs/AAT-MAPPING.md) documents this gap and proposes an inference path. |
 | **Identity** | Bind agent identity to AIS-1. This is orthogonal to PEA's principles — PEA is identity-layer agnostic. |
 | **Reproducibility** | For deterministic models, capture sufficient state. For non-deterministic models, document the limitation. ARF probes provide evidence of reasoning quality regardless of reproducibility. |
 | **Policy Compliance** | Record which policies apply and the compliance result. PEA's `.trail/destination.md` is a partial implementation (it records the Intent boundary) but doesn't capture per-action compliance verdicts. |
@@ -211,4 +211,4 @@ For a PEA-compliant system to achieve full AAS-1 compatibility:
 - [PEA Manifesto](https://github.com/ntholm86/pea-manifesto)
 - [PRINCIPLES.md](../PRINCIPLES.md) — Full statement of PEA's three principles
 - [ARF-SPEC.md](../probes/ARF-SPEC.md) — Autonomous Reasoning Fidelity probe specification
-- [LLM Harness Protocol AAT Mapping](https://github.com/ntholm86/LLM-harness-protocol/blob/master/docs/AAT-MAPPING.md) — Field-level mapping to IETF Agent Audit Trail
+- [LLM Harness Protocol AAT Mapping](https://github.com/ntholm86/harness-proxy/blob/master/docs/AAT-MAPPING.md) — Field-level mapping to IETF Agent Audit Trail

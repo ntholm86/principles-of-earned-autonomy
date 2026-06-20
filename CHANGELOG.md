@@ -1,4 +1,4 @@
-# Changelog
+﻿# Changelog
 
 ## Unreleased
 
@@ -130,7 +130,7 @@ This release completes ARF formalization. The spec, harness, and initial probe d
 
 ## v2.0.0 - 2026-06-04
 
-Major version bump: the framework's evidentiary status materially changes from *principle proposed* to *principle demonstrated buildable*. A reference implementation of the structural layer Principle 2 requires has been published separately as the [LLM Harness Protocol](https://github.com/ntholm86/LLM-harness-protocol), a transparent MITM proxy that writes a tamper-evident, hash-chained, append-only ledger of every LLM interaction before the response is released to the caller, across OpenAI, Anthropic, and Gemini APIs. Capture-author separation is therefore no longer an aspirational property of this framework but a buildable one with a working reference. The harness does not, on its own, validate ARF; it removes the structural blocker (instrument-and-subject sharing a single point of failure) that previously prevented trustworthy ARF measurement under MCP-only tooling.
+Major version bump: the framework's evidentiary status materially changes from *principle proposed* to *principle demonstrated buildable*. A reference implementation of the structural layer Principle 2 requires has been published separately as the [LLM Harness Protocol](https://github.com/ntholm86/harness-proxy), a transparent MITM proxy that writes a tamper-evident, hash-chained, append-only ledger of every LLM interaction before the response is released to the caller, across OpenAI, Anthropic, and Gemini APIs. Capture-author separation is therefore no longer an aspirational property of this framework but a buildable one with a working reference. The harness does not, on its own, validate ARF; it removes the structural blocker (instrument-and-subject sharing a single point of failure) that previously prevented trustworthy ARF measurement under MCP-only tooling.
 
 ### Changed
 

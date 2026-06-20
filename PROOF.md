@@ -1,4 +1,4 @@
-# Conformance and Empirical Evidence
+﻿# Conformance and Empirical Evidence
 
 *The framework's load-bearing claims are falsifiable. This file documents how to test each one and what two reference implementations found when they did.*
 
@@ -58,7 +58,7 @@ Each principle has a test; ARF, the framework's central measurable property, has
 
 **Failure mode.** The response to Case B is structurally identical to Case A despite the material difference, or diverges at a point that was not pre-registered. Structurally identical responses indicate pattern-matching rather than situated reasoning.
 
-**Note on reference evidence.** The formalization artifacts required for validated ARF evidence are: a published spec, test harness, probe dataset, and reproducibility report. The first three now exist: [ARF-SPEC.md](./ARF-SPEC.md) (v1.0.0, 2026-06-19), the [LLM Harness Protocol](https://github.com/ntholm86/LLM-harness-protocol) (v2.0.0), and an initial 3-probe dataset administered through the harness ([results](./probes/results/RESULTS.md)). The probe dataset covers three task classes (code review under novel constraints, instruction interpretation under stakeholder shift, ambiguity handling) on one model family (`claude-haiku-4-5`); results are 2 PASS, 1 INDETERMINATE. The reproducibility report — independent administrators and cross-model replication per [ARF-SPEC.md §7](./ARF-SPEC.md#7-validation-requirements) — remains open. The structural reason a probe administered through behavioral protocols cannot be trusted (instrument and subject share a single point of failure) has a published structural response: the harness provides protocol-layer capture that makes harness-administered probe execution possible. The initial dataset demonstrates administrability; validation awaits replication.
+**Note on reference evidence.** The formalization artifacts required for validated ARF evidence are: a published spec, test harness, probe dataset, and reproducibility report. The first three now exist: [ARF-SPEC.md](./ARF-SPEC.md) (v1.0.0, 2026-06-19), the [LLM Harness Protocol](https://github.com/ntholm86/harness-proxy) (v2.0.0), and an initial 3-probe dataset administered through the harness ([results](./probes/results/RESULTS.md)). The probe dataset covers three task classes (code review under novel constraints, instruction interpretation under stakeholder shift, ambiguity handling) on one model family (`claude-haiku-4-5`); results are 2 PASS, 1 INDETERMINATE. The reproducibility report — independent administrators and cross-model replication per [ARF-SPEC.md §7](./ARF-SPEC.md#7-validation-requirements) — remains open. The structural reason a probe administered through behavioral protocols cannot be trusted (instrument and subject share a single point of failure) has a published structural response: the harness provides protocol-layer capture that makes harness-administered probe execution possible. The initial dataset demonstrates administrability; validation awaits replication.
 
 ---
 
@@ -104,7 +104,7 @@ A document that hid the falsification to protect the convergence claim would be 
 
 ### Reference Implementation B: LLM Harness Protocol
 
-The artifact under test was the **LLM Harness Protocol** ([github.com/ntholm86/LLM-harness-protocol](https://github.com/ntholm86/LLM-harness-protocol)), a transparent MITM proxy implementing the structural layer Principle 2 requires.
+The artifact under test was the **LLM Harness Protocol** ([github.com/ntholm86/harness-proxy](https://github.com/ntholm86/harness-proxy)), a transparent MITM proxy implementing the structural layer Principle 2 requires.
 
 **What the harness does.** The proxy intercepts standard LLM API traffic at a configurable listener (default `127.0.0.1:8474`) and forwards it to the real upstream after writing one entry per turn to an append-only JSONL ledger. Each entry is canonicalized via RFC 8785 (JSON Canonicalization Scheme) and chained to the previous entry via SHA-256 over the canonical bytes, so reordering or modifying any prior entry breaks the chain detectably. The proxy is fail-closed on persistence: the response is not released to the caller until the ledger entry is durably persisted (fsync'd). The audited agent never authors a ledger entry; the proxy does, before the agent's response is released.
 

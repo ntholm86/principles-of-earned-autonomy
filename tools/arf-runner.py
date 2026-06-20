@@ -222,7 +222,7 @@ def run_probe(
         "pre_registration_timestamp": pre_reg_timestamp,
         
         "harness": {
-            "type": "llm-harness-protocol",
+            "type": "llm-harness-proxy",
             "version": "1.0.0",
             "endpoint": HARNESS_BASE,
         },

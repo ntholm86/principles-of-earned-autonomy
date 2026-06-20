@@ -240,7 +240,7 @@ administered: "2026-06-19T14:32:00Z"
 administrator: "administrator-identifier"
 
 harness:
-  type: "llm-harness-protocol"
+  type: "harness-proxy"
   version: "1.0.0"
   ledger_hash: "sha256:..."
 
