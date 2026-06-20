@@ -300,4 +300,4 @@ The full trail is published at the [skills-suite repository](https://github.com/
 - [POSITION.md](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite/blob/main/POSITION.md) — Stance document with falsification criteria
 - [PEA Manifesto](https://github.com/ntholm86/principles-of-earned-autonomy)
 - [AAS-1 Mapping](./AAS-1-MAPPING.md) — How PEA principles map to audit assertions
-- [LLM Harness Protocol](https://github.com/ntholm86/harness-proxy) — Structural enforcement layer
+- [LLM Harness Protocol](https://github.com/ntholm86/llm-harness-proxy) — Structural enforcement layer

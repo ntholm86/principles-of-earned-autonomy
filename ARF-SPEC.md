@@ -1,4 +1,4 @@
-# ARF Probe Specification
+﻿# ARF Probe Specification
 
 **Version:** 1.0.0  
 **Date:** 2026-06-19  
@@ -240,7 +240,7 @@ administered: "2026-06-19T14:32:00Z"
 administrator: "administrator-identifier"
 
 harness:
-  type: "harness-proxy"
+  type: "llm-harness-proxy"
   version: "1.0.0"
   ledger_hash: "sha256:..."
 

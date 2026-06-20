@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 ARF Probe Runner — administer probes through the LLM Harness Protocol (Path 1).
 
@@ -22,7 +22,7 @@ Example:
     python tools/arf-runner.py code-review-offline-constraint --model gpt-4o
 
 Pre-requisites:
-    1. harness-proxy.exe must be running (listening on 127.0.0.1:8474)
+    1. llm-harness-proxy.exe must be running (listening on 127.0.0.1:8474)
     2. OPENAI_API_KEY must be set in environment
 """
 
@@ -222,7 +222,7 @@ def run_probe(
         "pre_registration_timestamp": pre_reg_timestamp,
         
         "harness": {
-            "type": "llm-harness-proxy",
+            "type": "llm-llm-harness-proxy",
             "version": "1.0.0",
             "endpoint": HARNESS_BASE,
         },
