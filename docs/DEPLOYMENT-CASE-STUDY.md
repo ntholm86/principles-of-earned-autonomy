@@ -34,8 +34,8 @@ The skills-suite implements PEA's three principles as operational mechanisms:
 
 | Principle | Implementation | Artifact |
 |-----------|---------------|----------|
-| Commander's Intent | Intent skill (step 1 of Improve) + Destination skill | `.trail/destination.md` |
-| Observable Autonomy | Trail skill (append-only evidence per run) | `.trail/audit-trail.md` |
+| Commander's Intent | Intent skill (step 1 of Improve) + Destination skill | `.acm/destination.md` |
+| Observable Autonomy | Trail skill (append-only evidence per run) | `.acm/audit-trail.md` |
 | Convergence Is Silence | 3/3 cross-model validation protocol | Chain count in trail entries |
 
 ### The Memory Model
@@ -248,7 +248,7 @@ This deployment provides additional evidence that the framework operates on real
 
 ## Operational Rules Established
 
-The deployment produced explicit operational rules, recorded in `.trail/retrospect.md`:
+The deployment produced explicit operational rules, recorded in `.acm/retrospect.md`:
 
 1. **Every spec change must be paired with enforcement in the same session.** Prevents "spec written, enforcement deferred" failures.
 

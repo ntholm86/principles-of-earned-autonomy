@@ -89,7 +89,7 @@ Commander's Intent requires that the agent operate within bounded authority towa
 2. Record per-action justification linking the action to the Intent
 3. Flag actions that may exceed the Intent for human review
 
-The `.trail/destination.md` artifact in PEA implementations serves this role — it's the operator-held authority boundary the agent operates within.
+The `.acm/destination.md` artifact in PEA implementations serves this role — it's the operator-held authority boundary the agent operates within.
 
 ### Commander's Intent → Classification
 
@@ -200,7 +200,7 @@ For a PEA-compliant system to achieve full AAS-1 compatibility:
 | **Classification** | Add action type taxonomy to trail records. The LLM Harness Protocol's [AAT-MAPPING](https://github.com/ntholm86/llm-harness-proxy/blob/master/docs/AAT-MAPPING.md) documents this gap and proposes an inference path. |
 | **Identity** | Bind agent identity to AIS-1. This is orthogonal to PEA's principles — PEA is identity-layer agnostic. |
 | **Reproducibility** | For deterministic models, capture sufficient state. For non-deterministic models, document the limitation. ARF probes provide evidence of reasoning quality regardless of reproducibility. |
-| **Policy Compliance** | Record which policies apply and the compliance result. PEA's `.trail/destination.md` is a partial implementation (it records the Intent boundary) but doesn't capture per-action compliance verdicts. |
+| **Policy Compliance** | Record which policies apply and the compliance result. PEA's `.acm/destination.md` is a partial implementation (it records the Intent boundary) but doesn't capture per-action compliance verdicts. |
 
 ---
 

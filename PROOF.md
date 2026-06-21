@@ -70,7 +70,7 @@ The framework has two published reference implementations, each carrying bounded
 
 The artifact under test was the **Principles of Earned Autonomy Skills Suite**, a conformance implementation in the developer-tooling domain.
 
-**Source and inspection.** The full record is the append-only audit trail of the suite, public at [github.com/ntholm86/principles-of-earned-autonomy-skills-suite/blob/main/.trail/audit-trail.md](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite/blob/main/.trail/audit-trail.md). Each paragraph below cites the specific trail entries that back it, so a reader can open the linked entries and reconstruct the evidence independently. The cited entries are dated and slugged; the file is append-only and the suite repository carries its own integrity verifier.
+**Source and inspection.** The full record is the append-only audit trail of the suite, public at [github.com/ntholm86/principles-of-earned-autonomy-skills-suite/blob/main/.acm/audit-trail.md](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite/blob/main/.acm/audit-trail.md). Each paragraph below cites the specific trail entries that back it, so a reader can open the linked entries and reconstruct the evidence independently. The cited entries are dated and slugged; the file is append-only and the suite repository carries its own integrity verifier.
 
 #### Principle 1: Commander's Intent
 
