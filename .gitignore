@@ -1,8 +1,8 @@
-.DS_Store
+﻿.DS_Store
 Thumbs.db
 
-# Private trail — reasoning and session notes not for public exposure
-.trail/
+# Private trail â€” reasoning and session notes not for public exposure
+.acm/
 
 # Local Copilot skills for publication review workflows
 .github/skills/
