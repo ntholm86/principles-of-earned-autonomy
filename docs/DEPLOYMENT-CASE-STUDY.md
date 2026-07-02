@@ -1,4 +1,4 @@
-﻿# Deployment Case Study: Principles of Earned Autonomy Skills Suite
+# Deployment Case Study: Principles of Earned Autonomy Skills Suite
 
 **Version:** 1.0.0  
 **Date:** 2026-06-19  
@@ -34,7 +34,7 @@ The skills-suite implements PEA's three principles as operational mechanisms:
 
 | Principle | Implementation | Artifact |
 |-----------|---------------|----------|
-| Commander's Intent | Intent skill (step 1 of Improve) + Destination skill | `.acm/destination.md` |
+| Operator's Intent | Intent skill (step 1 of Improve) + Destination skill | `.acm/destination.md` |
 | Observable Autonomy | Trail skill (append-only evidence per run) | `.acm/audit-trail.md` |
 | Convergence Is Silence | 3/3 cross-model validation protocol | Chain count in trail entries |
 
@@ -278,7 +278,7 @@ The deployment produced explicit operational rules, recorded in `.acm/retrospect
 
 The Skills Suite deployment demonstrates that PEA's three principles are operationally viable:
 
-1. **Commander's Intent** — Agents interpret destination, not checklists. The Destination skill surfaces latent operator intent.
+1. **Operator's Intent** — Agents interpret destination, not checklists. The Destination skill surfaces latent operator intent.
 
 2. **Observable Autonomy** — Every run produces a trail entry. Incidents are diagnosed from the trail. Patterns emerge across runs.
 

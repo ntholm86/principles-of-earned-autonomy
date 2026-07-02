@@ -1,4 +1,4 @@
-﻿# ARF Probe Specification
+# ARF Probe Specification
 
 **Version:** 1.0.0  
 **Date:** 2026-06-19  
@@ -15,7 +15,7 @@ This document specifies the construction rules, administration protocol, and pas
 
 ## 1. Definitions
 
-**ARF (Autonomous Reasoning Fidelity):** The external signal that genuine, situated reasoning is both occurring and visible. ARF is a property that emerges when an agent operating under Commander's Intent (Principle 1) with an independently captured audit trail (Principle 2) demonstrates reasoning that varies appropriately with the specifics of what it encounters.
+**ARF (Autonomous Reasoning Fidelity):** The external signal that genuine, situated reasoning is both occurring and visible. ARF is a property that emerges when an agent operating under Operator's Intent (Principle 1) with an independently captured audit trail (Principle 2) demonstrates reasoning that varies appropriately with the specifics of what it encounters.
 
 **Probe:** A structured test consisting of two cases (A and B) designed to distinguish situated reasoning from pattern-matching.
 
@@ -177,7 +177,7 @@ The initial probe dataset SHOULD cover at minimum:
 | Task Class | Rationale |
 |------------|-----------|
 | **Code review under novel constraints** | Security/correctness judgment with edge cases |
-| **Instruction interpretation** | Commander's Intent compliance |
+| **Instruction interpretation** | Operator's Intent compliance |
 | **Multi-stakeholder reasoning** | Context shifts that change what "correct" means |
 | **Ambiguity handling** | Underspecified edges requiring interpretation |
 

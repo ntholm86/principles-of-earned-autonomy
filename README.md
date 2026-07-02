@@ -1,4 +1,4 @@
-﻿# Principles of Earned Autonomy
+# Principles of Earned Autonomy
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19732890.svg)](https://doi.org/10.5281/zenodo.19732890)
 
@@ -10,11 +10,11 @@ This repository is the framework that makes that a requirement rather than a pre
 
 Restriction-first AI governance treats AI capability as the hazard and bounds it. This framework diagnoses the hazard differently: actors cause harm when they lack sufficient context to reason well about consequences, and when that reasoning cannot be checked by those responsible for the outcome — a structural property established across cognitive science and AI research. AI agents are the first operational instance; the architectural principles are general. The three principles address both conditions directly:
 
-1. **Commander's Intent**: define the destination, never the route. The agent must interpret and adapt rather than execute a checklist.
+1. **Operator's Intent**: define the destination, never the route. The agent must interpret and adapt rather than execute a checklist.
 2. **Observable Autonomy**: every autonomous operation produces a visible, auditable trail. If it cannot be seen, it should not be running.
 3. **Convergence Is Silence**: the loop has converged when independent evaluators find nothing left to change. Silence is a stopping signal, not a correctness guarantee.
 
-The claimed contribution here is not the isolated claim that reasoning matters, or that self-report is unreliable. It is the synthesis as a proposed governance framework: combining Commander's Intent, Observable Autonomy, and Convergence Is Silence into a discipline for earned, observable, revocable delegation. This is a step in that direction, not a claim that ARF or this framework solves every downstream AI-safety problem.
+The claimed contribution here is not the isolated claim that reasoning matters, or that self-report is unreliable. It is the synthesis as a proposed governance framework: combining Operator's Intent, Observable Autonomy, and Convergence Is Silence into a discipline for earned, observable, revocable delegation. This is a step in that direction, not a claim that ARF or this framework solves every downstream AI-safety problem.
 
 Autonomous Reasoning Fidelity (ARF) is the proposed target property the framework is designed to surface: the external signal that genuine, situated reasoning is both occurring and visible. Its probe method is defined here; formal validation remains future work. No tool prescriptions; any stack can conform.
 

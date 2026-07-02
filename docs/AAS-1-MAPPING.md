@@ -1,4 +1,4 @@
-﻿# Principles of Earned Autonomy → AAS-1 Assertion Mapping
+# Principles of Earned Autonomy → AAS-1 Assertion Mapping
 
 **Version:** 1.0.0  
 **Date:** 2026-06-19  
@@ -15,7 +15,7 @@ This document maps the three architectural principles of Principles of Earned Au
 2. Which require additional implementation beyond PEA's core requirements
 3. Where PEA goes beyond what AAS-1 measures
 
-**Summary:** Observable Autonomy is the workhorse — it enables 9 of 12 assertions. Commander's Intent maps to Authorization. Convergence Is Silence operates at a level AAS-1 doesn't address (arc-level evaluation stability, not per-record properties).
+**Summary:** Observable Autonomy is the workhorse — it enables 9 of 12 assertions. Operator's Intent maps to Authorization. Convergence Is Silence operates at a level AAS-1 doesn't address (arc-level evaluation stability, not per-record properties).
 
 ---
 
@@ -23,7 +23,7 @@ This document maps the three architectural principles of Principles of Earned Au
 
 | Principle | Definition | Operational Effect |
 |-----------|------------|-------------------|
-| **Commander's Intent** | Define the destination, never the route. The agent interprets and adapts; it does not execute a checklist. | The agent operates within bounded authority toward stated goals. Delegation is explicit. |
+| **Operator's Intent** | Define the destination, never the route. The agent interprets and adapts; it does not execute a checklist. | The agent operates within bounded authority toward stated goals. Delegation is explicit. |
 | **Observable Autonomy** | Every autonomous operation produces a captured, auditable trail that the agent cannot retroactively author. | Complete, tamper-evident records of all agent activity. The foundation for external audit. |
 | **Convergence Is Silence** | The work is done when diverse independent evaluators find nothing left to change. | Quality is measured by evaluation stability, not self-assessment. |
 
@@ -75,15 +75,15 @@ Observable Autonomy is PEA's enforcement mechanism. It requires that every auton
 | **Identity** | ⚠️ **Requires implementation.** Observable Autonomy requires knowing *what* happened; AAS-1's Identity assertion requires cryptographic proof of *who* (AIS-1 binding). PEA is agnostic to identity layer. |
 | **Independence** | ✅ **Satisfied by construction.** The trail distinguishes agent actions from operator overrides. Observable Autonomy requires that human interventions be recorded as such, not hidden. |
 
-### Commander's Intent → Authorization
+### Operator's Intent → Authorization
 
-Commander's Intent requires that the agent operate within bounded authority toward stated goals. This maps directly to AAS-1's Authorization assertion.
+Operator's Intent requires that the agent operate within bounded authority toward stated goals. This maps directly to AAS-1's Authorization assertion.
 
-| AAS-1 Assertion | How Commander's Intent Satisfies It |
+| AAS-1 Assertion | How Operator's Intent Satisfies It |
 |-----------------|-------------------------------------|
-| **Authorization** | ✅ **Conceptually aligned.** Commander's Intent defines the destination (what the agent is authorized to do) without specifying the route (how). An agent acting outside its Intent is unauthorized by definition. |
+| **Authorization** | ✅ **Conceptually aligned.** Operator's Intent defines the destination (what the agent is authorized to do) without specifying the route (how). An agent acting outside its Intent is unauthorized by definition. |
 
-**Implementation note:** Commander's Intent is a governance principle, not a record format. To satisfy AAS-1's Authorization assertion in practice, a PEA-compliant system must:
+**Implementation note:** Operator's Intent is a governance principle, not a record format. To satisfy AAS-1's Authorization assertion in practice, a PEA-compliant system must:
 
 1. Record the Intent (destination, constraints) in the trail
 2. Record per-action justification linking the action to the Intent
@@ -91,11 +91,11 @@ Commander's Intent requires that the agent operate within bounded authority towa
 
 The `.acm/destination.md` artifact in PEA implementations serves this role — it's the operator-held authority boundary the agent operates within.
 
-### Commander's Intent → Classification
+### Operator's Intent → Classification
 
-Commander's Intent also influences Classification, though indirectly:
+Operator's Intent also influences Classification, though indirectly:
 
-| AAS-1 Assertion | How Commander's Intent Relates |
+| AAS-1 Assertion | How Operator's Intent Relates |
 |-----------------|-------------------------------|
 | **Classification** | ⚠️ **Indirectly supported.** The Intent shapes what action types are in scope. However, AAS-1's Classification requires explicit action typing (a controlled vocabulary). PEA does not mandate this — it's implementation-dependent. |
 
@@ -125,9 +125,9 @@ A PEA-compliant system uses AAS-1-compatible records (via Observable Autonomy) a
 | 1. Existence | Observable Autonomy | ✅ Full |
 | 2. Completeness | Observable Autonomy | ✅ Full |
 | 3. Accuracy | Observable Autonomy | ✅ Full |
-| 4. Authorization | Commander's Intent | ✅ Conceptual (needs implementation) |
+| 4. Authorization | Operator's Intent | ✅ Conceptual (needs implementation) |
 | 5. Cutoff | Observable Autonomy | ✅ Full |
-| 6. Classification | Commander's Intent | ⚠️ Partial (action typing not mandated) |
+| 6. Classification | Operator's Intent | ⚠️ Partial (action typing not mandated) |
 | 7. Presentation | Observable Autonomy | ✅ Full |
 | 8. Identity | Observable Autonomy | ⚠️ Partial (needs AIS-1 binding) |
 | 9. Provenance | Observable Autonomy | ✅ Full |
@@ -188,7 +188,7 @@ AAS-1 is an evidentiary standard — it defines what records look like and how a
 
 For a PEA-compliant system to achieve full AAS-1 compatibility:
 
-### Already Satisfied (via Observable Autonomy + Commander's Intent)
+### Already Satisfied (via Observable Autonomy + Operator's Intent)
 
 - Existence, Completeness, Accuracy, Cutoff, Presentation, Provenance, Independence
 - Authorization (with explicit Intent recording)

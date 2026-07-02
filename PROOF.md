@@ -1,4 +1,4 @@
-﻿# Conformance and Empirical Evidence
+# Conformance and Empirical Evidence
 
 *The framework's load-bearing claims are falsifiable. This file documents how to test each one and what two reference implementations found when they did.*
 
@@ -8,7 +8,7 @@
 
 Three conformance tests, one per principle:
 
-1. **Commander's Intent** - Present the artifact cold to evaluators who did not author it. If they produce coherent, situated output without scaffolding, it conforms.
+1. **Operator's Intent** - Present the artifact cold to evaluators who did not author it. If they produce coherent, situated output without scaffolding, it conforms.
 2. **Observable Autonomy** - Give an absent human observer only the trail. If they can locate a decision, reconstruct the reasoning, and find something to challenge, it conforms.
 3. **Convergence Is Silence** - Run the loop to silence across three evaluators from distinct families, each in a fresh session. If the loop stops because nothing is left to change, it conforms.
 
@@ -22,13 +22,13 @@ These tests are domain-agnostic. Apply them to your own system. Reference eviden
 
 Each principle has a test; ARF, the framework's central measurable property, has a probe test of its own. The tests below apply regardless of domain, stack, or scale. Run them on your own implementation, not on this manifesto.
 
-### Principle 1: Commander's Intent
+### Principle 1: Operator's Intent
 
 **The falsification question.** The litmus test in [PRINCIPLES.md](./PRINCIPLES.md): *if you removed all specific examples and thresholds from your skill (or process, or specification), would an intelligent agent that did not participate in writing it still know what to do?*
 
 **How to test it.** Present the artifact cold to evaluators from distinct model families who did not author it. Ask them to apply it. Record whether they produce coherent output without external scaffolding, or whether they need the author to interpret the instructions.
 
-**Failure mode.** Evaluators request clarifying context, add their own assumptions, or produce outputs the author would not recognize as conformant. This indicates the artifact is written as a checklist, not a mission.
+**Failure mode.** Evaluators request clarifying context, add their own assumptions, or produce outputs the author would not recognize as conformant. This indicates the artifact is written as a checklist, not a destination.
 
 ### Principle 2: Observable Autonomy
 
@@ -72,7 +72,7 @@ The artifact under test was the **Principles of Earned Autonomy Skills Suite**, 
 
 **Source and inspection.** The full record is the append-only audit trail of the suite, public at [github.com/ntholm86/principles-of-earned-autonomy-skills-suite/blob/main/.acm/audit-trail.md](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite/blob/main/.acm/audit-trail.md). Each paragraph below cites the specific trail entries that back it, so a reader can open the linked entries and reconstruct the evidence independently. The cited entries are dated and slugged; the file is append-only and the suite repository carries its own integrity verifier.
 
-#### Principle 1: Commander's Intent
+#### Principle 1: Operator's Intent
 
 Three fresh-session evaluators from distinct model families, none involved in authoring the suite, were each asked to apply it cold to the same target (the suite self-targeted). Each produced a coherent evaluation approach without external scaffolding and none reported the skills as underspecified. The evaluators and outcomes are recorded in suite trail entries `2026-04-24 -- v3-silence-1` (Anthropic Claude Sonnet 4.6, peg 1/3, silence), `2026-04-24 -- v3-silence-2` (xAI Grok Code Fast 1, peg 2/3, silence), and `2026-04-24 -- v3-silence-3` (Google Gemini 3.1 Pro Preview, peg 3/3, silence). The suite directed independent reasoning across three distinct model lineages from a single instruction set, without a checklist.
 
