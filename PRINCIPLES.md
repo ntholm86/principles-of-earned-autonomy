@@ -146,13 +146,17 @@ The two together close the two ways post-hoc rationalization enters a trail: fab
 
 *A system has converged, for purposes of the loop, when diverse evaluators independently find nothing left to change.*
 
-**Origin:** Cross-validation (statistics), ensemble agreement (machine learning), the Delphi method (forecasting), and Kaizen's own exit condition, taken to its logical conclusion.
+**Origin:** Cybernetics and feedback control (Wiener, 1948), cross-validation (statistics), ensemble agreement (machine learning), the Delphi method (forecasting), and Kaizen's own exit condition, taken to its logical conclusion.
 
 **The problem it solves:** Iterative improvement loops declare convergence too early. The typical criterion - "the score stabilized across N consecutive runs" - measures the wrong signal. A score can stabilize while the system is still changing underneath: each run removes something and adds something, the score stays flat, but the artifact never stops churning. Worse, a single evaluator (or a single model family) can converge on its own blind spots, producing a stable score that reflects the evaluator's limitations, not the artifact's quality.
 
 Score stability is necessary but not sufficient. Change-rate stability is necessary but not sufficient. Only the combination, across diverse independent evaluators, constitutes convergence.
 
 **The principle:** Convergence requires diverse independent evaluators to arrive at the same assessment *and* find nothing material to change. Silence is the strongest available stopping signal for the loop, not a guarantee that the artifact is correct.
+
+**The cybernetic grounding:** Wiener established cybernetics as the study of control and communication in animals and machines. Read as a feedback system, PEA's three principles form one steering architecture: Operator's Intent supplies the reference state - the destination; Observable Autonomy makes the system's state, actions, and history available for comparison; and independent evaluation feeds detected deviation back into the next action. Convergence Is Silence names the stopping condition: the feedback channel produces no material corrective signal across diverse observers. This is stability relative to the current destination and the system's observational capacity, not proof of correctness or permanent equilibrium. A changed destination, changed artifact, or new material finding reopens the loop.
+
+Cybernetics grounds the mechanism of steering by feedback. PEA adds a governance constraint the control model alone does not provide: the acting agent cannot be its own only sensor, judge, or historian. Feedback must come through independent evaluation and an auditable trail.
 
 ### The test
 
@@ -214,6 +218,7 @@ ARF is the measurable external signal this framework is designed to surface when
 - **Meaningful Human Control** (Santoni de Sio & van den Hoven, 2018) - their framework requires both tracking (the system reflects the operator's values) and tracing (humans can trace decisions back through the causal chain). Shapes the "trail integrity" half; this principle extends the tracing requirement to a structural guarantee via capture-author separation.
 - **Trust Calibration** (Lee & See, 2004) - trust in autonomous systems should be calibrated to actual capabilities, and calibration requires observability. Over-trust and under-trust are both failures. Principle 2 is the calibration mechanism.
 - **Explicability as the fifth AI ethics principle** (Floridi et al., 2018, AI4People) - explicability (intelligibility + accountability) named as the necessary fifth pillar alongside beneficence, non-maleficence, autonomy, and justice. Principle 2 is the structural mechanism that operationalizes explicability: capture-author separation makes explicability enforceable as an artifact rather than aspirational as a principle.
+- **Cybernetics** (Wiener, 1948) - control is achieved through communication and feedback between observed state and intended state. Grounds the steering mechanism across all three principles: destination as reference, observability as state information, and convergence as the absence of material corrective feedback. PEA adds independent evaluation and capture-author separation as governance constraints on who may supply and preserve that feedback.
 - **Society-in-the-loop** (Rahwan, 2018) - oversight of autonomous systems must be plural and distributed, not concentrated in a single human or institution. Operates at the social-contract layer (who designs the constraints?); Principle 3 (Convergence Is Silence) extends the same anti-singularity-of-judgment instinct to the convergence-check layer (when does plural scrutiny constitute a stopping signal?). Different scale, same family.
 
 **Preconditions** (principle compliance - verify the environment, not the agent):
@@ -301,6 +306,8 @@ The following works are cited in this document. Inline citations appear in the b
 - **Suchman, L.** (1987). *Plans and Situated Actions: The Problem of Human-Machine Communication.* Cambridge University Press. [Established the impossibility of fully pre-specifying human expert action from plans alone: human action is irreducibly situated in context. Used here as theoretical grounding for the operational use of 'situated' in ARF's case-specific adaptation sense.]
 
 - **Floridi, L., Cowls, J., Beltrametti, M., Chatila, R., Chazerand, P., Dignum, V., Luetge, C., Madelin, R., Pagallo, U., Rossi, F., Schafer, B., Valcke, P., & Vayena, E.** (2018). AI4People - An ethical framework for a good AI society: Opportunities, risks, principles, and recommendations. *Minds and Machines*, 28(4), 689-707. https://doi.org/10.1007/s11023-018-9482-5 [Proposed *explicability* (intelligibility + accountability) as the fifth principle of AI ethics. Cited here as the named ethical principle that Principle 2 (Observable Autonomy) operationalizes via capture-author separation.]
+
+- **Wiener, N.** (1948/1961). *Cybernetics: Or Control and Communication in the Animal and the Machine* (2nd ed.). MIT Press. https://mitpress.mit.edu/9780262730099/cybernetics/ [Established cybernetics as the study of control and communication in animals and machines. Cited here as the feedback-steering ancestor for the PEA loop and Principle 3's stopping condition; PEA's independent-evaluator and capture-author constraints are additional governance requirements.]
 
 - **Rahwan, I.** (2018). Society-in-the-loop: programming the algorithmic social contract. *Ethics and Information Technology*, 20(1), 5-14. https://doi.org/10.1007/s10676-017-9430-8 [Extended human-in-the-loop oversight to society-level distributed scrutiny: oversight of autonomous systems must be plural rather than concentrated. Cited here as the plural-oversight ancestor for Principle 3 (Convergence Is Silence); both share the anti-singularity-of-judgment instinct at different scales (social-contract layer vs convergence-check layer).]
 
