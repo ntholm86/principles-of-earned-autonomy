@@ -38,3 +38,7 @@ Then, if you want the formative case and external corroboration that motivated t
 
 Philosophy and documentation: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 Author: Nils Wendelboe Holmager | April 2026
+
+---
+
+Author: [Nils Wendelboe Holmager](https://nilsholmager.com/) · [Project context and connected work](https://nilsholmager.com/research/principles-of-earned-autonomy/)
