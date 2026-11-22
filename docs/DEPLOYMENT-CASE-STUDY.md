@@ -9,6 +9,8 @@
 
 > **Note on names (2026-11-21).** This case study describes the suite as it was on its date. Two of its skills have since been renamed: **Trail is now Record** and **Retrospect is now Orient**. The concept of an audit trail, and the file `.acm/audit-trail.md`, are unchanged.
 
+> **Update (2026-11-22).** Orient is now **Learn**, and `orientation.md` (above: `retrospect.md`) is now `learning.md`.
+
 ## Executive Summary
 
 The Principles of Earned Autonomy (PEA) framework has been deployed in production since April 2026 via the Skills Suite — a set of five skills (Intent, Improve, Probe, Trail, Retrospect) that operationalize the three PEA principles. This document provides deployment evidence in an incident-narrative format for institutional review.
