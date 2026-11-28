@@ -1,9 +1,9 @@
-# Deployment Case Study: Principles of Earned Autonomy Skills Suite
+# Deployment Case Study: Agent Cognition Skills
 
 **Version:** 1.0.0  
 **Date:** 2026-06-19  
 **Deployment Period:** April 2026 – present (ongoing)  
-**Subject:** [Principles of Earned Autonomy - Skills Suite](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite)
+**Subject:** [Agent Cognition Skills (ACS)](https://github.com/ntholm86/agent-cognition-skills)
 
 ---
 
@@ -13,7 +13,7 @@
 
 ## Executive Summary
 
-The Principles of Earned Autonomy (PEA) framework has been deployed in production since April 2026 via the Skills Suite — a set of five skills (Intent, Improve, Probe, Trail, Retrospect) that operationalize the three PEA principles. This document provides deployment evidence in an incident-narrative format for institutional review.
+The Principles of Earned Autonomy (PEA) framework has been deployed in production since April 2026 via Agent Cognition Skills (ACS) — a set of skills that operationalize the three PEA principles. The historical evidence predates the current skill names, as noted below. This document provides deployment evidence in an incident-narrative format for institutional review.
 
 **Key metrics:**
 - **Trail entries:** 123+ (as of 2026-05-23)
@@ -294,14 +294,14 @@ The deployment also established boundaries:
 - **Specs written ahead of implementation will be over-strong.** Era boundaries and explicit softening policies handle this gracefully.
 - **The memory model solves cross-session continuity.** Model changes don't break the work.
 
-The full trail is published at the [skills-suite repository](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite). The enterprise deployment provides additional production evidence under confidentiality constraints.
+The full trail is published in the [Agent Cognition Skills repository](https://github.com/ntholm86/agent-cognition-skills). The enterprise deployment provides additional production evidence under confidentiality constraints.
 
 ---
 
 ## References
 
-- [Skills Suite Repository](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite)
-- [POSITION.md](https://github.com/ntholm86/principles-of-earned-autonomy-skills-suite/blob/main/POSITION.md) — Stance document with falsification criteria
+- [Agent Cognition Skills repository](https://github.com/ntholm86/agent-cognition-skills)
+- [ACS audit trail](https://github.com/ntholm86/agent-cognition-skills/blob/main/.acm/audit-trail.md) — Public evidence trail with falsification criteria and findings
 - [PEA Manifesto](https://github.com/ntholm86/principles-of-earned-autonomy)
 - [AAS-1 Mapping](./AAS-1-MAPPING.md) — How PEA principles map to audit assertions
-- [LLM Harness Protocol](https://github.com/ntholm86/llm-harness-proxy) — Structural enforcement layer
+- [Agent Evidence Proxy](https://doi.org/10.5281/zenodo.24624043) — Structural capture layer

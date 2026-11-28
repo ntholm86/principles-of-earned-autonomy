@@ -1,6 +1,6 @@
 ﻿#!/usr/bin/env python3
 """
-ARF Probe Runner — administer probes through the LLM Harness Protocol (Path 1).
+ARF Probe Runner — administer probes through Agent Evidence Proxy (Path 1).
 
 This tool implements ARF-SPEC §3.4 Path 1 (Direct API, automated):
 - Routes LLM calls through the harness proxy (127.0.0.1:8474)
@@ -22,7 +22,7 @@ Example:
     python tools/arf-runner.py code-review-offline-constraint --model gpt-4o
 
 Pre-requisites:
-    1. llm-harness-proxy.exe must be running (listening on 127.0.0.1:8474)
+    1. agent-evidence-proxy must be running (listening on 127.0.0.1:8474)
     2. OPENAI_API_KEY must be set in environment
 """
 
@@ -222,8 +222,8 @@ def run_probe(
         "pre_registration_timestamp": pre_reg_timestamp,
         
         "harness": {
-            "type": "llm-llm-harness-proxy",
-            "version": "1.0.0",
+            "type": "agent-evidence-proxy",
+            "version": "0.1.0",
             "endpoint": HARNESS_BASE,
         },
         
@@ -271,7 +271,7 @@ def run_probe(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="ARF Probe Runner — administer probes through the LLM Harness Protocol"
+        description="ARF Probe Runner — administer probes through Agent Evidence Proxy"
     )
     parser.add_argument(
         "probe_id",

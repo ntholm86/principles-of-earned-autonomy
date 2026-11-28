@@ -1,7 +1,8 @@
 {
   "title": "Principles of Earned Autonomy: A Governance Framework for Autonomous Agents",
-  "version": "2.3.0",
-  "description": "<p><strong>What this is.</strong> A proposed theory-level governance framework for how autonomous AI agents may earn and exercise authority.</p>\n<p><strong>The claimed contribution.</strong> Not the isolated claim that reasoning matters, nor the premise that self-narration is unreliable. The claimed contribution is the synthesis: two core problems (autonomous reasoning and earned autonomy), three architectural principles (Operator's Intent, Observable Autonomy, Convergence Is Silence), and one proposed measurable property (Autonomous Reasoning Fidelity, ARF) combined into a discipline of earned, observable, revocable authority.</p>\n<p><strong>Why it matters.</strong> The question is not only whether an agent can produce useful outputs, but on what evidence a human or institution should let it act more autonomously in a specific context.</p>\n<p><strong>Scope posture.</strong> This is presented as a step toward deployable governance for delegability, not as a complete solution to AI safety or autonomy.</p>\n<p><strong>Evidence status.</strong> Public conformance evidence lives in the released documents and the two separately published reference implementations they cite: the Principles of Earned Autonomy Skills Suite (developer-tooling domain, three-family silence-convergence run) and the LLM Harness Protocol (a transparent MITM proxy that writes a tamper-evident, hash-chained, append-only ledger of every LLM interaction across OpenAI, Anthropic, and Gemini APIs, demonstrating that the structural capture-author separation Principle 2 requires is buildable in current tooling).</p>\n<p><strong>Core argumentative line.</strong> Problem -> principles -> bounded reference evidence from two implementations.</p>\n<p><strong>Read in this order.</strong></p>\n<ol>\n<li><strong>README.md</strong> - overview and scope.</li>\n<li><strong>PROBLEM.md</strong> - names the two problems and defines delegability as the connecting discipline.</li>\n<li><strong>PRINCIPLES.md</strong> - states the three principles and the ARF operational definition.</li>\n<li><strong>PROOF.md</strong> - conformance tests for each principle, plus bounded empirical evidence from the two reference implementations.</li>\n</ol>\n<p><strong>Background and corroboration.</strong> <strong>EMPIRICAL_EVIDENCE.md</strong> records formative case material from the framework's synthesis plus external corroboration for why the principles are structural; it is not part of the core evidentiary line.</p>\n<p><strong>Canonical source:</strong> <a href='https://github.com/ntholm86/principles-of-earned-autonomy'>GitHub repository</a>. <strong>Companion implementations:</strong> <a href='https://zenodo.org/records/19732827'>Autonomous Development Skills Suite on Zenodo</a> and the <a href='https://github.com/ntholm86/llm-harness-proxy'>LLM Harness Protocol</a>.</p>",
+  "version": "2.4.0",
+  "language": "eng",
+  "description": "<p><strong>What this is.</strong> Principles of Earned Autonomy (PEA) is a proposed theory-level governance framework for how autonomous AI agents may earn, exercise, and lose authority.</p><p><strong>Claimed contribution.</strong> The contribution is the synthesis, not the isolated claims that reasoning matters or self-narration is unreliable: two core problems, three architectural principles (Operator's Intent, Observable Autonomy, and Convergence Is Silence), and one proposed measurable property, Autonomous Reasoning Fidelity (ARF), are combined into a discipline of earned, observable, revocable authority.</p><p><strong>v2.4.0 additions.</strong> This version propagates substrate-general framing to the main digest surfaces, adds an AAS-1 assertion mapping and public-comment material, adds an ACS deployment case study, and aligns current references with Agent Cognition Skills (ACS) and Agent Evidence Proxy (AEP).</p><p><strong>Evidence posture.</strong> Public evidence remains bounded. ACS supplies a developer-tooling reference lineage with model-family-diverse convergence and recorded falsification. AEP supplies an independently authored, fail-closed capture boundary for buffered traffic. The initial ARF dataset was administered through the historical LLM Harness Protocol v2.0.0; it is not attributed to AEP v0.1.0, and ARF independent replication remains open. PEA is not presented as a complete solution to AI safety, reasoning correctness, or autonomy.</p><p><strong>Read in this order.</strong> README.md, PROBLEM.md, PRINCIPLES.md, then PROOF.md. EMPIRICAL_EVIDENCE.md is background and corroboration rather than part of the core evidentiary line.</p><p><strong>Canonical source.</strong> <a href='https://github.com/ntholm86/principles-of-earned-autonomy'>GitHub repository</a>. The broader research stack is anchored by Augmented Individual Intelligence (AII), and reference implementations include <a href='https://github.com/ntholm86/agent-cognition-skills'>Agent Cognition Skills</a> and <a href='https://doi.org/10.5281/zenodo.24624043'>Agent Evidence Proxy</a>.</p>",
   "creators": [
     {
       "name": "Holmager, Nils Wendelboe",
@@ -28,6 +29,30 @@
       "relation": "isSupplementedBy",
       "resource_type": "software",
       "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.24624043",
+      "relation": "isSupplementedBy",
+      "resource_type": "software",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.18417872",
+      "relation": "isSupplementTo",
+      "resource_type": "publication",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/ntholm86/agent-cognition-skills",
+      "relation": "isSupplementedBy",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/ntholm86/agent-evidence-proxy",
+      "relation": "isSupplementedBy",
+      "resource_type": "software",
+      "scheme": "url"
     }
   ]
 }

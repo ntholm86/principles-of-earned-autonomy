@@ -14,7 +14,7 @@ This directory contains the curated ARF probe dataset — Case A / Case B pairs 
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| **Administered** | 3 | Probes run through LLM Harness Protocol v2.0.0, harness-attested results in `results/` |
+| **Administered** | 3 | Historical probes run through LLM Harness Protocol v2.0.0, the predecessor of AEP; results are in `results/` |
 | **Validated** | 0 | Probes with independent replication (cross-model, cross-administrator) |
 | **Retired** | 0 | Probes found to be invalid or superseded |
 
@@ -49,7 +49,7 @@ New probes must:
 ## Validation Roadmap
 
 1. **Phase 1 (current):** Demonstration probes — validate format, refine methodology
-2. **Phase 2:** Harness integration — administer through LLM Harness Protocol
+2. **Phase 2:** Capture integration — future administrations use Agent Evidence Proxy
 3. **Phase 3:** Multi-agent testing — administer to 3+ agent families
 4. **Phase 4:** Independent replication — external administrators reproduce results
 5. **Phase 5:** Reproducibility report — formal write-up for citation

@@ -14,31 +14,36 @@ abstract: >
   faithfulness), a defined contrastive-pair probe structure, a falsifiable
   claim, and a formalization agenda. Includes conformance tests for all three
   principles and for ARF, plus bounded reference evidence from two separately
-  published reference implementations: (A) the Principles of Earned Autonomy
-  Skills Suite (a three-family, single-operator-administered silence-convergence
+  published reference implementations: (A) Agent Cognition Skills (ACS), a
+  three-family, single-operator-administered silence-convergence
   run across Anthropic, xAI/Grok, and Google/Gemini, anchored to a public
-  append-only audit trail), and (B) the LLM Harness Protocol (a transparent
-  MITM proxy that writes a tamper-evident, hash-chained, append-only ledger of
-  every LLM interaction before the response is released to the caller, across
-  OpenAI, Anthropic, and Gemini APIs). Implementation A documents falsification
+  append-only audit trail, and (B) Agent Evidence Proxy (AEP), a fail-closed
+  proxy that writes a hash-chained JSONL ledger and fsyncs buffered responses
+  before release across OpenAI-compatible, Anthropic, and Gemini APIs.
+  Implementation A documents falsification
   findings that bound the convergence claim; Implementation B demonstrates that
   capture-author separation - the structural property Principle 2 requires - is
   buildable in current tooling. A formal References section with full
   bibliographic entries grounds every inline citation. Presented as a step
   toward deployable governance for delegability, not as a complete solution to
-  AI safety or autonomy. Implementation-agnostic.
+  AI safety or autonomy. The initial ARF probe dataset was administered through
+  the predecessor LLM Harness Protocol v2.0.0; this historical evidence is
+  distinguished from the current AEP v0.1.0 release. Implementation-agnostic.
 authors:
   - family-names: Holmager
     given-names: Nils Wendelboe
     orcid: "https://orcid.org/0009-0009-7157-9084"
 repository-code: "https://github.com/ntholm86/principles-of-earned-autonomy"
 license: CC-BY-SA-4.0
-version: "2.3.0"
-date-released: "2026-06-19"
+version: "2.4.0"
+date-released: "2026-11-28"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.19732890"
     description: "Zenodo concept DOI (resolves to latest version)"
+  - type: doi
+    value: "10.5281/zenodo.24624324"
+    description: "Zenodo archive reserved for v2.4.0"
 keywords:
   - autonomous agents
   - AI governance
@@ -49,3 +54,23 @@ keywords:
   - convergence
   - agent safety
   - large language models
+references:
+  - type: software
+    title: "Agent Cognition Skills (ACS)"
+    authors:
+      - family-names: Holmager
+        given-names: Nils Wendelboe
+    repository-code: "https://github.com/ntholm86/agent-cognition-skills"
+  - type: software
+    title: "Agent Evidence Proxy (AEP)"
+    authors:
+      - family-names: Holmager
+        given-names: Nils Wendelboe
+    doi: "10.5281/zenodo.24624043"
+    repository-code: "https://github.com/ntholm86/agent-evidence-proxy"
+  - type: article
+    title: "Augmented Individual Intelligence (AII): A New Mode of Hybrid Human-AI Cognition"
+    authors:
+      - family-names: Holmager
+        given-names: Nils Wendelboe
+    doi: "10.5281/zenodo.18417872"

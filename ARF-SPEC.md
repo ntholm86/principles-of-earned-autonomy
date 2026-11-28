@@ -73,7 +73,7 @@ A probe is INVALID if:
 
 Before administering either case:
 
-1. **Record the pre-registration** in a tamper-evident medium (e.g., the LLM Harness Protocol ledger, a git commit, a signed document)
+1. **Record the pre-registration** in a tamper-evident medium (e.g., an Agent Evidence Proxy ledger, a git commit, a signed document)
 2. **Timestamp** the pre-registration
 3. **Verify independence** — the agent has not seen either case or the pre-registration
 
@@ -87,7 +87,7 @@ Before administering either case:
 
 Under behavioral-layer tooling (MCP, system prompts, skill scaffolding), the probe inherits the failure modes it is designed to detect — the instrument and subject share a single point of failure. Valid ARF measurement therefore REQUIRES:
 
-- Trail capture through a protocol-layer harness (e.g., LLM Harness Protocol)
+- Trail capture through a protocol-layer proxy (e.g., Agent Evidence Proxy)
 - The harness MUST write entries before the response reaches the agent or caller
 - The agent MUST NOT have the ability to revise or suppress ledger entries
 
@@ -240,8 +240,8 @@ administered: "2026-06-19T14:32:00Z"
 administrator: "administrator-identifier"
 
 harness:
-  type: "llm-harness-proxy"
-  version: "1.0.0"
+  type: "agent-evidence-proxy"
+  version: "0.1.0"
   ledger_hash: "sha256:..."
 
 agent:

@@ -1,12 +1,26 @@
 ﻿# Changelog
 
-## Unreleased
+## v2.4.0 - 2026-11-28
 
 ### Changed
 
 - **Substrate-general framing propagated to Digest surfaces.** The premise ("self-narration under self-interest is unreliable") is now explicitly stated as general to any self-narrating actor with stakes, not AI-specific. AI agents are the first operational instance; the architectural principles are general. Closes the rule-22 gap opened by v2.0.1's cross-domain confirmation.
 
   Files changed: `PROBLEM.md` (Digest + Working Hypothesis), `PRINCIPLES.md` (Digest premise line), `README.md` (premise paragraph, operator-approved).
+
+- **Canonical implementation identities and evidence boundaries aligned.**
+  Current PEA references now name Agent Cognition Skills (ACS) and Agent
+  Evidence Proxy (AEP), include AEP v0.1.0 DOI 10.5281/zenodo.24624043, and
+  distinguish current AEP behavior from the historical LLM Harness Protocol
+  v2.0.0 probe evidence. Streaming and capture limitations are stated against
+  the current implementation rather than inherited from earlier documentation.
+
+- **AAS-1 and deployment material added.** The release includes an assertion
+  mapping, a public-comment draft, and an ACS deployment case study.
+
+- **Release metadata made dependency-aware.** Citation and Zenodo metadata now
+  relate PEA to AII, ACS, and AEP while preserving the prior ACS DOI as release
+  history.
 
 ---
 
